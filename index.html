@@ -40,31 +40,32 @@
             <a href="https://text-to-qr-delta.vercel.app/" target="_blank" class="bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-slate-800 transition inline-block"> ♋️စာသား ကနေ QR CODE ပြောင်းရန်♋️</a>
         </section>
 
-        <section id="mytel" class="mb-12">
-            <h3 class="text-2xl font-bold mb-6 text-orange-600">♛မိုင်တဲ MB များ</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
-                    <h4 class="text-2xl font-bold text-orange-600">15,000 Ks</h4>
-                    <p class="text-slate-700 my-2 font-bold">22 GB + 8,000 min (on-net) + 5,000 SMS</p>
-                    <button onclick="orderItem('15,000 Ks Data Plan', '15,000 ကျပ် Mytel')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+        <!-- Mytel Section -->
+            <section id="mytel" class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-orange-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">Mytel Data Plans</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
+                        <h4 class="text-2xl font-bold text-orange-600">15,000 Ks</h4>
+                        <p class="text-slate-700 my-2 font-bold">22 GB + 8,000 min + 5,000 SMS</p>
+                        <button onclick="orderItem('15,000 Ks Mytel', '15,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
+                        <h4 class="text-2xl font-bold text-orange-600">20,000 Ks</h4>
+                        <p class="text-slate-700 my-2 font-bold">40 GB + 250 min + 25 min</p>
+                        <button onclick="orderItem('20,000 Ks Mytel', '20,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
+                        <h4 class="text-2xl font-bold text-orange-600">25,000 Ks</h4>
+                        <p class="text-slate-700 my-2 font-bold">40 GB + 1,400 min + 8,000 SMS</p>
+                        <button onclick="orderItem('25,000 Ks Mytel', '25,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
+                        <h4 class="text-2xl font-bold text-orange-600">30,000 Ks</h4>
+                        <p class="text-slate-700 my-2 font-bold">120 GB</p>
+                        <button onclick="orderItem('30,000 Ks Mytel', '30,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
-                    <h4 class="text-2xl font-bold text-orange-600">20,000 Ks</h4>
-                    <p class="text-slate-700 my-2 font-bold">40 GB + 250 min (on-net) + 25 min (off-net)</p>
-                    <button onclick="orderItem('20,000 Ks Data Plan', '20,000 ကျပ် Mytel')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
-                    <h4 class="text-2xl font-bold text-orange-600">25,000 Ks</h4>
-                    <p class="text-slate-700 my-2 font-bold">40 GB + 1,400 min (on-net) + 8,000 SMS</p>
-                    <button onclick="orderItem('25,000 Ks Data Plan', '25,000 ကျပ် Mytel')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
-                    <h4 class="text-2xl font-bold text-orange-600">30,000 Ks</h4>
-                    <p class="text-slate-700 my-2 font-bold">120 GB</p>
-                    <button onclick="orderItem('30,000 Ks Data Plan', '30,000 ကျပ် Mytel')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
-                </div>
-            </div>
-        </section>
+            </section>
 
         <!-- ATOM Section -->
         <section id="atom" class="mb-12">
@@ -88,61 +89,49 @@
             </div>
         </section>
         <section id="games" class="mb-12">
-            <h3 class="text-2xl font-bold mb-6 text-purple-600">♚ဂိမ်းအတွက်</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-2xl border border-purple-200 shadow-lg">
-                    <h4 class="text-xl font-bold">60 UC (PUBG)</h4>
-                    <p class="text-slate-600 my-2">4,200 ကျပ်</p>
-                    <button onclick="orderItem('60 UC', '4,200 ကျပ်')" class="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-purple-600 transition font-bold">ဝယ်ယူမည်</button>
+                <h3 class="text-2xl font-bold mb-6 text-purple-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">Game Credits</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
+                        <h4 class="text-xl font-bold">60 UC (PUBG)</h4>
+                        <p class="text-slate-600 my-2 font-bold">4,200 ကျပ်</p>
+                        <button onclick="orderItem('60 UC', '4,200 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
+                        <h4 class="text-xl font-bold">325 UC (PUBG)</h4>
+                        <p class="text-slate-600 my-2 font-bold">21,500 ကျပ်</p>
+                        <button onclick="orderItem('325 UC', '21,500 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
+                        <h4 class="text-xl font-bold">660 UC (PUBG)</h4>
+                        <p class="text-slate-600 my-2 font-bold">42,000 ကျပ်</p>
+                        <button onclick="orderItem('660 UC', '42,000 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
+                        <h4 class="text-xl font-bold">86 Diamonds (MLBB)</h4>
+                        <p class="text-slate-600 my-2 font-bold">3,000 ကျပ်</p>
+                        <button onclick="orderItem('86 Diamonds', '3,000 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-200 shadow-lg">
-                    <h4 class="text-xl font-bold">325 UC (PUBG)</h4>
-                    <p class="text-slate-600 my-2">21,500 ကျပ်</p>
-                    <button onclick="orderItem('325 UC', '21,500 ကျပ်')" class="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-purple-600 transition font-bold">ဝယ်ယူမည်</button>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-200 shadow-lg">
-                    <h4 class="text-xl font-bold">660 UC (PUBG)</h4>
-                    <p class="text-slate-600 my-2">42,000 ကျပ်</p>
-                    <button onclick="orderItem('660 UC', '42,000 ကျပ်')" class="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-purple-600 transition font-bold">ဝယ်ယူမည်</button>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-200 shadow-lg">
-                    <h4 class="text-xl font-bold">1800 UC (PUBG)</h4>
-                    <p class="text-slate-600 my-2">106,000 ကျပ်</p>
-                    <button onclick="orderItem('1800 UC', '106,000 ကျပ်')" class="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-purple-600 transition font-bold">ဝယ်ယူမည်</button>
-                </div>
-                <div class="bg-white p-6 rounded-2xl border border-purple-200 shadow-lg">
-                    <h4 class="text-xl font-bold">86 Diamonds (MLBB)</h4>
-                    <p class="text-slate-600 my-2">3,000 ကျပ်</p>
-                    <button onclick="orderItem('86 Diamonds', '3,000 ကျပ်')" class="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-purple-600 transition font-bold">ဝယ်ယူမည်</button>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="vpn" class="mb-12">
-            <h3 class="text-2xl font-bold mb-6 text-green-600">♟ဝီပီအမ်ဝယ်ရန်</h3>
-            <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
-                <h4 class="text-xl font-bold">Premium VPN Key (1 Month)</h4>
-                <p class="text-slate-600 my-2 text-xl font-semibold">5,000 ကျပ်</p>
-                <button onclick="orderItem('Premium အောက်လိုင်း ဝီပီအမ် Key (1 Month)', '5,000 ကျပ်')" class="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-green-700 transition font-bold">ဝယ်ယူမည်</button>
-            </div>
-        </section>
+        <section id="vpn">
+                    <h3 class="text-2xl font-bold mb-6 text-green-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">VPN Services</h3>
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-green-200 shadow-lg">
+                        <h4 class="text-xl font-bold">Premium VPN Key (1 Month)</h4>
+                        <p class="text-slate-600 my-2 text-xl font-semibold">5,000 ကျပ်</p>
+                        <button onclick="orderItem('Outline Premium VPN Key', '5,000 ကျပ်')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition font-bold">ဝယ်ယူမည်</button>
+                    </div>
+                </section>
 
-        <section id="payment" class="mb-12">
-            <h3 class="text-2xl font-bold mb-6 text-yellow-700">✅ငွေပေးချေရန် (Kpay & Wave Money)✅</h3>
-            <div class="bg-yellow-500 text-slate-900 p-8 rounded-2xl shadow-xl">
-                <div class="flex flex-wrap gap-4 mb-6">
-                    <span class="bg-white text-yellow-700 px-4 py-1 rounded-full font-bold shadow-sm">KBZ Pay</span>
-                    <span class="bg-white text-yellow-700 px-4 py-1 rounded-full font-bold shadow-sm">Wave Pay</span>
-                </div>
-                <div class="space-y-2">
-                    <p class="bg-white text-yellow-700 px-4 py-1 rounded-full font-bold shadow-sm">အကောင့်အမည် - <span class="font-normal">U Khun Tun Aye</span></p>
-                    <p class="bg-white text-yellow-700 px-4 py-1 rounded-full font-bold shadow-sm">ဖုန်းနံပါတ် - <span class="font-normal">09790189199</span></p>
-                    
-                    <p class="bg-white text-yellow-700 px-4 py-1 rounded-full font-bold shadow-sm">အကောင့်အမည် - <span class="font-normal">Nang Nu Nu Yee</span></p>
-                    <p class="bg-white text-yellow-700 px-4 py-1 rounded-full font-bold shadow-sm">ဖုန်းနံပါတ် - <span class="font-normal">09782248150</span></p>
-                </div>
-            </div>
-        </section>
+         <section id="payment">
+                    <h3 class="text-2xl font-bold mb-6 text-yellow-800 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">ငွေပေးချေရန်</h3>
+                    <div class="bg-yellow-500/90 text-slate-900 p-6 rounded-2xl shadow-xl border-4 border-yellow-600">
+                        <p class="font-bold">အကောင့်အမည် - U Khun Tun Aye</p>
+                        <p class="font-bold">ဖုန်းနံပါတ် - 09790189199 </p>
+                         <p class="font-bold">အကောင့်အမည် - Nang Nu NU Yee</p>
+                        <p class="font-bold">ဖုန်းနံပါတ် - 09782248150 </p>
+                    </div>
+                </section>
 
         <section id="contact" class="mb-12">
             <h3 class="text-2xl font-bold mb-6 text-yellow-700">♕တည်နေရာ</h3>
@@ -169,6 +158,19 @@
                 <a href="https://www.facebook.com/share/1DXCNQGPVe/?mibextid=wwXIfr" target="_blank" class="w-full bg-blue-700 text-white py-2 rounded-lg text-center font-bold hover:bg-blue-800 transition">Facebook/Messenger သို့သွားမည်</a>
                 <button onclick="closeModal()" class="w-full bg-slate-200 py-2 rounded-lg hover:bg-slate-300 transition font-bold mt-2">ပိတ်မည်</button>
             </div>
+        </div>
+    </div>
+    <!-- Catalog Modal -->
+    <div id="catalogModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center p-4 z-[100]">
+        <div class="bg-white p-6 rounded-3xl w-full max-w-lg shadow-2xl max-h-[80vh] overflow-y-auto">
+            <h3 class="text-2xl font-bold mb-4 text-center text-yellow-600">📋 ဒီနေ့ရရှိနိုင်သော Digital Productများ</h3>
+            <div class="space-y-4">
+                <div class="border-b pb-2"><h4 class="font-bold text-orange-600">Mytel Data</h4><p>15k, 20k, 25k, 30k Plans</p></div>
+                <div class="border-b pb-2"><h4 class="font-bold text-blue-600">ATOM Data</h4><p>30k (138GB), 25k (46GB)</p></div>
+                <div class="border-b pb-2"><h4 class="font-bold text-purple-600">PUBG/MLBB</h4><p>60UC, 325UC, 660UC, 86 Diamonds</p></div>
+                <div class="border-b pb-2"><h4 class="font-bold text-green-600">VPN</h4><p> Outline Premium Key (1 Month) 5000Ks</p></div>
+            </div>
+            <button onclick="closeCatalogModal()" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold mt-6">ပိတ်မည်</button>
         </div>
     </div>
 
