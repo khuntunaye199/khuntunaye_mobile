@@ -182,9 +182,14 @@
             document.getElementById('orderPrice').innerText = 'စျေးနှုန်း - ' + price;
             document.getElementById('orderModal').classList.remove('hidden');
         }
-
         function closeModal() {
             document.getElementById('orderModal').classList.add('hidden');
+        }
+        function openCatalogModal() {
+            document.getElementById('catalogModal').classList.remove('hidden');
+        }
+        function closeCatalogModal() {
+            document.getElementById('catalogModal').classList.add('hidden');
         }
     </script>
 </body>
