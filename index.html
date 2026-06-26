@@ -60,6 +60,37 @@
    style="background: linear-gradient(90deg, #0d9488, #10b981);">
    ♋️စာသား ကနေ QR CODE ပြောင်းရန်♋️
 </a>
+    <!-- VPN Services Section (Modern UI) -->
+<section id="vpn" class="mb-12">
+    <h3 class="text-3xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+        🛡️ Premium VPN Access
+    </h3>
+    
+    <!-- Modern Glassmorphism Card with Yellow Theme -->
+    <div class="relative bg-gradient-to-br from-yellow-500/20 to-amber-500/10 backdrop-blur-2xl p-8 rounded-[2rem] border border-yellow-400/50 shadow-2xl overflow-hidden">
+        <!-- Decoration Gradients -->
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-500 rounded-full mix-blend-overlay filter blur-3xl opacity-40 animate-pulse"></div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-amber-600 rounded-full mix-blend-overlay filter blur-3xl opacity-40 animate-pulse"></div>
+
+        <h4 class="text-xl font-bold mb-6 text-amber-900">
+            Outline Key များ (High Speed)
+        </h4>
+        
+        <div id="key-container" class="space-y-4">
+            <!-- အစမ်းသုံးကီး -->
+            <div class="group flex items-center gap-3 bg-white/40 p-4 rounded-2xl border border-yellow-200/50 hover:bg-white/60 transition-all">
+                <code class="text-xs md:text-sm font-mono truncate flex-1 text-amber-900 select-all" id="key1">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGY21YQkhOaVB3RVd6RlNsM05VaXlk@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
+                <button onclick="copyKey('အစမ်းသုံးကြည့်ပါ')" class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-lg hover:shadow-yellow-500/25 active:scale-95 transition-all">
+                    Copy
+                </button>
+        </div>
+
+        <p class="mt-8 text-center text-sm text-amber-900/80 italic bg-white/30 py-3 px-4 rounded-xl border border-yellow-200/30">
+            ✨ Key ကို Copy ယူပြီး Outline App ထဲမှာ မြန်ဆန်စွာ အသုံးပြုနိုင်ပါတယ်။
+        </p>
+    </div>
+</section>
+
         </section>
 
         <!-- Mytel Section -->
@@ -229,5 +260,22 @@
             document.getElementById('catalogModal').classList.add('hidden');
         }
     </script>
+    
+<script>
+    function copyKey(elementId) {
+        const keyText = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(keyText).then(() => {
+            const btn = event.target.closest('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "Copied! ✨";
+            btn.className = "bg-white text-teal-600 px-5 py-2 rounded-xl text-sm font-bold transition-all";
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.className = "bg-gradient-to-r from-teal-500 to-blue-500 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-lg hover:shadow-teal-500/25 active:scale-95 transition-all";
+            }, 2000);
+        });
+    }
+</script>
 </body>
 </html>
