@@ -1,13 +1,627 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
 
+<html lang="my">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ခွန်ထွန်းအေးဆိုက်ခေါင် ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body { font-family: 'Pyidaungsu', sans-serif; }
+
+    </style>
+
+</head>
+
+<body class="bg-blue-50 text-slate-900 min-h-screen">
+
+     <!-- Floating Contact Button -->
+
+   <a href="https://t.me/Tunaye" target="_blank" 
+
+   class="fixed bottom-6 right-6 p-4 rounded-full shadow-2xl z-50 font-bold text-white transition animate-bounce"
+
+   style="background: linear-gradient(135deg, #0088cc, #00d2ff);">
+
+    ဆက်သွယ်ရန်
+
+</a>
+
+
+
+    <header class="p-4 shadow-lg sticky top-0 z-50 transition-all duration-500" 
+
+        style="background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);">
+
+    <div class="container mx-auto flex justify-between items-center">
+
+        <h1 class="text-white text-xl font-extrabold tracking-widest hover:scale-105 transition">
+
+            ☞☞☞ခွန်ထွန်းအေးဆိုက်ခေါင် ဖုန်းဆိုင်🏪
+
+        </h1>
+
+        
+
+        <nav class="hidden md:block">
+
+            <ul class="flex gap-6 text-white font-bold">
+
+                <li><a href="https://text-to-qr-delta.vercel.app/" target="_blank" 
+
+   class="text-white px-8 py-3 rounded-full font-bold shadow-lg transition hover:scale-105 inline-block"
+
+   style="background: linear-gradient(90deg, #0d9488, #10b981);">
+
+   ♋️စာသား ကနေ QR CODE ပြောင်းရန်♋️
+
+</a></li>
+
+                <li>
+
+    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" 
+
+       target="_blank" 
+
+       class="hover:text-yellow-300 transition">📱 ဆိုင်တွင်ရှိသောဖုန်းများ</a>
+
+</li>
+
+                <li><a href="#mytel" class="hover:text-yellow-300 transition">♛မိုင်တဲ MB များ</a></li>
+
+                <li><a href="#games" class="hover:text-yellow-300 transition">♚ဂိမ်းအတွက်</a></li>
+
+                <li><a href="#atom" class="hover:text-yellow-300 transition">♞အက်တမ် MB များ</a></li>
+
+                <li><a href="#vpn" class="hover:text-yellow-300 transition">♟ဝီပီအမ်ဝယ်ရန်</a></li>
+
+                <li><a href="#payment" class="hover:text-yellow-300 transition">♔ငွေပေးချေရန်</a></li>
+
+                <li><a href="#contact" class="hover:text-yellow-300 transition">♕တည်နေရာ</a></li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+    <section class="text-center py-12 rounded-3xl mb-12 shadow-md" 
+
+             style="background: linear-gradient(90deg, #3b82f6, #ef4444, #22c55e);">
+
+        
+
+        <h2 class="text-4xl font-bold mb-4 text-white drop-shadow-md">
+
+            ဖြေႏဖေးအာႏပါခွေသွဥ်ႏ Digital Product နော🙏🙏🙏
+
+        </h2>
+
+        <p class="text-white font-medium drop-shadow-md">
+
+            ကေႏဇူးတင်ꩻငါသြ✅
+
+        </p>
+
+    </section>
+
+</main>  
+
+    <div class="mt-8 mb-16 text-center">
+
+    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" 
+
+       target="_blank"
+
+       class="text-white px-8 py-3 rounded-full font-bold shadow-lg transition hover:scale-105 inline-block"
+
+       style="background: linear-gradient(90deg, #db2777, #f43f5e);">
+
+       📱 ဆိုင်မှရရှိနိုင်သောဖုန်းများ
+
+    </a>
+
+</div>
+
+
+
+<div class="mt-8 mb-16 text-center">
+
+    <button onclick="openCatalogModal()" 
+
+        class="text-white px-8 py-3 rounded-full font-bold shadow-lg transition hover:scale-105 inline-block"
+
+       style="background: linear-gradient(90deg, #db2777, #f43f5e);">
+
+       📋 ဒီနေ့ရရှိနိုင်သော Digital Product များ
+
+    </button>
+
+</div>
+
+
+
+<section id="vpn" class="mb-16">
+
+    <h3 class="text-3xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
+
+        🛡️ ဝီပီအမ် { VPN } အစမ်းသုံးကြည့်ရန်ကီးကိုယူပါ👇👇👇
+
+    </h3>
+
+    
+
+    <div class="relative bg-gradient-to-br from-yellow-500/20 to-amber-500/10 backdrop-blur-2xl p-8 rounded-[2rem] border border-yellow-400/50 shadow-2xl overflow-hidden">
+
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-500 rounded-full mix-blend-overlay filter blur-3xl opacity-40 animate-pulse"></div>
+
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-amber-600 rounded-full mix-blend-overlay filter blur-3xl opacity-40 animate-pulse"></div>
+
+
+
+        <h4 class="text-xl font-bold mb-6 text-amber-900">
+
+            Outline Key ကို (High Speed) Happ vpn/Hiddify vpn /Outline vpn /အပ်ပလီကေးရှင်းများနှင့်အသုံးပြုလို့ရပါသည်
+
+        </h4>
+
+        
+
+        <div id="key-container" class="space-y-4">
+
+            <div class="group flex items-center gap-3 bg-white/40 p-4 rounded-2xl border border-yellow-200/50 hover:bg-white/60 transition-all">
+
+                <code class="text-xs md:text-sm font-mono truncate flex-1 text-amber-900 select-all" id="key1">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGY21YQkhOaVB3RVd6RlNsM05VaXlk@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
+
+                <button onclick="copyKey('key1')" class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-lg hover:shadow-yellow-500/25 active:scale-95 transition-all">
+
+                    Copy
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <p class="mt-8 text-center text-sm text-amber-900/80 italic bg-white/30 py-3 px-4 rounded-xl border border-yellow-200/30">
+
+            ✨ Key ကို Copy ယူပြီး Outline App ထဲမှာ မြန်ဆန်စွာ အသုံးပြုနိုင်ပါတယ်။
+
+        </p>
+
+    </div>
+
+</section>
+
+</section>
+
+
+
+        </section>
+
+
+
+        <!-- Mytel Section -->
+
+            <section id="mytel" class="mb-12">
+
+                <h3 class="text-2xl font-bold mb-6 text-orange-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">Mytel Data Plans</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
+
+                        <h4 class="text-2xl font-bold text-orange-600">15,000 Ks</h4>
+
+                        <p class="text-slate-700 my-2 font-bold">22 GB + 8,000 min + 5,000 SMS</p>
+
+                        <button onclick="orderItem('15,000 Ks Mytel', '15,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
+
+                        <h4 class="text-2xl font-bold text-orange-600">20,000 Ks</h4>
+
+                        <p class="text-slate-700 my-2 font-bold">40 GB + 250 min + 25 min</p>
+
+                        <button onclick="orderItem('20,000 Ks Mytel', '20,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
+
+                        <h4 class="text-2xl font-bold text-orange-600">25,000 Ks</h4>
+
+                        <p class="text-slate-700 my-2 font-bold">40 GB + 1,400 min + 8,000 SMS</p>
+
+                        <button onclick="orderItem('25,000 Ks Mytel', '25,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
+
+                        <h4 class="text-2xl font-bold text-orange-600">30,000 Ks</h4>
+
+                        <p class="text-slate-700 my-2 font-bold">120 GB</p>
+
+                        <button onclick="orderItem('30,000 Ks Mytel', '30,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+        <!-- ATOM Section -->
+
+        <section id="atom" class="mb-12">
+
+            <h3 class="text-2xl font-bold mb-6 text-blue-700">♞အက်တမ်(တယ်လီနော) MB များ</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
+
+                    <h4 class="text-2xl font-bold text-blue-700">30,000 Ks</h4>
+
+                    <p class="text-slate-700 my-2 font-bold">138,240 MB (30 Days)</p>
+
+                    <button onclick="orderItem('30,000 Ks ATOM Data Plan', '30,000 ကျပ် atom (telenor)')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
+
+                    <h4 class="text-2xl font-bold text-blue-700">25,000 Ks</h4>
+
+                    <p class="text-slate-700 my-2 font-bold">46,080 MB + 1400 Mins + 8000 SMS (30 Days)</p>
+
+                    <button onclick="orderItem('25,000 Ks ATOM Data Plan', '25,000 ကျပ် atom (telenor)')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
+
+                    <h4 class="text-2xl font-bold text-blue-700">15,000 Ks</h4>
+
+                    <p class="text-slate-700 my-2 font-bold">24,576 MB + 8000 Mins + 5000 SMS (30 Days)</p>
+
+                    <button onclick="orderItem('15,000 Ks ATOM Data Plan', '15,000 ကျပ် atom (telenor)')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="games" class="mb-12">
+
+                <h3 class="text-2xl font-bold mb-6 text-purple-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">Game Credits</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
+
+                        <h4 class="text-xl font-bold">60 UC (PUBG)</h4>
+
+                        <p class="text-slate-600 my-2 font-bold">4,200 ကျပ်</p>
+
+                        <button onclick="orderItem('60 UC', '4,200 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
+
+                        <h4 class="text-xl font-bold">325 UC (PUBG)</h4>
+
+                        <p class="text-slate-600 my-2 font-bold">21,500 ကျပ်</p>
+
+                        <button onclick="orderItem('325 UC', '21,500 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
+
+                        <h4 class="text-xl font-bold">660 UC (PUBG)</h4>
+
+                        <p class="text-slate-600 my-2 font-bold">42,000 ကျပ်</p>
+
+                        <button onclick="orderItem('660 UC', '42,000 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
+
+                        <h4 class="text-xl font-bold">86 Diamonds (MLBB)</h4>
+
+                        <p class="text-slate-600 my-2 font-bold">3,000 ကျပ်</p>
+
+                        <button onclick="orderItem('86 Diamonds', '3,000 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+        <section id="vpn">
+
+                    <h3 class="text-2xl font-bold mb-6 text-green-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">VPN Services</h3>
+
+                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-green-200 shadow-lg">
+
+                        <h4 class="text-xl font-bold">Premium VPN Key (1 Month)</h4>
+
+                        <p class="text-slate-600 my-2 text-xl font-semibold">5,000 ကျပ်</p>
+
+                        <button onclick="orderItem('Outline Premium VPN Key', '5,000 ကျပ်')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition font-bold">ဝယ်ယူမည်</button>
+
+                    </div>
+
+                </section>
+
+
+
+         <section id="payment" class="max-w-md mx-auto">
+
+    <h3 class="text-2xl font-bold mb-6 text-yellow-500 border-l-4 border-yellow-500 pl-4">ငွေပေးချေရန်</h3>
+
+    
+
+    <div class="text-white p-6 rounded-3xl shadow-2xl border border-yellow-600/30" 
+
+         style="background: linear-gradient(145deg, #171717, #0a0a0a);">
+
+        
+
+        <div class="space-y-4">
+
+            <div class="bg-gradient-to-r from-yellow-600/20 to-transparent p-4 rounded-xl border border-yellow-500/20">
+
+                <p class="text-yellow-400 text-xs font-bold uppercase tracking-widest mb-1">Kpay / Wave</p>
+
+                <p class="text-lg font-semibold">U Khun Tun Aye</p>
+
+                <p class="text-xl font-bold text-yellow-100">09790189199</p>
+
+            </div>
+
+            
+
+            <div class="bg-gradient-to-r from-yellow-600/20 to-transparent p-4 rounded-xl border border-yellow-500/20">
+
+                <p class="text-yellow-400 text-xs font-bold uppercase tracking-widest mb-1">Kpay / Wave</p>
+
+                <p class="text-lg font-semibold">Nang Nu Nu Yee</p>
+
+                <p class="text-xl font-bold text-yellow-100">09782248150</p>
+
+            </div>
+
+        </div>
+
+        
+
+        <p class="mt-6 text-center text-sm text-gray-400">
+
+            * ငွေလွှဲပြီးလျှင် Screenshot လေး ပို့ပေးဖို့ မမေ့နဲ့နော်။
+
+        </p>
+
+    </div>
+
+</section>
+
+        <!-- Location Section with Map Design -->
+
+<section id="contact" class="mb-12">
+
+    <div class="relative p-8 rounded-[2rem] border-2 border-yellow-200 shadow-2xl overflow-hidden bg-gradient-to-br from-yellow-50 to-amber-100">
+
+        
+
+        <!-- Map Design Background Overlay -->
+
+        <div class="absolute inset-0 opacity-[0.07]" 
+
+             style="background-image: url('https://www.transparenttextures.com/patterns/map.png');">
+
+        </div>
+
+
+
+        <div class="relative z-10">
+
+            <h3 class="text-3xl font-bold mb-6 text-yellow-800 flex items-center gap-3">
+
+                📍 ခွန်ထွန်းအေးဆိုင်သို့ လာလည်ဖို့ ဖိတ်ခေါ်ပါတယ်သြ🙏
+
+            </h3> 
+
+            <div class="flex flex-col md:flex-row gap-8 items-center bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-inner border border-yellow-100">
+
+                <div class="flex-1 text-center md:text-left">
+
+                    <p class="text-xl font-bold mb-2 text-yellow-900">ခွန်ထွန်းအေး ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</p>
+
+                    <p class="text-slate-700 mb-6 italic">ဆိုက်ခေါင်စျေးမြောက်ဘက် - အဝ်းအုံပွေါးကွေးနော🏪🗺</p>
+
+                    <a href="https://www.google.com/maps/place/%E1%80%81%E1%80%BD%E1%80%94%E1%80%BA%E1%80%91%E1%80%BD%E1%80%94%E1%80%BA%E1%80%A1%E1%80%B1%E1%80%B8%E1%80%96%E1%80%AF%E1%80%94%E1%80%BA%E1%80%B8%E1%80%86%E1%80%AD%E1%80%AF%E1%80%84%E1%80%BA/@20.3289339,97.2402626,21z/data=!4m6!3m5!1s0x30ce51ac9d24dc61:0x9ea2761f72d64b7a!8m2!3d20.3289295!4d97.2403663!16s%2Fg%2F11j6t8mm9p?entry=ttu&g_ep=EgoyMDI2MDYyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-block bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-yellow-500/40 hover:scale-105 transition-all">
+
+                        လမ်းကြောင်းရှာမယ် 🚗
+
+                    </a>
+
+                </div>
+
+                <div class="w-full md:w-1/3 h-64 bg-slate-200 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233.83168511350414!2d97.2402626!3d20.3289339!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ce51ac9d24dc61%3A0x9ea2761f72d64b7a!2z4YCB4YC94YCU4YC64YCR4YC94YCU4YC64YCh4YCx4YC44YCW4YCv4YCU4YC64YC44YCG4YCt4YCv4YCE4YC6!5e0!3m2!1sen!2smm!4v1782383010867!5m2!1sen!2smm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </main>
+
+
+
+    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center p-4 z-50">
+
+        <div class="bg-white p-8 rounded-3xl w-full max-w-md border border-yellow-200">
+
+            <h3 id="orderTitle" class="text-2xl font-bold mb-4 text-slate-900"></h3>
+
+            <p id="orderPrice" class="text-lg text-yellow-700 mb-6 font-bold"></p>
+
+            <p class="mb-6 text-slate-700">ဆက်သွယ်ရန် ဖုန်းနံပါတ် 09790189199/09782248150 သို့မဟုတ် Telegram / Messenger မှတစ်ဆင့် မှာယူနိုင်ပါသည်။</p>
+
+            <div class="flex flex-col gap-3">
+
+                <a href="https://t.me/Tunaye" target="_blank" class="w-full bg-blue-500 text-white py-2 rounded-lg text-center font-bold hover:bg-blue-600 transition">Telegram သို့သွားမည်</a>
+
+                <a href="https://www.facebook.com/share/1DXCNQGPVe/?mibextid=wwXIfr" target="_blank" class="w-full bg-blue-700 text-white py-2 rounded-lg text-center font-bold hover:bg-blue-800 transition">Facebook/Messenger သို့သွားမည်</a>
+
+                <button onclick="closeModal()" class="w-full bg-slate-200 py-2 rounded-lg hover:bg-slate-300 transition font-bold mt-2">ပိတ်မည်</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+
+    <!-- Catalog Modal -->
+
+    <div id="catalogModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center p-4 z-[100]">
+
+        <div class="bg-white p-6 rounded-3xl w-full max-w-lg shadow-2xl max-h-[80vh] overflow-y-auto">
+
+            <h3 class="text-2xl font-bold mb-4 text-center text-yellow-600">📋ဒီနေ့ရရှိနိုင်သော Digital Products</h3>
+
+            <div class="space-y-4">
+
+                <div class="border-b pb-2"><h4 class="font-bold text-orange-600">Mytel Data</h4><p>15k, 20k, 25k, 30k Plans</p></div>
+
+                <div class="border-b pb-2"><h4 class="font-bold text-blue-600">ATOM Data</h4><p>30k (138GB), 25k (46GB)</p></div>
+
+                <div class="border-b pb-2"><h4 class="font-bold text-purple-600">PUBG/MLBB</h4><p>60UC, 325UC, 660UC, 86 Diamonds</p></div>
+
+                <div class="border-b pb-2"><h4 class="font-bold text-green-600">VPN</h4><p> Outline Premium Key (1 Month) 5000Ks</p></div>
+
+            </div>
+
+            <button onclick="closeCatalogModal()" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold mt-6">ပိတ်မည်</button>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        function orderItem(name, price) {
+
+            document.getElementById('orderTitle').innerText = name + ' ကို ဝယ်ယူရန်';
+
+            document.getElementById('orderPrice').innerText = 'စျေးနှုန်း - ' + price;
+
+            document.getElementById('orderModal').classList.remove('hidden');
+
+        }
+
+        function closeModal() {
+
+            document.getElementById('orderModal').classList.add('hidden');
+
+        }
+
+        function openCatalogModal() {
+
+            document.getElementById('catalogModal').classList.remove('hidden');
+
+        }
+
+        function closeCatalogModal() {
+
+            document.getElementById('catalogModal').classList.add('hidden');
+
+        }
+
+    </script>
+
+    
+
+<script>
+
+    function copyKey(elementId) {
+
+        const keyElement = document.getElementById(elementId);
+
+        if (!keyElement) return;
+
+        
+
+        const keyText = keyElement.innerText;
+
+        navigator.clipboard.writeText(keyText).then(() => {
+
+            const btn = event.target.closest('button');
+
+            const originalText = btn.innerHTML;
+
+            
+
+            // မြန်မာစာသားသို့ ပြောင်းလဲခြင်း
+
+            btn.innerHTML = "ကူးယူပြီးပါပြီ ✅";
+
+            btn.classList.replace('bg-gradient-to-r', 'bg-green-600');
+
+            
+
+            setTimeout(() => {
+
+                btn.innerHTML = originalText;
+
+                btn.classList.replace('bg-green-600', 'bg-gradient-to-r');
+
+            }, 2000);
+
+        });
+
+    }
+
+</script>
+
+</body>
+
+</html>
