@@ -1,0 +1,6 @@
+{
+  "name": "Khun Tun Aye Phone Shop",
+  "description": "ခွန်ထွန်းအေးဆိုက်ခေါင် ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင် - ဖုန်း၊ မိုင်တဲ MB၊ အက်တမ် MB၊ ဂိမ်းဂရက်ဒစ်နှင့် VPN ဝန်ဆောင်မှုများ။",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
