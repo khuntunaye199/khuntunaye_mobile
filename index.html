@@ -1,627 +1,636 @@
 <!DOCTYPE html>
-
 <html lang="my">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>ခွန်ထွန်းအေးဆိုက်ခေါင် ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind Config from File 1 (Modern M3 Theme) -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4648d4",
+                        "surface-container-highest": "#d8e3fb",
+                        "primary-container": "#6063ee",
+                        "on-primary-container": "#fffbff",
+                        "secondary-container": "#fd651e",
+                        "on-secondary-container": "#571a00",
+                        "surface": "#f9f9ff",
+                        "on-surface": "#111c2d",
+                        "surface-variant": "#d8e3fb",
+                        "on-surface-variant": "#464554",
+                        "outline-variant": "#c7c4d7",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "surface-container": "#e7eeff",
+                        "surface-container-high": "#dee8ff",
+                        "inverse-surface": "#263143",
+                        "inverse-on-surface": "#ecf1ff",
+                        "success-green": "#16A34A",
+                        "feature-purple": "#9333EA",
+                        "secondary-fixed": "#ffdbce",
+                    },
+                    spacing: {
+                        "card-gap": "12px",
+                        "container-margin": "16px",
+                        xl: "32px",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Pyidaungsu', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-
-        body { font-family: 'Pyidaungsu', sans-serif; }
-
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .copy-toast {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(20px) translateX(-50%);
+            transition: all 0.3s ease-in-out;
+        }
+        .copy-toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0) translateX(-50%);
+        }
+        body {
+            font-family: 'Inter', 'Pyidaungsu', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+        /* Hide scrollbar for modals but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
-
 </head>
 
-<body class="bg-blue-50 text-slate-900 min-h-screen">
+<body class="bg-surface text-on-surface">
 
-     <!-- Floating Contact Button -->
-
-   <a href="https://t.me/Tunaye" target="_blank" 
-
-   class="fixed bottom-6 right-6 p-4 rounded-full shadow-2xl z-50 font-bold text-white transition animate-bounce"
-
-   style="background: linear-gradient(135deg, #0088cc, #00d2ff);">
-
-    ဆက်သွယ်ရန်
-
-</a>
-
-
-
-    <header class="p-4 shadow-lg sticky top-0 z-50 transition-all duration-500" 
-
-        style="background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);">
-
-    <div class="container mx-auto flex justify-between items-center">
-
-        <h1 class="text-white text-xl font-extrabold tracking-widest hover:scale-100 transition">
-
-    ခွန်ထွန်းအေးဆိုက်ခေါင် ဖုန်းဆိုင်🏪
-
-        </h1>
-
-        
-
-        <nav class="hidden md:block">
-
-            <ul class="flex gap-6 text-white font-bold">
-
-                <li><a href="https://text-to-qr-delta.vercel.app/" target="_blank" 
-
-   class="text-white px-8 py-3 rounded-full font-bold shadow-lg transition hover:scale-105 inline-block"
-
-   style="background: linear-gradient(90deg, #0d9488, #10b981);">
-
-   ♋️စာသား ကနေ QR CODE ပြောင်းရန်♋️
-
-</a></li>
-
-                <li>
-
-    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" 
-
-       target="_blank" 
-
-       class="hover:text-yellow-300 transition">📱 ဆိုင်တွင်ရှိသောဖုန်းများ</a>
-
-</li>
-
-                <li><a href="#mytel" class="hover:text-yellow-300 transition">♛မိုင်တဲ MB များ</a></li>
-
-                <li><a href="#games" class="hover:text-yellow-300 transition">♚ဂိမ်းအတွက်</a></li>
-
-                <li><a href="#atom" class="hover:text-yellow-300 transition">♞အက်တမ် MB များ</a></li>
-
-                <li><a href="#vpn" class="hover:text-yellow-300 transition">♟ဝီပီအမ်ဝယ်ရန်</a></li>
-
-                <li><a href="#payment" class="hover:text-yellow-300 transition">♔ငွေပေးချေရန်</a></li>
-
-                <li><a href="#contact" class="hover:text-yellow-300 transition">♕တည်နေရာ</a></li>
-
-            </ul>
-
-        </nav>
-
-    </div>
-
-</header>
-
-    <main class="container mx-auto p-4 md:p-8">
-
-    <section class="text-center py-12 rounded-3xl mb-12 shadow-md" 
-
-             style="background: linear-gradient(90deg, #3b82f6, #ef4444, #22c55e);">
-
-        
-
-        <h2 class="text-4xl font-bold mb-4 text-white drop-shadow-md">
-
-            ဖြေႏဖေးအာႏပါခွေသွဥ်ႏ Digital Product နော🙏🙏🙏
-
-        </h2>
-
-        <p class="text-white font-medium drop-shadow-md">
-
-            ကေႏဇူးတင်ꩻငါသြ✅
-
-        </p>
-
-    </section>
-
-</main>  
-
-    <div class="mt-8 mb-16 text-center">
-
-    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" 
-
-       target="_blank"
-
-       class="text-white px-8 py-3 rounded-full font-bold shadow-lg transition hover:scale-105 inline-block"
-
-       style="background: linear-gradient(90deg, #db2777, #f43f5e);">
-
-       📱 ဆိုင်မှရရှိနိုင်သောဖုန်းများ
-
+    <!-- Floating Contact Button (From File 2) adjusted for bottom nav -->
+    <a href="https://t.me/Tunaye" target="_blank" 
+       class="fixed bottom-20 right-4 p-4 rounded-full shadow-2xl z-40 text-white transition animate-bounce flex items-center justify-center hover:scale-110"
+       style="background: linear-gradient(135deg, #0088cc, #00d2ff);">
+        <span class="material-symbols-outlined mr-1">send</span> ဆက်သွယ်ရန်
     </a>
 
-</div>
-
-
-
-<div class="mt-8 mb-16 text-center">
-
-    <button onclick="openCatalogModal()" 
-
-        class="text-white px-8 py-3 rounded-full font-bold shadow-lg transition hover:scale-105 inline-block"
-
-       style="background: linear-gradient(90deg, #db2777, #f43f5e);">
-
-       📋 ဒီနေ့ရရှိနိုင်သော Digital Product များ
-
-    </button>
-
-</div>
-
-
-
-<section id="vpn" class="mb-16">
-
-    <h3 class="text-3xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-600">
-
-        🛡️ ဝီပီအမ် { VPN } အစမ်းသုံးကြည့်ရန်ကီးကိုယူပါ👇👇👇
-
-    </h3>
-
-    
-
-    <div class="relative bg-gradient-to-br from-yellow-500/20 to-amber-500/10 backdrop-blur-2xl p-8 rounded-[2rem] border border-yellow-400/50 shadow-2xl overflow-hidden">
-
-        <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-500 rounded-full mix-blend-overlay filter blur-3xl opacity-40 animate-pulse"></div>
-
-        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-amber-600 rounded-full mix-blend-overlay filter blur-3xl opacity-40 animate-pulse"></div>
-
-
-
-        <h4 class="text-xl font-bold mb-6 text-amber-900">
-
-            Outline Key ကို (High Speed) Happ vpn/Hiddify vpn /Outline vpn /အပ်ပလီကေးရှင်းများနှင့်အသုံးပြုလို့ရပါသည်
-
-        </h4>
-
-        
-
-        <div id="key-container" class="space-y-4">
-
-            <div class="group flex items-center gap-3 bg-white/40 p-4 rounded-2xl border border-yellow-200/50 hover:bg-white/60 transition-all">
-
-                <code class="text-xs md:text-sm font-mono truncate flex-1 text-amber-900 select-all" id="key1">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGY21YQkhOaVB3RVd6RlNsM05VaXlk@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
-
-                <button onclick="copyKey('key1')" class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-5 py-2 rounded-xl text-sm font-bold shadow-lg hover:shadow-yellow-500/25 active:scale-95 transition-all">
-
-                    Copy
-
-                </button>
-
-            </div>
-
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-md shadow-sm flex justify-between items-center px-container-margin h-16">
+        <div class="text-xl font-bold text-primary tracking-wide">ခွန်ထွန်းအေး ဖုန်းဆိုင်🏪</div>
+        <div class="flex items-center gap-4">
+            <button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors rounded-full" onclick="openCatalogModal()">receipt_long</button>
+            <button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors rounded-full" onclick="toggleDrawer()">menu</button>
         </div>
+    </nav>
 
-
-
-        <p class="mt-8 text-center text-sm text-amber-900/80 italic bg-white/30 py-3 px-4 rounded-xl border border-yellow-200/30">
-
-            ✨ Key ကို Copy ယူပြီး Outline App ထဲမှာ မြန်ဆန်စွာ အသုံးပြုနိုင်ပါတယ်။
-
-        </p>
-
+    <!-- Side Drawer -->
+    <div class="fixed inset-0 bg-black/40 z-[60] hidden transition-opacity" id="drawer-overlay" onclick="toggleDrawer()"></div>
+    <div class="fixed top-0 left-0 h-full w-80 bg-surface-container-lowest z-[70] -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col gap-2 py-4" id="side-drawer">
+        <div class="px-6 py-4 border-b border-outline-variant/30">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-md">
+                    <span class="material-symbols-outlined">storefront</span>
+                </div>
+                <div>
+                    <h3 class="text-lg text-primary font-bold">Khun Tun Aye</h3>
+                    <p class="text-sm text-on-surface-variant">Mobile & Digital Services</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex flex-col gap-1 mt-4 overflow-y-auto">
+            <a class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container mx-2 rounded-lg font-medium" href="#">
+                <span class="material-symbols-outlined">home</span> ပင်မစာမျက်နှာ
+            </a>
+            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-emerald-600 bg-emerald-50 mt-2 border border-emerald-100" href="https://text-to-qr-delta.vercel.app/" target="_blank">
+                <span class="material-symbols-outlined">qr_code_2</span> စာသားမှ QR ပြောင်းရန်
+            </a>
+            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium mt-2" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+                <span class="material-symbols-outlined">smartphone</span> ဆိုင်ရှိဖုန်းများကြည့်ရန်
+            </a>
+            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium" href="#payment">
+                <span class="material-symbols-outlined">account_balance_wallet</span> ငွေပေးချေရန်
+            </a>
+            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium" href="#contact">
+                <span class="material-symbols-outlined">location_on</span> တည်နေရာ
+            </a>
+        </nav>
     </div>
 
-</section>
-
-</section>
-
-
-
-        </section>
-
-
-
-        <!-- Mytel Section -->
-
-            <section id="mytel" class="mb-12">
-
-                <h3 class="text-2xl font-bold mb-6 text-orange-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">Mytel Data Plans</h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
-
-                        <h4 class="text-2xl font-bold text-orange-600">15,000 Ks</h4>
-
-                        <p class="text-slate-700 my-2 font-bold">22 GB + 8,000 min + 5,000 SMS</p>
-
-                        <button onclick="orderItem('15,000 Ks Mytel', '15,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
-
-                        <h4 class="text-2xl font-bold text-orange-600">20,000 Ks</h4>
-
-                        <p class="text-slate-700 my-2 font-bold">40 GB + 250 min + 25 min</p>
-
-                        <button onclick="orderItem('20,000 Ks Mytel', '20,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
-
-                        <h4 class="text-2xl font-bold text-orange-600">25,000 Ks</h4>
-
-                        <p class="text-slate-700 my-2 font-bold">40 GB + 1,400 min + 8,000 SMS</p>
-
-                        <button onclick="orderItem('25,000 Ks Mytel', '25,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-orange-200 shadow-lg">
-
-                        <h4 class="text-2xl font-bold text-orange-600">30,000 Ks</h4>
-
-                        <p class="text-slate-700 my-2 font-bold">120 GB</p>
-
-                        <button onclick="orderItem('30,000 Ks Mytel', '30,000 ကျပ်')" class="mt-4 w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-        <!-- ATOM Section -->
-
-        <section id="atom" class="mb-12">
-
-            <h3 class="text-2xl font-bold mb-6 text-blue-700">♞အက်တမ်(တယ်လီနော) MB များ</h3>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
-
-                    <h4 class="text-2xl font-bold text-blue-700">30,000 Ks</h4>
-
-                    <p class="text-slate-700 my-2 font-bold">138,240 MB (30 Days)</p>
-
-                    <button onclick="orderItem('30,000 Ks ATOM Data Plan', '30,000 ကျပ် atom (telenor)')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
-
-                    <h4 class="text-2xl font-bold text-blue-700">25,000 Ks</h4>
-
-                    <p class="text-slate-700 my-2 font-bold">46,080 MB + 1400 Mins + 8000 SMS (30 Days)</p>
-
-                    <button onclick="orderItem('25,000 Ks ATOM Data Plan', '25,000 ကျပ် atom (telenor)')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl border border-yellow-200 shadow-lg">
-
-                    <h4 class="text-2xl font-bold text-blue-700">15,000 Ks</h4>
-
-                    <p class="text-slate-700 my-2 font-bold">24,576 MB + 8000 Mins + 5000 SMS (30 Days)</p>
-
-                    <button onclick="orderItem('15,000 Ks ATOM Data Plan', '15,000 ကျပ် atom (telenor)')" class="mt-4 w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-blue-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section id="games" class="mb-12">
-
-                <h3 class="text-2xl font-bold mb-6 text-purple-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">Game Credits</h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
-
-                        <h4 class="text-xl font-bold">60 UC (PUBG)</h4>
-
-                        <p class="text-slate-600 my-2 font-bold">4,200 ကျပ်</p>
-
-                        <button onclick="orderItem('60 UC', '4,200 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
-
-                        <h4 class="text-xl font-bold">325 UC (PUBG)</h4>
-
-                        <p class="text-slate-600 my-2 font-bold">21,500 ကျပ်</p>
-
-                        <button onclick="orderItem('325 UC', '21,500 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
-
-                        <h4 class="text-xl font-bold">660 UC (PUBG)</h4>
-
-                        <p class="text-slate-600 my-2 font-bold">42,000 ကျပ်</p>
-
-                        <button onclick="orderItem('660 UC', '42,000 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-purple-200 shadow-lg">
-
-                        <h4 class="text-xl font-bold">86 Diamonds (MLBB)</h4>
-
-                        <p class="text-slate-600 my-2 font-bold">3,000 ကျပ်</p>
-
-                        <button onclick="orderItem('86 Diamonds', '3,000 ကျပ်')" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-        <section id="vpn">
-
-                    <h3 class="text-2xl font-bold mb-6 text-green-600 drop-shadow-sm bg-white/50 inline-block px-4 py-1 rounded-lg">VPN Services</h3>
-
-                    <div class="bg-white/90 p-6 rounded-2xl border-2 border-green-200 shadow-lg">
-
-                        <h4 class="text-xl font-bold">Premium VPN Key (1 Month)</h4>
-
-                        <p class="text-slate-600 my-2 text-xl font-semibold">5,000 ကျပ်</p>
-
-                        <button onclick="orderItem('Outline Premium VPN Key', '5,000 ကျပ်')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition font-bold">ဝယ်ယူမည်</button>
-
-                    </div>
-
-                </section>
-
-
-
-         <section id="payment" class="max-w-md mx-auto">
-
-    <h3 class="text-2xl font-bold mb-6 text-yellow-500 border-l-4 border-yellow-500 pl-4">ငွေပေးချေရန်</h3>
-
-    
-
-    <div class="text-white p-6 rounded-3xl shadow-2xl border border-yellow-600/30" 
-
-         style="background: linear-gradient(145deg, #171717, #0a0a0a);">
-
+    <!-- Main Content -->
+    <main class="pt-16 pb-24 px-container-margin max-w-5xl mx-auto space-y-xl">
         
-
-        <div class="space-y-4">
-
-            <div class="bg-gradient-to-r from-yellow-600/20 to-transparent p-4 rounded-xl border border-yellow-500/20">
-
-                <p class="text-yellow-400 text-xs font-bold uppercase tracking-widest mb-1">Kpay / Wave</p>
-
-                <p class="text-lg font-semibold">U Khun Tun Aye</p>
-
-                <p class="text-xl font-bold text-yellow-100">09790189199</p>
-
-            </div>
-
+        <!-- Hero Section -->
+        <section class="relative rounded-3xl overflow-hidden mt-6 group shadow-xl">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-95 z-10"></div>
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC1Jm-Doy1XDKKCOzh4s0M1KelLdAySk3MJu5M-Tz_NvEWtp7DiNAGLM_wQHCbAUbFAM9AD8XsbHPxDytTkYGMb1_2Ump9i33kwEhkU2cq8jOE70EXyJGZiJSAw2CXufPxjJnt6BCXSJ72CxuUI2mEhTzhPFYADOJhwykolJbQVB60JKwgdNwL-Y3thV1nDIG6jjqIsuVVs5kJzEvc4h_zGA2r_ugybjHrTlvy7adq2BGhV3TanwoP-JTWqYbbJdAO001Q_rruTp07x')"></div>
             
-
-            <div class="bg-gradient-to-r from-yellow-600/20 to-transparent p-4 rounded-xl border border-yellow-500/20">
-
-                <p class="text-yellow-400 text-xs font-bold uppercase tracking-widest mb-1">Kpay / Wave</p>
-
-                <p class="text-lg font-semibold">Nang Nu Nu Yee</p>
-
-                <p class="text-xl font-bold text-yellow-100">09782248150</p>
-
-            </div>
-
-        </div>
-
-        
-
-        <p class="mt-6 text-center text-sm text-gray-400">
-
-            * ငွေလွှဲပြီးလျှင် Screenshot လေး ပို့ပေးဖို့ မမေ့နဲ့နော်။
-
-        </p>
-
-    </div>
-
-</section>
-
-        <!-- Location Section with Map Design -->
-
-<section id="contact" class="mb-12">
-
-    <div class="relative p-8 rounded-[2rem] border-2 border-yellow-200 shadow-2xl overflow-hidden bg-gradient-to-br from-yellow-50 to-amber-100">
-
-        
-
-        <!-- Map Design Background Overlay -->
-
-        <div class="absolute inset-0 opacity-[0.07]" 
-
-             style="background-image: url('https://www.transparenttextures.com/patterns/map.png');">
-
-        </div>
-
-
-
-        <div class="relative z-10">
-
-            <h3 class="text-3xl font-bold mb-6 text-yellow-800 flex items-center gap-3">
-
-                📍 ခွန်ထွန်းအေးဆိုင်သို့ လာလည်ဖို့ ဖိတ်ခေါ်ပါတယ်သြ🙏
-
-            </h3> 
-
-            <div class="flex flex-col md:flex-row gap-8 items-center bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-inner border border-yellow-100">
-
-                <div class="flex-1 text-center md:text-left">
-
-                    <p class="text-xl font-bold mb-2 text-yellow-900">ခွန်ထွန်းအေး ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</p>
-
-                    <p class="text-slate-700 mb-6 italic">ဆိုက်ခေါင်စျေးမြောက်ဘက် - အဝ်းအုံပွေါးကွေးနော🏪🗺</p>
-
-                    <a href="https://www.google.com/maps/place/%E1%80%81%E1%80%BD%E1%80%94%E1%80%BA%E1%80%91%E1%80%BD%E1%80%94%E1%80%BA%E1%80%A1%E1%80%B1%E1%80%B8%E1%80%96%E1%80%AF%E1%80%94%E1%80%BA%E1%80%B8%E1%80%86%E1%80%AD%E1%80%AF%E1%80%84%E1%80%BA/@20.3289339,97.2402626,21z/data=!4m6!3m5!1s0x30ce51ac9d24dc61:0x9ea2761f72d64b7a!8m2!3d20.3289295!4d97.2403663!16s%2Fg%2F11j6t8mm9p?entry=ttu&g_ep=EgoyMDI2MDYyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-block bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-yellow-500/40 hover:scale-105 transition-all">
-
-                        လမ်းကြောင်းရှာမယ် 🚗
-
+            <div class="relative z-20 px-6 py-12 md:py-20 text-white flex flex-col items-center text-center">
+                <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md leading-relaxed">
+                    ဖြေႏဖေးအာႏပါခွေသွဥ်ႏ <br/> Digital Product နော🙏🙏🙏
+                </h1>
+                <p class="text-base md:text-lg mb-8 max-w-md opacity-90 drop-shadow-sm font-medium">မြန်ဆန်ပြီး စိတ်ချရသော Digital ဝန်ဆောင်မှုများကို တစ်နေရာတည်းတွင် ရယူလိုက်ပါ</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                    <button onclick="openCatalogModal()" class="bg-secondary-container text-white px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-[0_0_20px_rgba(253,101,30,0.4)] hover:shadow-[0_0_25px_rgba(253,101,30,0.6)]">
+                        <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
+                    </button>
+                    <a class="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+                        <span class="material-symbols-outlined">smartphone</span> ဆိုင်ရှိဖုန်းများ
                     </a>
-
                 </div>
+            </div>
+        </section>
 
-                <div class="w-full md:w-1/3 h-64 bg-slate-200 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
-
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233.83168511350414!2d97.2402626!3d20.3289339!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ce51ac9d24dc61%3A0x9ea2761f72d64b7a!2z4YCB4YC94YCU4YC64YCR4YC94YCU4YC64YCh4YCx4YC44YCW4YCv4YCU4YC64YC44YCG4YCt4YCv4YCE4YC6!5e0!3m2!1sen!2smm!4v1782383010867!5m2!1sen!2smm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-
+        <!-- VPN Trial Key Section -->
+        <section class="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-6 shadow-sm border border-amber-200 relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+            
+            <div class="flex items-center gap-3 mb-4 relative z-10">
+                <div class="bg-amber-100 p-2 rounded-lg">
+                    <span class="material-symbols-outlined text-amber-600">shield</span>
                 </div>
+                <h2 class="text-xl text-amber-800 font-bold">VPN အစမ်းသုံးရန်</h2>
+            </div>
+            
+            <p class="text-sm md:text-base text-amber-900/80 mb-4 font-medium relative z-10">Outline Key ကို Happ vpn / Hiddify vpn / Outline vpn များဖြင့် အသုံးပြုနိုင်ပါသည်။</p>
+            
+            <div class="bg-white p-4 rounded-xl flex items-center justify-between gap-4 border border-amber-200 shadow-inner overflow-hidden relative z-10">
+                <code class="text-amber-700 font-mono text-xs md:text-sm truncate select-all flex-1" id="vpn-key">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGY21YQkhOaVB3RVd6RlNsM05VaXlk@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
+                <button class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shrink-0 active:scale-90 transition-all shadow-md" onclick="copyKey(this, 'vpn-key')">
+                    <span class="material-symbols-outlined text-sm">content_copy</span> Copy
+                </button>
+            </div>
+        </section>
 
+        <!-- Digital Product Categories Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-card-gap" id="digital-products">
+            
+            <!-- Mytel Data Plans -->
+            <div class="space-y-4">
+                <h3 class="text-xl text-orange-600 font-bold flex items-center gap-2 pl-2">
+                    <span class="material-symbols-outlined">signal_cellular_alt</span> Mytel Data Plans
+                </h3>
+                <div class="space-y-3">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div>
+                            <div class="font-bold text-lg text-on-surface">15,000 Ks</div>
+                            <div class="text-sm text-on-surface-variant font-medium mt-1">22 GB + 8,000 min + 5,000 SMS</div>
+                        </div>
+                        <button onclick="orderItem('15,000 Ks Mytel', '15,000 Ks')" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div>
+                            <div class="font-bold text-lg text-on-surface">20,000 Ks</div>
+                            <div class="text-sm text-on-surface-variant font-medium mt-1">40 GB + 250 min + 25 min</div>
+                        </div>
+                        <button onclick="orderItem('20,000 Ks Mytel', '20,000 Ks')" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div>
+                            <div class="font-bold text-lg text-on-surface">25,000 Ks</div>
+                            <div class="text-sm text-on-surface-variant font-medium mt-1">40 GB + 1,400 min + 8,000 SMS</div>
+                        </div>
+                        <button onclick="orderItem('25,000 Ks Mytel', '25,000 Ks')" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div>
+                            <div class="font-bold text-lg text-on-surface">30,000 Ks</div>
+                            <div class="text-sm text-on-surface-variant font-medium mt-1">120 GB Mega Pack</div>
+                        </div>
+                        <button onclick="orderItem('30,000 Ks Mytel', '30,000 Ks')" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
+                    </div>
+                </div>
             </div>
 
+            <!-- ATOM Data Plans -->
+            <div class="space-y-4">
+                <h3 class="text-xl text-blue-600 font-bold flex items-center gap-2 pl-2">
+                    <span class="material-symbols-outlined">data_usage</span> ATOM (Telenor) Data
+                </h3>
+                <div class="space-y-3">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div>
+                            <div class="font-bold text-lg text-on-surface">30,000 Ks</div>
+                            <div class="text-sm text-on-surface-variant font-medium mt-1">138,240 MB (30 Days)</div>
+                        </div>
+                        <button onclick="orderItem('30,000 Ks ATOM', '30,000 Ks')" class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div>
+                            <div class="font-bold text-lg text-on-surface">25,000 Ks</div>
+                            <div class="text-sm text-on-surface-variant font-medium mt-1">46,080 MB + 1400 Mins + Extras</div>
+                        </div>
+                        <button onclick="orderItem('25,000 Ks ATOM', '25,000 Ks')" class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div>
+                            <div class="font-bold text-lg text-on-surface">15,000 Ks</div>
+                            <div class="text-sm text-on-surface-variant font-medium mt-1">24,576 MB + 8000 Mins + 5000 SMS</div>
+                        </div>
+                        <button onclick="orderItem('15,000 Ks ATOM', '15,000 Ks')" class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Credits -->
+            <div class="space-y-4">
+                <h3 class="text-xl text-purple-600 font-bold flex items-center gap-2 pl-2">
+                    <span class="material-symbols-outlined">sports_esports</span> Game Credits
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
+                        <div class="font-bold text-base">60 UC (PUBG)</div>
+                        <div class="text-purple-600 font-bold text-sm">4,200 Ks</div>
+                        <button onclick="orderItem('60 UC', '4,200 Ks')" class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
+                        <div class="font-bold text-base">325 UC (PUBG)</div>
+                        <div class="text-purple-600 font-bold text-sm">21,500 Ks</div>
+                        <button onclick="orderItem('325 UC', '21,500 Ks')" class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
+                        <div class="font-bold text-base">660 UC (PUBG)</div>
+                        <div class="text-purple-600 font-bold text-sm">42,000 Ks</div>
+                        <button onclick="orderItem('660 UC', '42,000 Ks')" class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
+                        <div class="font-bold text-base">86 Dia (MLBB)</div>
+                        <div class="text-purple-600 font-bold text-sm">3,000 Ks</div>
+                        <button onclick="orderItem('86 Diamonds', '3,000 Ks')" class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VPN Premium -->
+            <div class="space-y-4">
+                <h3 class="text-xl text-emerald-600 font-bold flex items-center gap-2 pl-2">
+                    <span class="material-symbols-outlined">vpn_key</span> VPN Services
+                </h3>
+                <div class="bg-inverse-surface text-inverse-on-surface p-6 rounded-2xl flex justify-between items-center overflow-hidden relative shadow-lg">
+                    <div class="absolute right-0 top-0 opacity-10 translate-x-4 -translate-y-4">
+                        <span class="material-symbols-outlined text-[80px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+                    </div>
+                    <div class="z-10">
+                        <div class="font-bold text-lg text-emerald-400">Premium VPN Key</div>
+                        <div class="text-sm opacity-80 mt-1">1 Month Unlimited Access</div>
+                        <div class="mt-2 text-white text-xl font-bold">5,000 Ks</div>
+                    </div>
+                    <button onclick="orderItem('Premium VPN Key (1 Month)', '5,000 Ks')" class="bg-emerald-500 text-white px-6 py-3 rounded-xl font-bold z-10 shadow-lg active:scale-95 transition-transform hover:bg-emerald-400">Buy Now</button>
+                </div>
+            </div>
         </div>
 
-    </div>
+        <!-- Payment Details Section -->
+        <section id="payment" class="bg-surface-container rounded-3xl p-6 md:p-8">
+            <h2 class="text-xl font-bold text-on-surface flex items-center gap-2 mb-6 border-l-4 border-success-green pl-3">
+                <span class="material-symbols-outlined text-success-green">payments</span> ငွေပေးချေရန်
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-5 rounded-2xl shadow-sm flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-primary/20">
+                        <img class="w-full h-full object-cover" data-alt="Profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyqnDtEyLS21XvyNjMYCOL5HdgMnJ2xupGT30--He_O3vEfpfLmDoh40B081ijK_zts7gy6AIwi0r54Mgt_ExUnWANcZqPVbK50liSN2osz6POjuZOft0MjD81c3JK3Mgw8y8vLHGKNeu-P9lvu2Cu3egFlh6riWX5_m_akt1hI_2-bai3mSI7p5AuHnaJh4ClyGsfapVVpPLxNlkX0q0cSRsN5OarfwgaVV51JYtEtYbMXXar9NyMP4luioa6-fdXSPxWj5josN-M" />
+                    </div>
+                    <div class="flex-grow">
+                        <div class="text-xs text-primary uppercase font-bold tracking-wider mb-1">Kpay / Wave</div>
+                        <div class="font-bold text-base">U Khun Tun Aye</div>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="font-mono text-lg font-bold text-slate-700">09790189199</span>
+                            <button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09790189199')">
+                                <span class="material-symbols-outlined text-sm">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-primary/20">
+                        <img class="w-full h-full object-cover" data-alt="Profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-wS3TwqxZwa-MSUi5_fgq1M1FImnCN0v7Hi7YESKRjTiMO_o5Uvt5v4RmqRNpCNJvqpxOAXxYlQFaXfsAORCGrJnf72UrOWjwvx3tNpb53bWzhdLqORWCAWYduLEIjsBqJ9r3Ry3sS6aOHn6gYarqmmvCnZCrzqp0A6jFXarT6HD6u3F4kndq_thb0dzvGzTFHxan2w3SLLfOVtQM7OU_Ago8f0s6lcnTB_64BAKQ9TxAPz77kCYTx0Zq2LYCbrHXRDz9BHAKjgSJ" />
+                    </div>
+                    <div class="flex-grow">
+                        <div class="text-xs text-primary uppercase font-bold tracking-wider mb-1">Kpay / Wave</div>
+                        <div class="font-bold text-base">Nang Nu Nu Yee</div>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="font-mono text-lg font-bold text-slate-700">09782248150</span>
+                            <button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09782248150')">
+                                <span class="material-symbols-outlined text-sm">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 flex items-center gap-2 text-on-surface-variant text-sm font-medium px-2 bg-white/50 p-3 rounded-xl">
+                <span class="material-symbols-outlined text-amber-600">info</span>
+                <span>ငွေလွှဲပြီးလျှင် Screenshot လေး ပို့ပေးဖို့ မမေ့နဲ့နော်။</span>
+            </div>
+        </section>
 
-</section>
+        <!-- Location & Contact -->
+        <footer id="contact" class="bg-surface-container-high rounded-t-[40px] px-6 py-10 md:p-12 -mx-container-margin relative overflow-hidden">
+            <!-- Subtle Map Pattern Overlay -->
+            <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/map.png');"></div>
+            
+            <div class="relative z-10 flex flex-col lg:flex-row gap-10">
+                
+                <!-- Location Details & Map -->
+                <div class="lg:w-1/2 space-y-6">
+                    <h3 class="text-xl text-primary font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">location_on</span> တည်နေရာ
+                    </h3>
+                    
+                    <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl shadow-sm border border-outline-variant/30">
+                        <p class="font-bold text-lg mb-1">ခွန်ထွန်းအေး ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</p>
+                        <p class="text-on-surface-variant font-medium mb-4">ဆိုက်ခေါင်စျေးမြောက်ဘက် - အဝ်းအုံပွေါးကွေးနော🏪🗺</p>
+                        
+                        <!-- Embedded Google Map -->
+                        <div class="w-full h-48 bg-slate-200 rounded-xl overflow-hidden shadow-inner border border-outline-variant/20 mb-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233.83168511350414!2d97.2402626!3d20.3289339!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ce51ac9d24dc61%3A0x9ea2761f72d64b7a!2z4YCB4YC94YCU4YC64YCR4YC94YCU4YC64YCh4YCx4YC44YCW4YCv4YCU4YC64YC44YCG4YCt4YCv4YCE4YC6!5e0!3m2!1sen!2smm!4v1782383010867!5m2!1sen!2smm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
 
+                        <a class="inline-flex items-center justify-center w-full gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-md hover:bg-primary/90 transition-colors" href="https://www.google.com/maps/place/%E1%80%81%E1%80%BD%E1%80%94%E1%80%BA%E1%80%91%E1%80%BD%E1%80%94%E1%80%BA%E1%80%A1%E1%80%B1%E1%80%B8%E1%80%96%E1%80%AF%E1%80%94%E1%80%BA%E1%80%B8%E1%80%86%E1%80%AD%E1%80%AF%E1%80%84%E1%80%BA/@20.3289339,97.2402626,21z" target="_blank">
+                            <span class="material-symbols-outlined">near_me</span> လမ်းကြောင်းရှာမယ်
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Links -->
+                <div class="lg:w-1/2 space-y-6">
+                    <h3 class="text-xl text-primary font-bold">ဆက်သွယ်ရန်</h3>
+                    <div class="space-y-4">
+                        <p class="text-sm text-on-surface-variant font-medium">အောက်ပါလင့်များမှ တစ်ဆင့် မှာယူနိုင်ပါသည်။</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a class="flex-1 flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-outline-variant/20 hover:border-sky-500 hover:shadow-md transition-all group" href="https://t.me/Tunaye" target="_blank">
+                                <div class="w-12 h-12 rounded-full bg-sky-500 flex items-center justify-center text-white shrink-0">
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold block">Telegram</span>
+                                    <span class="text-xs text-on-surface-variant">Message us</span>
+                                </div>
+                            </a>
+                            <a class="flex-1 flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-outline-variant/20 hover:border-blue-600 hover:shadow-md transition-all group" href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank">
+                                <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white shrink-0">
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">facebook</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold block">Facebook</span>
+                                    <span class="text-xs text-on-surface-variant">Visit our page</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="pt-6 border-t border-outline-variant/30">
+                            <p class="text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-2">Phone Numbers</p>
+                            <p class="font-bold text-lg font-mono">09790189199 / 09782248150</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center text-xs text-on-surface-variant opacity-60 font-medium">
+                © 2024 Khun Tun Aye Mobile. All Rights Reserved.
+            </div>
+        </footer>
     </main>
 
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-outline-variant/30 flex justify-around items-center py-2 px-2 pb-safe z-30 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+        <a class="flex flex-col items-center justify-center text-primary font-bold p-2" href="#">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] mt-1">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors p-2" href="#digital-products">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            <span class="text-[10px] mt-1">Shop</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors p-2" href="#payment">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="text-[10px] mt-1">Pay</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors p-2" href="#contact">
+            <span class="material-symbols-outlined">map</span>
+            <span class="text-[10px] mt-1">Map</span>
+        </a>
+    </nav>
 
-
-    <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center p-4 z-50">
-
-        <div class="bg-white p-8 rounded-3xl w-full max-w-md border border-yellow-200">
-
-            <h3 id="orderTitle" class="text-2xl font-bold mb-4 text-slate-900"></h3>
-
-            <p id="orderPrice" class="text-lg text-yellow-700 mb-6 font-bold"></p>
-
-            <p class="mb-6 text-slate-700">ဆက်သွယ်ရန် ဖုန်းနံပါတ် 09790189199/09782248150 သို့မဟုတ် Telegram / Messenger မှတစ်ဆင့် မှာယူနိုင်ပါသည်။</p>
-
+    <!-- Order Modal (Hidden by default) -->
+    <div id="orderModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100] transition-opacity opacity-0">
+        <div class="bg-surface p-8 rounded-3xl w-full max-w-md shadow-2xl border border-outline-variant/20 transform scale-95 transition-transform" id="orderModalContent">
+            <div class="flex justify-between items-start mb-4">
+                <div class="bg-primary-container text-primary p-3 rounded-2xl">
+                    <span class="material-symbols-outlined">shopping_cart_checkout</span>
+                </div>
+                <button onclick="closeModal()" class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            
+            <h3 id="orderTitle" class="text-xl font-bold mb-2 text-on-surface"></h3>
+            <p id="orderPrice" class="text-lg text-primary font-bold mb-6"></p>
+            
+            <div class="bg-surface-container p-4 rounded-2xl mb-6 text-sm text-on-surface-variant font-medium leading-relaxed">
+                <span class="material-symbols-outlined text-sm inline-block align-middle mr-1">info</span>
+                ဆက်သွယ်ရန် ဖုန်းနံပါတ် <strong>09790189199</strong> (သို့) <strong>09782248150</strong> သို့မဟုတ် Telegram / Messenger မှတစ်ဆင့် တိုက်ရိုက်မှာယူနိုင်ပါသည်။
+            </div>
+            
             <div class="flex flex-col gap-3">
-
-                <a href="https://t.me/Tunaye" target="_blank" class="w-full bg-blue-500 text-white py-2 rounded-lg text-center font-bold hover:bg-blue-600 transition">Telegram သို့သွားမည်</a>
-
-                <a href="https://www.facebook.com/share/1DXCNQGPVe/?mibextid=wwXIfr" target="_blank" class="w-full bg-blue-700 text-white py-2 rounded-lg text-center font-bold hover:bg-blue-800 transition">Facebook/Messenger သို့သွားမည်</a>
-
-                <button onclick="closeModal()" class="w-full bg-slate-200 py-2 rounded-lg hover:bg-slate-300 transition font-bold mt-2">ပိတ်မည်</button>
-
+                <a href="https://t.me/Tunaye" target="_blank" class="w-full bg-sky-500 text-white py-3 rounded-xl text-center font-bold hover:bg-sky-600 transition flex justify-center items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-sm">send</span> Telegram သို့သွားမည်
+                </a>
+                <a href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank" class="w-full bg-blue-600 text-white py-3 rounded-xl text-center font-bold hover:bg-blue-700 transition flex justify-center items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-sm">facebook</span> Messenger သို့သွားမည်
+                </a>
             </div>
-
         </div>
-
     </div>
 
-    
-
-    <!-- Catalog Modal -->
-
-    <div id="catalogModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center p-4 z-[100]">
-
-        <div class="bg-white p-6 rounded-3xl w-full max-w-lg shadow-2xl max-h-[80vh] overflow-y-auto">
-
-            <h3 class="text-2xl font-bold mb-4 text-center text-yellow-600">📋ဒီနေ့ရရှိနိုင်သော Digital Products</h3>
-
-            <div class="space-y-4">
-
-                <div class="border-b pb-2"><h4 class="font-bold text-orange-600">Mytel Data</h4><p>15k, 20k, 25k, 30k Plans</p></div>
-
-                <div class="border-b pb-2"><h4 class="font-bold text-blue-600">ATOM Data</h4><p>30k (138GB), 25k (46GB)</p></div>
-
-                <div class="border-b pb-2"><h4 class="font-bold text-purple-600">PUBG/MLBB</h4><p>60UC, 325UC, 660UC, 86 Diamonds</p></div>
-
-                <div class="border-b pb-2"><h4 class="font-bold text-green-600">VPN</h4><p> Outline Premium Key (1 Month) 5000Ks</p></div>
-
+    <!-- Catalog Modal (Hidden by default) -->
+    <div id="catalogModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100] transition-opacity opacity-0">
+        <div class="bg-surface p-6 rounded-3xl w-full max-w-lg shadow-2xl max-h-[85vh] overflow-y-auto no-scrollbar transform scale-95 transition-transform" id="catalogModalContent">
+            <div class="sticky top-0 bg-surface pt-2 pb-4 border-b border-outline-variant/20 flex justify-between items-center mb-4 z-10">
+                <h3 class="text-xl font-bold text-on-surface flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
+                </h3>
+                <button onclick="closeCatalogModal()" class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
             </div>
-
-            <button onclick="closeCatalogModal()" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold mt-6">ပိတ်မည်</button>
-
+            
+            <div class="space-y-4 font-medium">
+                <div class="bg-surface-container-low p-4 rounded-2xl">
+                    <h4 class="font-bold text-orange-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">signal_cellular_alt</span> Mytel Data</h4>
+                    <p class="text-sm text-on-surface-variant">15K, 20K, 25K, 30K Plans ရရှိနိုင်ပါသည်</p>
+                </div>
+                <div class="bg-surface-container-low p-4 rounded-2xl">
+                    <h4 class="font-bold text-blue-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">data_usage</span> ATOM Data</h4>
+                    <p class="text-sm text-on-surface-variant">15K, 25K, 30K Packages ရရှိနိုင်ပါသည်</p>
+                </div>
+                <div class="bg-surface-container-low p-4 rounded-2xl">
+                    <h4 class="font-bold text-purple-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">sports_esports</span> Game Credits</h4>
+                    <p class="text-sm text-on-surface-variant">PUBG (60UC, 325UC, 660UC), MLBB (86 Dia)</p>
+                </div>
+                <div class="bg-surface-container-low p-4 rounded-2xl">
+                    <h4 class="font-bold text-emerald-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">vpn_key</span> VPN Services</h4>
+                    <p class="text-sm text-on-surface-variant">Outline Premium Key (1 Month) 5,000 Ks</p>
+                </div>
+            </div>
         </div>
-
     </div>
 
-
+    <!-- Toast Notification -->
+    <div class="copy-toast fixed bottom-24 left-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-full font-bold shadow-xl z-[110] flex items-center gap-2 text-sm" id="copy-toast">
+        <span class="material-symbols-outlined text-success-green text-lg">check_circle</span>
+        ကူးယူပြီးပါပြီ!
+    </div>
 
     <script>
+        // Drawer Logic
+        function toggleDrawer() {
+            const drawer = document.getElementById('side-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            const isHidden = drawer.classList.contains('-translate-x-full');
+            
+            if (isHidden) {
+                drawer.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawer.classList.add('-translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+                document.body.style.overflow = 'auto';
+            }
+        }
 
+        // Copy Functions with button state changes
+        function copyKey(btnElement, targetId) {
+            const copyText = document.getElementById(targetId).innerText;
+            navigator.clipboard.writeText(copyText).then(() => {
+                showToast();
+                
+                // Change button state temporarily
+                const originalHTML = btnElement.innerHTML;
+                const originalClasses = btnElement.className;
+                
+                btnElement.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> ကူးယူပြီးပါပြီ';
+                btnElement.className = "bg-success-green text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shrink-0 transition-all shadow-md";
+                
+                setTimeout(() => {
+                    btnElement.innerHTML = originalHTML;
+                    btnElement.className = originalClasses;
+                }, 2000);
+            });
+        }
+
+        function copyText(btnElement, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+                
+                // Visual feedback on button
+                const icon = btnElement.querySelector('span');
+                icon.innerText = 'check';
+                icon.classList.add('text-success-green');
+                
+                setTimeout(() => {
+                    icon.innerText = 'content_copy';
+                    icon.classList.remove('text-success-green');
+                }, 2000);
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById("copy-toast");
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2500);
+        }
+
+        // Modal Logic
         function orderItem(name, price) {
-
-            document.getElementById('orderTitle').innerText = name + ' ကို ဝယ်ယူရန်';
-
+            document.getElementById('orderTitle').innerText = name;
             document.getElementById('orderPrice').innerText = 'စျေးနှုန်း - ' + price;
-
-            document.getElementById('orderModal').classList.remove('hidden');
-
+            
+            const modal = document.getElementById('orderModal');
+            const content = document.getElementById('orderModalContent');
+            
+            modal.classList.remove('hidden');
+            // Trigger reflow
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            content.classList.remove('scale-95');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-
-            document.getElementById('orderModal').classList.add('hidden');
-
+            const modal = document.getElementById('orderModal');
+            const content = document.getElementById('orderModalContent');
+            
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
         }
 
         function openCatalogModal() {
-
-            document.getElementById('catalogModal').classList.remove('hidden');
-
+            const modal = document.getElementById('catalogModal');
+            const content = document.getElementById('catalogModalContent');
+            
+            modal.classList.remove('hidden');
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            content.classList.remove('scale-95');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeCatalogModal() {
-
-            document.getElementById('catalogModal').classList.add('hidden');
-
+            const modal = document.getElementById('catalogModal');
+            const content = document.getElementById('catalogModalContent');
+            
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
         }
 
-    </script>
-
-    
-
-<script>
-
-    function copyKey(elementId) {
-
-        const keyElement = document.getElementById(elementId);
-
-        if (!keyElement) return;
-
-        
-
-        const keyText = keyElement.innerText;
-
-        navigator.clipboard.writeText(keyText).then(() => {
-
-            const btn = event.target.closest('button');
-
-            const originalText = btn.innerHTML;
-
-            
-
-            // မြန်မာစာသားသို့ ပြောင်းလဲခြင်း
-
-            btn.innerHTML = "ကူးယူပြီးပါပြီ ✅";
-
-            btn.classList.replace('bg-gradient-to-r', 'bg-green-600');
-
-            
-
-            setTimeout(() => {
-
-                btn.innerHTML = originalText;
-
-                btn.classList.replace('bg-green-600', 'bg-gradient-to-r');
-
-            }, 2000);
-
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    // Close drawer if clicking a link inside it
+                    if(!document.getElementById('side-drawer').classList.contains('-translate-x-full')) {
+                        toggleDrawer();
+                    }
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-
-    }
-
-</script>
-
+    </script>
 </body>
-
 </html>
