@@ -5,15 +5,12 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>ခွန်ထွန်းအေးဆိုက်ခေါင် ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
-    <!-- Tailwind Config from File 1 (Modern M3 Theme) -->
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -73,7 +70,6 @@
             font-family: 'Inter', 'Pyidaungsu', sans-serif;
             min-height: max(884px, 100dvh);
         }
-        /* Hide scrollbar for modals but allow scrolling */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -81,28 +77,33 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        /* Custom styles for interactive calendar cells */
+        .day-cell {
+            aspect-ratio: 1 / 1;
+            transition: all 0.2s ease;
+        }
     </style>
 </head>
 
-<body class="bg-surface text-on-surface">
+<body class="bg-surface text-on-surface transition-colors duration-300">
 
-    <!-- Floating Contact Button (From File 2) adjusted for bottom nav -->
     <a href="https://t.me/Tunaye" target="_blank" 
        class="fixed bottom-20 right-4 p-4 rounded-full shadow-2xl z-40 text-white transition animate-bounce flex items-center justify-center hover:scale-110"
        style="background: linear-gradient(135deg, #0088cc, #00d2ff);">
         <span class="material-symbols-outlined mr-1">send</span> ဆက်သွယ်ရန်
     </a>
 
-    <!-- Top Navigation -->
-    <nav class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-md shadow-sm flex justify-between items-center px-container-margin h-16">
-        <div class="text-xl font-bold text-primary tracking-wide">ခွန်ထွန်းအေး ဖုန်းဆိုင်🏪</div>
-        <div class="flex items-center gap-4">
+    <nav class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-md shadow-sm flex justify-between items-center px-container-margin h-16 border-b border-outline-variant/20">
+        <div class="text-xl font-bold text-primary tracking-wide flex items-center gap-2">
+            ခွန်ထွန်းအေး ဖုန်းဆိုင်🏪
+        </div>
+        <div class="flex items-center gap-2">
             <button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors rounded-full" onclick="openCatalogModal()">receipt_long</button>
+            <button id="theme-toggle-btn" class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors rounded-full" onclick="toggleTheme()">dark_mode</button>
             <button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors rounded-full" onclick="toggleDrawer()">menu</button>
         </div>
     </nav>
 
-    <!-- Side Drawer -->
     <div class="fixed inset-0 bg-black/40 z-[60] hidden transition-opacity" id="drawer-overlay" onclick="toggleDrawer()"></div>
     <div class="fixed top-0 left-0 h-full w-80 bg-surface-container-lowest z-[70] -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col gap-2 py-4" id="side-drawer">
         <div class="px-6 py-4 border-b border-outline-variant/30">
@@ -117,218 +118,256 @@
             </div>
         </div>
         <nav class="flex flex-col gap-1 mt-4 overflow-y-auto">
-            <a class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container mx-2 rounded-lg font-medium" href="#">
+            <button onclick="switchSection('shop')" class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container mx-2 rounded-lg font-medium text-left section-nav-btn" id="nav-shop">
                 <span class="material-symbols-outlined">home</span> ပင်မစာမျက်နှာ
-            </a>
-            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-emerald-600 bg-emerald-50 mt-2 border border-emerald-100" href="https://text-to-qr-delta.vercel.app/" target="_blank">
+            </button>
+            <button onclick="switchSection('calendar')" class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-left section-nav-btn" id="nav-calendar">
+                <span class="material-symbols-outlined">calendar_month</span> ၂၀၂၆ ပအိုဝ်ႏပြက္ခဒိန်ႏ
+            </button>
+            <button onclick="switchSection('market')" class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-left section-nav-btn" id="nav-market">
+                <span class="material-symbols-outlined">grid_view</span> ၅ ရက်ဈေးနေ့ပတ်လမ်း
+            </button>
+            <div class="h-px bg-outline-variant/30 my-2 mx-4"></div>
+            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-emerald-600 bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/20 dark:border-emerald-900/30" href="https://text-to-qr-delta.vercel.app/" target="_blank">
                 <span class="material-symbols-outlined">qr_code_2</span> စာသားမှ QR ပြောင်းရန်
             </a>
-            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium mt-2" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
                 <span class="material-symbols-outlined">smartphone</span> ဆိုင်ရှိဖုန်းများကြည့်ရန်
-            </a>
-            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium" href="#payment">
-                <span class="material-symbols-outlined">account_balance_wallet</span> ငွေပေးချေရန်
-            </a>
-            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium" href="#contact">
-                <span class="material-symbols-outlined">location_on</span> တည်နေရာ
             </a>
         </nav>
     </div>
 
-    <!-- Main Content -->
-    <main class="pt-16 pb-24 px-container-margin max-w-5xl mx-auto space-y-xl">
+    <main class="pt-20 pb-24 px-container-margin max-w-5xl mx-auto space-y-xl">
         
-        <!-- Hero Section -->
-        <section class="relative rounded-3xl overflow-hidden mt-6 group shadow-xl">
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-95 z-10"></div>
-            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC1Jm-Doy1XDKKCOzh4s0M1KelLdAySk3MJu5M-Tz_NvEWtp7DiNAGLM_wQHCbAUbFAM9AD8XsbHPxDytTkYGMb1_2Ump9i33kwEhkU2cq8jOE70EXyJGZiJSAw2CXufPxjJnt6BCXSJ72CxuUI2mEhTzhPFYADOJhwykolJbQVB60JKwgdNwL-Y3thV1nDIG6jjqIsuVVs5kJzEvc4h_zGA2r_ugybjHrTlvy7adq2BGhV3TanwoP-JTWqYbbJdAO001Q_rruTp07x')"></div>
-            
-            <div class="relative z-20 px-6 py-12 md:py-20 text-white flex flex-col items-center text-center">
-                <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md leading-relaxed">
-                    ဖြေႏဖေးအာႏပါခွေသွဥ်ႏ <br/> Digital Product နော🙏🙏🙏
-                </h1>
-                <p class="text-base md:text-lg mb-8 max-w-md opacity-90 drop-shadow-sm font-medium">မြန်ဆန်ပြီး စိတ်ချရသော Digital ဝန်ဆောင်မှုများကို တစ်နေရာတည်းတွင် ရယူလိုက်ပါ</p>
+        <div class="bg-surface-container border border-primary/10 rounded-2xl p-4 flex flex-wrap gap-3 items-center justify-between shadow-sm">
+            <div class="flex items-center gap-3">
+                <span class="p-2 bg-primary/10 text-primary rounded-xl font-bold text-sm flex items-center">📅</span>
+                <span id="live-today-date" class="text-sm font-bold text-on-surface">ယနေ့ရက်စွဲ - loading...</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="p-2 bg-secondary-container/10 text-secondary-container rounded-xl font-bold text-sm flex items-center">🏪</span>
+                <span id="live-today-market" class="text-sm font-black text-secondary-container">ယနေ့ဈေး - loading...</span>
+            </div>
+        </div>
+
+        <div id="section-shop" class="space-y-xl page-section">
+            <section class="relative rounded-3xl overflow-hidden group shadow-xl">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-95 z-10"></div>
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80')"></div>
                 
-                <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                    <button onclick="openCatalogModal()" class="bg-secondary-container text-white px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-[0_0_20px_rgba(253,101,30,0.4)] hover:shadow-[0_0_25px_rgba(253,101,30,0.6)]">
-                        <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
+                <div class="relative z-20 px-6 py-12 md:py-20 text-white flex flex-col items-center text-center">
+                    <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md leading-relaxed">
+                        ဖြေႏဖေးအာႏပါခွေသွဥ်ႏ <br/> Digital Product နော🙏🙏🙏
+                    </h1>
+                    <p class="text-base md:text-lg mb-8 max-w-md opacity-90 drop-shadow-sm font-medium">မြန်ဆန်ပြီး စိတ်ချရသော Digital ဝန်ဆောင်မှုများကို တစ်နေရာတည်းတွင် ရယူလိုက်ပါ</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                        <button onclick="openCatalogModal()" class="bg-secondary-container text-white px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-[0_0_20px_rgba(253,101,30,0.4)] hover:shadow-[0_0_25px_rgba(253,101,30,0.6)]">
+                            <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
+                        </button>
+                        <a class="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+                            <span class="material-symbols-outlined">smartphone</span> ဆိုင်ရှိဖုန်းများ
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950/20 dark:to-yellow-950/10 rounded-2xl p-6 shadow-sm border border-amber-200 dark:border-amber-900/30 relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+                <div class="flex items-center gap-3 mb-4 relative z-10">
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-2 rounded-lg">
+                        <span class="material-symbols-outlined text-amber-600 dark:text-amber-400">shield</span>
+                    </div>
+                    <h2 class="text-xl text-amber-800 dark:text-amber-400 font-bold">VPN အစမ်းသုံးရန် (Free Outline Key)</h2>
+                </div>
+                <p class="text-sm text-on-surface-variant mb-4 font-medium relative z-10">Outline Key ကို Happ vpn / Hiddify vpn / Outline vpn များဖြင့် အသုံးပြုနိုင်ပါသည်။</p>
+                <div class="bg-surface p-4 rounded-xl flex items-center justify-between gap-4 border border-outline-variant/30 shadow-inner overflow-hidden relative z-10">
+                    <code class="text-amber-700 dark:text-amber-400 font-mono text-xs md:text-sm truncate select-all flex-1" id="vpn-key">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGY21YQkhOaVB3RVd6RlNsM05VaXlk@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
+                    <button class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shrink-0 active:scale-90 transition-all shadow-md" onclick="copyKey(this, 'vpn-key')">
+                        <span class="material-symbols-outlined text-sm">content_copy</span> Copy
                     </button>
-                    <a class="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
-                        <span class="material-symbols-outlined">smartphone</span> ဆိုင်ရှိဖုန်းများ
-                    </a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- VPN Trial Key Section -->
-        <section class="bg-gradient-to-br from-amber-50 to-yellow-50 rounded-2xl p-6 shadow-sm border border-amber-200 relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-            
-            <div class="flex items-center gap-3 mb-4 relative z-10">
-                <div class="bg-amber-100 p-2 rounded-lg">
-                    <span class="material-symbols-outlined text-amber-600">shield</span>
-                </div>
-                <h2 class="text-xl text-amber-800 font-bold">VPN အစမ်းသုံးရန်</h2>
-            </div>
-            
-            <p class="text-sm md:text-base text-amber-900/80 mb-4 font-medium relative z-10">Outline Key ကို Happ vpn / Hiddify vpn / Outline vpn များဖြင့် အသုံးပြုနိုင်ပါသည်။</p>
-            
-            <div class="bg-white p-4 rounded-xl flex items-center justify-between gap-4 border border-amber-200 shadow-inner overflow-hidden relative z-10">
-                <code class="text-amber-700 font-mono text-xs md:text-sm truncate select-all flex-1" id="vpn-key">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGY21YQkhOaVB3RVd6RlNsM05VaXlk@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
-                <button class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shrink-0 active:scale-90 transition-all shadow-md" onclick="copyKey(this, 'vpn-key')">
-                    <span class="material-symbols-outlined text-sm">content_copy</span> Copy
-                </button>
-            </div>
-        </section>
-
-        <!-- Digital Product Categories Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-card-gap" id="digital-products">
-            
-            <!-- Mytel Data Plans -->
-            <div class="space-y-4">
-                <h3 class="text-xl text-orange-600 font-bold flex items-center gap-2 pl-2">
-                    <span class="material-symbols-outlined">signal_cellular_alt</span> Mytel Data Plans
-                </h3>
-                <div class="space-y-3">
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
-                        <div>
-                            <div class="font-bold text-lg text-on-surface">15,000 Ks</div>
-                            <div class="text-sm text-on-surface-variant font-medium mt-1">22 GB + 8,000 min + 5,000 SMS</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-card-gap" id="digital-products">
+                <div class="space-y-4">
+                    <h3 class="text-xl text-orange-600 font-bold flex items-center gap-2 pl-2">
+                        <span class="material-symbols-outlined">signal_cellular_alt</span> Mytel Data Plans
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                            <div>
+                                <div class="font-bold text-lg text-on-surface">15,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant font-medium mt-1">22 GB + 8,000 min + 5,000 SMS</div>
+                            </div>
+                            <button onclick="orderItem('15,000 Ks Mytel Package', '15,000 Ks')" class="bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <button onclick="orderItem('15,000 Ks Mytel', '15,000 Ks')" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
-                        <div>
-                            <div class="font-bold text-lg text-on-surface">20,000 Ks</div>
-                            <div class="text-sm text-on-surface-variant font-medium mt-1">40 GB + 250 min + 25 min</div>
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                            <div>
+                                <div class="font-bold text-lg text-on-surface">20,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant font-medium mt-1">40 GB + 250 min + 25 min</div>
+                            </div>
+                            <button onclick="orderItem('20,000 Ks Mytel Package', '20,000 Ks')" class="bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <button onclick="orderItem('20,000 Ks Mytel', '20,000 Ks')" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
-                        <div>
-                            <div class="font-bold text-lg text-on-surface">25,000 Ks</div>
-                            <div class="text-sm text-on-surface-variant font-medium mt-1">40 GB + 1,400 min + 8,000 SMS</div>
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                            <div>
+                                <div class="font-bold text-lg text-on-surface">25,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant font-medium mt-1">40 GB + 1,400 min + 8,000 SMS</div>
+                            </div>
+                            <button onclick="orderItem('25,000 Ks Mytel Package', '25,000 Ks')" class="bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <button onclick="orderItem('25,000 Ks Mytel', '25,000 Ks')" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
-                        <div>
-                            <div class="font-bold text-lg text-on-surface">30,000 Ks</div>
-                            <div class="text-sm text-on-surface-variant font-medium mt-1">120 GB Mega Pack</div>
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                            <div>
+                                <div class="font-bold text-lg text-on-surface">30,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant font-medium mt-1">120 GB Mega Pack</div>
+                            </div>
+                            <button onclick="orderItem('30,000 Ks Mytel Package', '30,000 Ks')" class="bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <button onclick="orderItem('30,000 Ks Mytel', '30,000 Ks')" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- ATOM Data Plans -->
-            <div class="space-y-4">
-                <h3 class="text-xl text-blue-600 font-bold flex items-center gap-2 pl-2">
-                    <span class="material-symbols-outlined">data_usage</span> ATOM (Telenor) Data
-                </h3>
-                <div class="space-y-3">
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
-                        <div>
-                            <div class="font-bold text-lg text-on-surface">30,000 Ks</div>
-                            <div class="text-sm text-on-surface-variant font-medium mt-1">138,240 MB (30 Days)</div>
+                <div class="space-y-4">
+                    <h3 class="text-xl text-blue-600 font-bold flex items-center gap-2 pl-2">
+                        <span class="material-symbols-outlined">data_usage</span> ATOM Data Packages
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                            <div>
+                                <div class="font-bold text-lg text-on-surface">15,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant font-medium mt-1">24,576 MB + 8000 Mins + 5000 SMS</div>
+                            </div>
+                            <button onclick="orderItem('15,000 Ks ATOM Package', '15,000 Ks')" class="bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <button onclick="orderItem('30,000 Ks ATOM', '30,000 Ks')" class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
-                        <div>
-                            <div class="font-bold text-lg text-on-surface">25,000 Ks</div>
-                            <div class="text-sm text-on-surface-variant font-medium mt-1">46,080 MB + 1400 Mins + Extras</div>
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                            <div>
+                                <div class="font-bold text-lg text-on-surface">25,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant font-medium mt-1">46,080 MB + 1400 Mins + Extras</div>
+                            </div>
+                            <button onclick="orderItem('25,000 Ks ATOM Package', '25,000 Ks')" class="bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <button onclick="orderItem('25,000 Ks ATOM', '25,000 Ks')" class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
-                        <div>
-                            <div class="font-bold text-lg text-on-surface">15,000 Ks</div>
-                            <div class="text-sm text-on-surface-variant font-medium mt-1">24,576 MB + 8000 Mins + 5000 SMS</div>
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                            <div>
+                                <div class="font-bold text-lg text-on-surface">30,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant font-medium mt-1">138,240 MB (30 Days)</div>
+                            </div>
+                            <button onclick="orderItem('30,000 Ks ATOM Package', '30,000 Ks')" class="bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <button onclick="orderItem('15,000 Ks ATOM', '15,000 Ks')" class="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Game Credits -->
-            <div class="space-y-4">
-                <h3 class="text-xl text-purple-600 font-bold flex items-center gap-2 pl-2">
-                    <span class="material-symbols-outlined">sports_esports</span> Game Credits
-                </h3>
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
-                        <div class="font-bold text-base">60 UC (PUBG)</div>
-                        <div class="text-purple-600 font-bold text-sm">4,200 Ks</div>
-                        <button onclick="orderItem('60 UC', '4,200 Ks')" class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
-                        <div class="font-bold text-base">325 UC (PUBG)</div>
-                        <div class="text-purple-600 font-bold text-sm">21,500 Ks</div>
-                        <button onclick="orderItem('325 UC', '21,500 Ks')" class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
-                        <div class="font-bold text-base">660 UC (PUBG)</div>
-                        <div class="text-purple-600 font-bold text-sm">42,000 Ks</div>
-                        <button onclick="orderItem('660 UC', '42,000 Ks')" class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
-                        <div class="font-bold text-base">86 Dia (MLBB)</div>
-                        <div class="text-purple-600 font-bold text-sm">3,000 Ks</div>
-                        <button onclick="orderItem('86 Diamonds', '3,000 Ks')" class="w-full bg-purple-50 text-purple-700 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                <div class="space-y-4">
+                    <h3 class="text-xl text-purple-600 font-bold flex items-center gap-2 pl-2">
+                        <span class="material-symbols-outlined">sports_esports</span> Game Credits
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
+                            <div class="font-bold text-base text-on-surface">60 UC (PUBG)</div>
+                            <div class="text-purple-600 font-bold text-sm">4,200 Ks</div>
+                            <button onclick="orderItem('60 UC (PUBG)', '4,200 Ks')" class="w-full bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-400 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                        </div>
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
+                            <div class="font-bold text-base text-on-surface">325 UC (PUBG)</div>
+                            <div class="text-purple-600 font-bold text-sm">21,500 Ks</div>
+                            <button onclick="orderItem('325 UC (PUBG)', '21,500 Ks')" class="w-full bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-400 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                        </div>
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
+                            <div class="font-bold text-base text-on-surface">660 UC (PUBG)</div>
+                            <div class="text-purple-600 font-bold text-sm">42,000 Ks</div>
+                            <button onclick="orderItem('660 UC (PUBG)', '42,000 Ks')" class="w-full bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-400 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                        </div>
+                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
+                            <div class="font-bold text-base text-on-surface">86 Dia (MLBB)</div>
+                            <div class="text-purple-600 font-bold text-sm">3,000 Ks</div>
+                            <button onclick="orderItem('86 Diamonds (MLBB)', '3,000 Ks')" class="w-full bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-400 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- VPN Premium -->
-            <div class="space-y-4">
-                <h3 class="text-xl text-emerald-600 font-bold flex items-center gap-2 pl-2">
-                    <span class="material-symbols-outlined">vpn_key</span> VPN Services
-                </h3>
-                <div class="bg-inverse-surface text-inverse-on-surface p-6 rounded-2xl flex justify-between items-center overflow-hidden relative shadow-lg">
-                    <div class="absolute right-0 top-0 opacity-10 translate-x-4 -translate-y-4">
-                        <span class="material-symbols-outlined text-[80px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+                <div class="space-y-4">
+                    <h3 class="text-xl text-emerald-600 font-bold flex items-center gap-2 pl-2">
+                        <span class="material-symbols-outlined">vpn_key</span> Premium VPN
+                    </h3>
+                    <div class="bg-inverse-surface text-inverse-on-surface p-6 rounded-2xl flex justify-between items-center overflow-hidden relative shadow-lg h-[166px]">
+                        <div class="absolute right-0 top-0 opacity-10 translate-x-4 -translate-y-4">
+                            <span class="material-symbols-outlined text-[80px]" style="font-variation-settings: 'FILL' 1;">shield</span>
+                        </div>
+                        <div class="z-10">
+                            <div class="font-bold text-lg text-emerald-400">Outline Premium Key</div>
+                            <div class="text-sm opacity-80 mt-1">1 Month Unlimited Access</div>
+                            <div class="mt-2 text-white text-xl font-bold">5,000 Ks</div>
+                        </div>
+                        <button onclick="orderItem('Premium Outline VPN Key (1 Month)', '5,000 Ks')" class="bg-emerald-500 text-white px-6 py-3 rounded-xl font-bold z-10 shadow-lg active:scale-95 transition-transform hover:bg-emerald-400">Buy Now</button>
                     </div>
-                    <div class="z-10">
-                        <div class="font-bold text-lg text-emerald-400">Premium VPN Key</div>
-                        <div class="text-sm opacity-80 mt-1">1 Month Unlimited Access</div>
-                        <div class="mt-2 text-white text-xl font-bold">5,000 Ks</div>
-                    </div>
-                    <button onclick="orderItem('Premium VPN Key (1 Month)', '5,000 Ks')" class="bg-emerald-500 text-white px-6 py-3 rounded-xl font-bold z-10 shadow-lg active:scale-95 transition-transform hover:bg-emerald-400">Buy Now</button>
                 </div>
             </div>
         </div>
 
-        <!-- Payment Details Section -->
+        <div id="section-calendar" class="page-section hidden bg-surface-container-lowest p-5 rounded-3xl border border-outline-variant/30 shadow-xl space-y-6">
+            <div class="flex items-center justify-between border-b border-outline-variant/20 pb-4">
+                <button onclick="changeMonth(-1)" class="material-symbols-outlined text-primary p-2 hover:bg-surface-container transition-all rounded-full font-bold">chevron_left</button>
+                <div class="text-center">
+                    <h2 id="calendar-header-title" class="text-2xl font-black text-primary tracking-wide">ဇူလိုင် ၂၀၂၆</h2>
+                    <p id="calendar-lunar-title" class="text-xs text-secondary-container font-black uppercase tracking-wider mt-0.5">ဒဲဉ်စေတ် (၆) - နယုန်လာႏ</p>
+                </div>
+                <button onclick="changeMonth(1)" class="material-symbols-outlined text-primary p-2 hover:bg-surface-container transition-all rounded-full font-bold">chevron_right</button>
+            </div>
+
+            <div class="grid grid-cols-7 gap-1.5 md:gap-3 text-center text-xs font-bold text-on-surface-variant" id="weekday-headers">
+                </div>
+            <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 md:gap-3">
+                </div>
+
+            <div class="flex flex-wrap gap-4 justify-center text-xs text-on-surface-variant border-t border-outline-variant/20 pt-4">
+                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-emerald-500"></div>ရက်ရာႏဇာႏ (Auspicious)</div>
+                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-red-500"></div>ပြဿဒါႏ (Unfavorable)</div>
+                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-md bg-red-500/20 border border-red-500/40"></div>ပွဲတော် / ပိတ်ရက်</div>
+                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-yellow-400"></div>လာဗွေႏနီꩻ (Full Moon)</div>
+            </div>
+        </div>
+
+        <div id="section-market" class="page-section hidden space-y-6">
+            <div class="p-6 bg-gradient-to-br from-primary/5 via-secondary-container/5 to-transparent border border-outline-variant/40 rounded-3xl space-y-6">
+                <div>
+                    <h2 class="text-2xl font-black text-primary flex items-center gap-2">
+                        <span class="material-symbols-outlined">map</span> ၅ ရက်ဈေးနေ့ပတ်လမ်း မြင်ကွင်းကြီး
+                    </h2>
+                    <p class="text-xs text-on-surface-variant mt-1">ပအိုဝ်ႏဒေသတစ်ခွင်ရှိ ရိုးရာ ၅ ရက်ဈေးပတ်လမ်း၏ ယနေ့ကျရောက်ရာအရပ်များကို အစဉ်လိုက်လေ့လာနိုင်ပါသည်။</p>
+                </div>
+                
+                <div id="market-horizontal-track" class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+                    </div>
+            </div>
+        </div>
+
         <section id="payment" class="bg-surface-container rounded-3xl p-6 md:p-8">
             <h2 class="text-xl font-bold text-on-surface flex items-center gap-2 mb-6 border-l-4 border-success-green pl-3">
                 <span class="material-symbols-outlined text-success-green">payments</span> ငွေပေးချေရန်
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-white p-5 rounded-2xl shadow-sm flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-primary/20">
-                        <img class="w-full h-full object-cover" data-alt="Profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyqnDtEyLS21XvyNjMYCOL5HdgMnJ2xupGT30--He_O3vEfpfLmDoh40B081ijK_zts7gy6AIwi0r54Mgt_ExUnWANcZqPVbK50liSN2osz6POjuZOft0MjD81c3JK3Mgw8y8vLHGKNeu-P9lvu2Cu3egFlh6riWX5_m_akt1hI_2-bai3mSI7p5AuHnaJh4ClyGsfapVVpPLxNlkX0q0cSRsN5OarfwgaVV51JYtEtYbMXXar9NyMP4luioa6-fdXSPxWj5josN-M" />
+                <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-outline-variant/10">
+                    <div class="w-16 h-16 rounded-full bg-orange-600/10 flex items-center justify-center shrink-0 border border-orange-500/20 text-orange-600 font-bold text-xs">
+                        KPay
                     </div>
                     <div class="flex-grow">
                         <div class="text-xs text-primary uppercase font-bold tracking-wider mb-1">Kpay / Wave</div>
-                        <div class="font-bold text-base">U Khun Tun Aye</div>
+                        <div class="font-bold text-base text-on-surface">U Khun Tun Aye</div>
                         <div class="flex items-center justify-between mt-1">
-                            <span class="font-mono text-lg font-bold text-slate-700">09790189199</span>
+                            <span class="font-mono text-lg font-bold text-on-surface-variant">09790189199</span>
                             <button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09790189199')">
                                 <span class="material-symbols-outlined text-sm">content_copy</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-primary/20">
-                        <img class="w-full h-full object-cover" data-alt="Profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-wS3TwqxZwa-MSUi5_fgq1M1FImnCN0v7Hi7YESKRjTiMO_o5Uvt5v4RmqRNpCNJvqpxOAXxYlQFaXfsAORCGrJnf72UrOWjwvx3tNpb53bWzhdLqORWCAWYduLEIjsBqJ9r3Ry3sS6aOHn6gYarqmmvCnZCrzqp0A6jFXarT6HD6u3F4kndq_thb0dzvGzTFHxan2w3SLLfOVtQM7OU_Ago8f0s6lcnTB_64BAKQ9TxAPz77kCYTx0Zq2LYCbrHXRDz9BHAKjgSJ" />
+                <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-outline-variant/10">
+                    <div class="w-16 h-16 rounded-full bg-orange-600/10 flex items-center justify-center shrink-0 border border-orange-500/20 text-orange-600 font-bold text-xs">
+                        KPay
                     </div>
                     <div class="flex-grow">
                         <div class="text-xs text-primary uppercase font-bold tracking-wider mb-1">Kpay / Wave</div>
-                        <div class="font-bold text-base">Nang Nu Nu Yee</div>
+                        <div class="font-bold text-base text-on-surface">Nang Nu Nu Yee</div>
                         <div class="flex items-center justify-between mt-1">
-                            <span class="font-mono text-lg font-bold text-slate-700">09782248150</span>
+                            <span class="font-mono text-lg font-bold text-on-surface-variant">09782248150</span>
                             <button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09782248150')">
                                 <span class="material-symbols-outlined text-sm">content_copy</span>
                             </button>
@@ -336,118 +375,103 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 flex items-center gap-2 text-on-surface-variant text-sm font-medium px-2 bg-white/50 p-3 rounded-xl">
+            <div class="mt-4 flex items-center gap-2 text-on-surface-variant text-sm font-medium px-2 bg-surface-container-high/40 p-3 rounded-xl">
                 <span class="material-symbols-outlined text-amber-600">info</span>
                 <span>ငွေလွှဲပြီးလျှင် Screenshot လေး ပို့ပေးဖို့ မမေ့နဲ့နော်။</span>
             </div>
         </section>
 
-        <!-- Location & Contact -->
         <footer id="contact" class="bg-surface-container-high rounded-t-[40px] px-6 py-10 md:p-12 -mx-container-margin relative overflow-hidden">
-            <!-- Subtle Map Pattern Overlay -->
             <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/map.png');"></div>
-            
             <div class="relative z-10 flex flex-col lg:flex-row gap-10">
-                
-                <!-- Location Details & Map -->
                 <div class="lg:w-1/2 space-y-6">
                     <h3 class="text-xl text-primary font-bold flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">location_on</span> တည်နေရာ
                     </h3>
-                    
-                    <div class="bg-white/80 backdrop-blur-sm p-5 rounded-2xl shadow-sm border border-outline-variant/30">
-                        <p class="font-bold text-lg mb-1">ခွန်ထွန်းအေး ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</p>
+                    <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/30">
+                        <p class="font-bold text-lg mb-1 text-on-surface">ခွန်ထွန်းအေး ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</p>
                         <p class="text-on-surface-variant font-medium mb-4">ဆိုက်ခေါင်စျေးမြောက်ဘက် - အဝ်းအုံပွေါးကွေးနော🏪🗺</p>
-                        
-                        <!-- Embedded Google Map -->
-                        <div class="w-full h-48 bg-slate-200 rounded-xl overflow-hidden shadow-inner border border-outline-variant/20 mb-4">
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-inner border border-outline-variant/20 mb-4">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233.83168511350414!2d97.2402626!3d20.3289339!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ce51ac9d24dc61%3A0x9ea2761f72d64b7a!2z4YCB4YC94YCU4YC64YCR4YC94YCU4YC64YCh4YCx4YC44YCW4YCv4YCU4YC64YC44YCG4YCt4YCv4YCE4YC6!5e0!3m2!1sen!2smm!4v1782383010867!5m2!1sen!2smm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-
                         <a class="inline-flex items-center justify-center w-full gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-md hover:bg-primary/90 transition-colors" href="https://www.google.com/maps/place/%E1%80%81%E1%80%BD%E1%80%94%E1%80%BA%E1%80%91%E1%80%BD%E1%80%94%E1%80%BA%E1%80%A1%E1%80%B1%E1%80%B8%E1%80%96%E1%80%AF%E1%80%94%E1%80%BA%E1%80%B8%E1%80%86%E1%80%AD%E1%80%AF%E1%80%84%E1%80%BA/@20.3289339,97.2402626,21z" target="_blank">
                             <span class="material-symbols-outlined">near_me</span> လမ်းကြောင်းရှာမယ်
                         </a>
                     </div>
                 </div>
 
-                <!-- Contact Links -->
                 <div class="lg:w-1/2 space-y-6">
                     <h3 class="text-xl text-primary font-bold">ဆက်သွယ်ရန်</h3>
                     <div class="space-y-4">
                         <p class="text-sm text-on-surface-variant font-medium">အောက်ပါလင့်များမှ တစ်ဆင့် မှာယူနိုင်ပါသည်။</p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a class="flex-1 flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-outline-variant/20 hover:border-sky-500 hover:shadow-md transition-all group" href="https://t.me/Tunaye" target="_blank">
+                            <a class="flex-1 flex items-center gap-3 bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant/20 hover:border-sky-500 hover:shadow-md transition-all group" href="https://t.me/Tunaye" target="_blank">
                                 <div class="w-12 h-12 rounded-full bg-sky-500 flex items-center justify-center text-white shrink-0">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
                                 </div>
                                 <div>
-                                    <span class="font-bold block">Telegram</span>
+                                    <span class="font-bold block text-on-surface">Telegram</span>
                                     <span class="text-xs text-on-surface-variant">Message us</span>
                                 </div>
                             </a>
-                            <a class="flex-1 flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm border border-outline-variant/20 hover:border-blue-600 hover:shadow-md transition-all group" href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank">
+                            <a class="flex-1 flex items-center gap-3 bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant/20 hover:border-blue-600 hover:shadow-md transition-all group" href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank">
                                 <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white shrink-0">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">facebook</span>
                                 </div>
                                 <div>
-                                    <span class="font-bold block">Facebook</span>
+                                    <span class="font-bold block text-on-surface">Facebook</span>
                                     <span class="text-xs text-on-surface-variant">Visit our page</span>
                                 </div>
                             </a>
                         </div>
                         <div class="pt-6 border-t border-outline-variant/30">
                             <p class="text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-2">Phone Numbers</p>
-                            <p class="font-bold text-lg font-mono">09790189199 / 09782248150</p>
+                            <p class="font-bold text-lg font-mono text-on-surface">09790189199 / 09782248150</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-12 text-center text-xs text-on-surface-variant opacity-60 font-medium">
-                © 2024 Khun Tun Aye Mobile. All Rights Reserved.
+                © 2026 Khun Tun Aye Mobile. Pa'O Calendar Integration.
             </div>
         </footer>
     </main>
 
-    <!-- Bottom Navigation Bar -->
     <nav class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-outline-variant/30 flex justify-around items-center py-2 px-2 pb-safe z-30 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-        <a class="flex flex-col items-center justify-center text-primary font-bold p-2" href="#">
+        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-primary" onclick="switchSection('shop')" id="bot-nav-shop">
             <span class="material-symbols-outlined">home</span>
             <span class="text-[10px] mt-1">Home</span>
-        </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors p-2" href="#digital-products">
-            <span class="material-symbols-outlined">shopping_bag</span>
-            <span class="text-[10px] mt-1">Shop</span>
-        </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors p-2" href="#payment">
+        </button>
+        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-on-surface-variant" onclick="switchSection('calendar')" id="bot-nav-calendar">
+            <span class="material-symbols-outlined">calendar_month</span>
+            <span class="text-[10px] mt-1">Calendar</span>
+        </button>
+        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-on-surface-variant" onclick="switchSection('market')" id="bot-nav-market">
+            <span class="material-symbols-outlined">grid_view</span>
+            <span class="text-[10px] mt-1">Markets</span>
+        </button>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#payment">
             <span class="material-symbols-outlined">payments</span>
             <span class="text-[10px] mt-1">Pay</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors p-2" href="#contact">
-            <span class="material-symbols-outlined">map</span>
-            <span class="text-[10px] mt-1">Map</span>
-        </a>
     </nav>
 
-    <!-- Order Modal (Hidden by default) -->
     <div id="orderModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100] transition-opacity opacity-0">
         <div class="bg-surface p-8 rounded-3xl w-full max-w-md shadow-2xl border border-outline-variant/20 transform scale-95 transition-transform" id="orderModalContent">
             <div class="flex justify-between items-start mb-4">
                 <div class="bg-primary-container text-primary p-3 rounded-2xl">
-                    <span class="material-symbols-outlined">shopping_cart_checkout</span>
+                    <span class="material-symbols-outlined text-white">shopping_cart_checkout</span>
                 </div>
                 <button onclick="closeModal()" class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
-            
             <h3 id="orderTitle" class="text-xl font-bold mb-2 text-on-surface"></h3>
             <p id="orderPrice" class="text-lg text-primary font-bold mb-6"></p>
-            
             <div class="bg-surface-container p-4 rounded-2xl mb-6 text-sm text-on-surface-variant font-medium leading-relaxed">
                 <span class="material-symbols-outlined text-sm inline-block align-middle mr-1">info</span>
                 ဆက်သွယ်ရန် ဖုန်းနံပါတ် <strong>09790189199</strong> (သို့) <strong>09782248150</strong> သို့မဟုတ် Telegram / Messenger မှတစ်ဆင့် တိုက်ရိုက်မှာယူနိုင်ပါသည်။
             </div>
-            
             <div class="flex flex-col gap-3">
                 <a href="https://t.me/Tunaye" target="_blank" class="w-full bg-sky-500 text-white py-3 rounded-xl text-center font-bold hover:bg-sky-600 transition flex justify-center items-center gap-2 shadow-sm">
                     <span class="material-symbols-outlined text-sm">send</span> Telegram သို့သွားမည်
@@ -459,7 +483,6 @@
         </div>
     </div>
 
-    <!-- Catalog Modal (Hidden by default) -->
     <div id="catalogModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100] transition-opacity opacity-0">
         <div class="bg-surface p-6 rounded-3xl w-full max-w-lg shadow-2xl max-h-[85vh] overflow-y-auto no-scrollbar transform scale-95 transition-transform" id="catalogModalContent">
             <div class="sticky top-0 bg-surface pt-2 pb-4 border-b border-outline-variant/20 flex justify-between items-center mb-4 z-10">
@@ -470,7 +493,6 @@
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
-            
             <div class="space-y-4 font-medium">
                 <div class="bg-surface-container-low p-4 rounded-2xl">
                     <h4 class="font-bold text-orange-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">signal_cellular_alt</span> Mytel Data</h4>
@@ -492,14 +514,189 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
     <div class="copy-toast fixed bottom-24 left-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-full font-bold shadow-xl z-[110] flex items-center gap-2 text-sm" id="copy-toast">
         <span class="material-symbols-outlined text-success-green text-lg">check_circle</span>
         ကူးယူပြီးပါပြီ!
     </div>
 
     <script>
-        // Drawer Logic
+        // --- ၅ ရက်ဈေးပတ်လမ်း Data ---
+        const MARKET_CYCLE = [
+            { id: 0, nameMy: "ဆေꩻနောင်ႏဗွန် (နောင်မွန်ဈေး)", nameEn: "Naungwoon Market" },
+            { id: 1, nameMy: "ဆေꩻမောက်ꩻမုဲင်ႏ၊သီးသဲင်ႏ (ဆီဆိုင်ဈေး)", nameEn: "Hsihseng Market" },
+            { id: 2, nameMy: "ဆေꩻသုဲင်ꩻခေါဝ် (ဆိုက်ခေါင်ဈေး)", nameEn: "Saik Khaung Market" },
+            { id: 3, nameMy: "ဆေꩻတောင်ႏကီꩻ၊နမ်းခုတ် (နမ်းခုတ်ဈေး)", nameEn: "Taunggyi Nankon Market" },
+            { id: 4, nameMy: "ဆေꩻဟိုပုံꩻ၊ဘန်းယဉ်း (ဘန်းယဥ်ဈေး)", nameEn: "Hopong Banyin Market" }
+        ];
+
+        // --- ၂၀၂၆ ပအိုဝ်းလပြက္ခဒိန် ဒေတာပတ်လမ်း ---
+        const LUNAR_MONTHS = [
+            { nameMy: "ဒဲဉ်ကံ (၁) - ပြာသိုလာႏ", start: new Date(2025, 11, 19), length: 29 },
+            { nameMy: "ဒဲဉ်သီ (၂) - တပို့တွဲလာႏ", start: new Date(2026, 0, 17), length: 30 },
+            { nameMy: "ဒဲဉ်သီလာ (၃) - တပေါင်းလာႏ", start: new Date(2026, 1, 16), length: 30 },
+            { nameMy: "ဒဲဉ်ဟား (၄) - တန်ခူးလာႏ", start: new Date(2026, 2, 18), length: 29 },
+            { nameMy: "ဒဲဉ်ရုတ် (၅) - ကဆုန်လာႏ", start: new Date(2026, 3, 16), length: 30 },
+            { nameMy: "ဒဲဉ်စေတ် (၆) - နယုန်လာႏ", start: new Date(2026, 4, 16), length: 30 },
+            { nameMy: "ပထမဝါဆိုလာႏ (၇)", start: new Date(2026, 5, 15), length: 30 },
+            { nameMy: "ဒုတိယဝါဆိုလာႏ (၈)", start: new Date(2026, 6, 15), length: 30 },
+            { nameMy: "ဝါခေါင်ႏလာႏ (၉)", start: new Date(2026, 7, 14), length: 30 },
+            { nameMy: "တော်သလင်းလာႏ (၁၁)", start: new Date(2026, 8, 13), length: 29 },
+            { nameMy: "သီတင်းကျွတ်လာႏ (၁၁)", start: new Date(2026, 9, 12), length: 30 },
+            { nameMy: "တန်ဆောင်မုန်းလာႏ (၁၂)", start: new Date(2026, 10, 11), length: 29 },
+            { nameMy: "နတ်တော်လာႏ (၁၃)", start: new Date(2026, 11, 10), length: 30 }
+        ];
+
+        const HOLIDAYS_2026 = {
+            "3-2": "ပအိုဝ်ႏအမျိုးသားနေ့",
+            "4-13": "သင်္ကြန်အကြို", "4-14": "သင်္ကြန်အကျ", "4-15": "သင်္ကြန်အကြတ်", "4-16": "သင်္ကြန်အတက်", "4-17": "နှစ်ဆန်းတစ်ရက်",
+            "5-30": "ကဆုန်လပြည့် ဗုဒ္ဓနေ့", "10-26": "သီတင်းကျွတ်လပြည့်", "11-24": "တန်ဆောင်တိုင်လပြည့်"
+        };
+
+        const YATYAZA_DAYS_2026 = ["1-3", "1-8", "2-3", "2-10", "3-4", "3-11", "4-1", "4-8", "5-2", "5-9", "6-9", "6-17", "7-5", "7-12", "8-2", "8-9", "9-2", "9-11", "10-1", "10-8", "11-11", "11-18", "12-2", "12-9"];
+        const PYATHADA_DAYS_2026 = ["1-2", "1-7", "2-1", "2-8", "3-2", "3-10", "4-2", "4-9", "5-1", "5-6", "6-1", "6-7", "7-2", "7-7", "8-4", "8-11", "9-1", "9-3", "10-2", "10-7", "11-1", "11-2", "12-1", "12-8"];
+
+        const monthsNameMy = ["ဇန်နဝါရီ", "ဖေဖော်ဝါရီ", "မတ်", "ဧပြီ", "မေ", "ဇွန်", "ဇူလိုင်", "ဩဂုတ်", "စက်တင်ဘာ", "အောက်တိုဘာ", "နိုဝင်ဘာ", "ဒီဇင်ဘာ"];
+        const daysHeaderMy = ["တနင်္ဂနွေႏ", "တနင်္လာႏ", "အင်္ဂါႏ", "ဗုဒ္ဓဟူꩻ", "ကျားသပတေႏ", "သောကျာႏ", "စနေႏ"];
+        const BASE_MARKET_DATE = new Date(2026, 0, 1);
+        let currentCalendarDate = new Date(2026, 6, 1); // Default to July 2026
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initializeRealtimeInfo();
+            renderCalendarMatrix();
+            renderMarketTrack();
+        });
+
+        function getMarketIndex(date) {
+            const diffTime = date - BASE_MARKET_DATE;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            return ((diffDays % 5) + 5) % 5;
+        }
+
+        function getPaoLunarDetails(date) {
+            let activeMonth = LUNAR_MONTHS[0];
+            for (let i = LUNAR_MONTHS.length - 1; i >= 0; i--) {
+                if (date >= LUNAR_MONTHS[i].start) {
+                    activeMonth = LUNAR_MONTHS[i];
+                    break;
+                }
+            }
+            const diffDays = Math.floor(Math.abs(date - activeMonth.start) / (1000 * 60 * 60 * 24)) + 1;
+            let dayText = diffDays <= 15 ? `လဆန်း ${diffDays} နီꩻ` : `လဆုတ် ${diffDays - 15} နီꩻ`;
+            if (diffDays === 15) dayText = "လာဗွေႏနီꩻ";
+            if (diffDays === activeMonth.length) dayText = "လာမားနီꩻ";
+            return { monthName: activeMonth.nameMy, dayText: dayText, isFullMoon: diffDays === 15 };
+        }
+
+        function initializeRealtimeInfo() {
+            const today = new Date();
+            document.getElementById("live-today-date").innerText = `ယနေ့ရက်စွဲ - ${monthsNameMy[today.getMonth()]} ${today.getDate()} ရက် (${daysHeaderMy[today.getDay()]})`;
+            const mIdx = getMarketIndex(today);
+            document.getElementById("live-today-market").innerText = `ယနေ့ဈေး - ${MARKET_CYCLE[mIdx].nameMy.split(" (")[0]}`;
+        }
+
+        // Section Router Logic
+        function switchSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.section-nav-btn').forEach(el => {
+                el.classList.remove('bg-primary-container', 'text-on-primary-container');
+                el.classList.add('text-on-surface-variant');
+            });
+            document.querySelectorAll('.nav-bottom-btn').forEach(el => el.classList.remove('text-primary'));
+
+            // Show and highlight
+            document.getElementById(`section-${sectionId}`).classList.remove('hidden');
+            document.getElementById(`nav-${sectionId}`).classList.add('bg-primary-container', 'text-on-primary-container');
+            document.getElementById(`bot-nav-${sectionId}`).classList.add('text-primary');
+        }
+
+        // Calendar Render Engine
+        function renderCalendarMatrix() {
+            const grid = document.getElementById("calendar-days-grid");
+            const weekdayContainer = document.getElementById("weekday-headers");
+            grid.innerHTML = "";
+            weekdayContainer.innerHTML = "";
+
+            // Inject Weekday Headers
+            daysHeaderMy.forEach((day, i) => {
+                const dayEl = document.createElement("div");
+                dayEl.className = i === 0 ? "text-red-500 py-1" : i === 6 ? "text-teal-500 py-1" : "py-1";
+                dayEl.innerText = day;
+                weekdayContainer.appendChild(dayEl);
+            });
+
+            document.getElementById("calendar-header-title").innerText = `${monthsNameMy[currentCalendarDate.getMonth()]} ၂၀၂၆`;
+            const sampleLunar = getPaoLunarDetails(new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), 1));
+            document.getElementById("calendar-lunar-title").innerText = sampleLunar.monthName;
+
+            const firstDayIndex = new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), 1).getDay();
+            const totalDays = new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth() + 1, 0).getDate();
+
+            for (let i = 0; i < firstDayIndex; i++) {
+                grid.appendChild(document.createElement("div"));
+            }
+
+            for (let day = 1; day <= totalDays; day++) {
+                const targetDate = new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), day);
+                const marketIdx = getMarketIndex(targetDate);
+                const marketShortName = MARKET_CYCLE[marketIdx].nameMy.split(" (")[0].replace("ဆေꩻ", "");
+                const lunar = getPaoLunarDetails(targetDate);
+                const dateKey = `${targetDate.getMonth() + 1}-${day}`;
+
+                const isYatyaza = YATYAZA_DAYS_2026.includes(dateKey);
+                const isPyathada = PYATHADA_DAYS_2026.includes(dateKey);
+                const isHoliday = HOLIDAYS_2026[dateKey];
+
+                const cell = document.createElement("div");
+                cell.className = `day-cell border border-outline-variant/30 rounded-xl p-1 md:p-2 flex flex-col justify-between items-stretch bg-surface-container-low text-left relative cursor-pointer hover:bg-primary-container/10`;
+                
+                let borderIndicator = "";
+                if (isYatyaza) borderIndicator = `<div class="w-1.5 h-1.5 rounded-full bg-emerald-500 absolute top-1 right-1"></div>`;
+                if (isPyathada) borderIndicator = `<div class="w-1.5 h-1.5 rounded-full bg-red-500 absolute top-1 right-1"></div>`;
+
+                cell.innerHTML = `
+                    <div class="flex justify-between items-start w-full">
+                        <span class="text-xs md:text-sm font-black text-on-surface">${day}</span>
+                        ${borderIndicator}
+                    </div>
+                    <span class="text-[9px] md:text-xs text-secondary-container font-medium truncate text-center block w-full">${marketShortName}</span>
+                    <div class="text-[8px] opacity-60 truncate text-center block">${lunar.dayText}</div>
+                `;
+
+                if (isHoliday) cell.classList.add("bg-red-500/10", "border-red-500/30");
+                if (lunar.isFullMoon) cell.classList.add("bg-yellow-400/10");
+
+                grid.appendChild(cell);
+            }
+        }
+
+        function changeMonth(dir) {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + dir);
+            renderCalendarMatrix();
+        }
+
+        // Market Tracker Loop Loader
+        function renderMarketTrack() {
+            const track = document.getElementById("market-horizontal-track");
+            track.innerHTML = "";
+            const currentIdx = getMarketIndex(new Date());
+
+            MARKET_CYCLE.forEach((market, idx) => {
+                const isActive = currentIdx === idx;
+                const card = document.createElement("div");
+                card.className = `p-4 rounded-2xl border transition-all ${isActive ? 'bg-primary-container text-white shadow-lg scale-[1.02]' : 'bg-surface-container-lowest border-outline-variant/20 text-on-surface'}`;
+                card.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="text-[9px] px-2 py-0.5 rounded-full font-bold ${isActive ? 'bg-white text-primary' : 'bg-surface-container-high text-on-surface-variant'}">အဆင့် ${idx + 1}</span>
+                        ${isActive ? '<span class="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-bold">ယနေ့</span>' : ''}
+                    </div>
+                    <h4 class="font-bold text-sm mt-3">${market.nameMy.split(" (")[0]}</h4>
+                    <p class="text-xs opacity-75 mt-0.5">${market.nameEn}</p>
+                `;
+                track.appendChild(card);
+            });
+        }
+
+        // Drawer & Modal Core Functions
         function toggleDrawer() {
             const drawer = document.getElementById('side-drawer');
             const overlay = document.getElementById('drawer-overlay');
@@ -508,129 +705,75 @@
             if (isHidden) {
                 drawer.classList.remove('-translate-x-full');
                 overlay.classList.remove('hidden');
-                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
                 document.body.style.overflow = 'hidden';
             } else {
                 drawer.classList.add('-translate-x-full');
-                overlay.classList.add('opacity-0');
-                setTimeout(() => overlay.classList.add('hidden'), 300);
+                overlay.classList.add('hidden');
                 document.body.style.overflow = 'auto';
             }
         }
 
-        // Copy Functions with button state changes
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            document.getElementById("theme-toggle-btn").innerText = isDark ? "light_mode" : "dark_mode";
+        }
+
         function copyKey(btnElement, targetId) {
-            const copyText = document.getElementById(targetId).innerText;
-            navigator.clipboard.writeText(copyText).then(() => {
+            const text = document.getElementById(targetId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
                 showToast();
-                
-                // Change button state temporarily
-                const originalHTML = btnElement.innerHTML;
-                const originalClasses = btnElement.className;
-                
-                btnElement.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> ကူးယူပြီးပါပြီ';
-                btnElement.className = "bg-success-green text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shrink-0 transition-all shadow-md";
-                
-                setTimeout(() => {
-                    btnElement.innerHTML = originalHTML;
-                    btnElement.className = originalClasses;
-                }, 2000);
             });
         }
 
         function copyText(btnElement, text) {
             navigator.clipboard.writeText(text).then(() => {
                 showToast();
-                
-                // Visual feedback on button
-                const icon = btnElement.querySelector('span');
-                icon.innerText = 'check';
-                icon.classList.add('text-success-green');
-                
-                setTimeout(() => {
-                    icon.innerText = 'content_copy';
-                    icon.classList.remove('text-success-green');
-                }, 2000);
             });
         }
 
         function showToast() {
             const toast = document.getElementById("copy-toast");
             toast.classList.add("show");
-            setTimeout(() => {
-                toast.classList.remove("show");
-            }, 2500);
+            setTimeout(() => toast.classList.remove("show"), 2500);
         }
 
-        // Modal Logic
         function orderItem(name, price) {
             document.getElementById('orderTitle').innerText = name;
             document.getElementById('orderPrice').innerText = 'စျေးနှုန်း - ' + price;
-            
             const modal = document.getElementById('orderModal');
-            const content = document.getElementById('orderModalContent');
-            
             modal.classList.remove('hidden');
-            // Trigger reflow
-            void modal.offsetWidth;
-            modal.classList.remove('opacity-0');
-            content.classList.remove('scale-95');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('orderModalContent').classList.remove('scale-95');
+            }, 10);
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             const modal = document.getElementById('orderModal');
-            const content = document.getElementById('orderModalContent');
-            
             modal.classList.add('opacity-0');
-            content.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 300);
+            document.getElementById('orderModalContent').classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+            document.body.style.overflow = 'auto';
         }
 
         function openCatalogModal() {
             const modal = document.getElementById('catalogModal');
-            const content = document.getElementById('catalogModalContent');
-            
             modal.classList.remove('hidden');
-            void modal.offsetWidth;
-            modal.classList.remove('opacity-0');
-            content.classList.remove('scale-95');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('catalogModalContent').classList.remove('scale-95');
+            }, 10);
             document.body.style.overflow = 'hidden';
         }
 
         function closeCatalogModal() {
             const modal = document.getElementById('catalogModal');
-            const content = document.getElementById('catalogModalContent');
-            
             modal.classList.add('opacity-0');
-            content.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 300);
+            document.getElementById('catalogModalContent').classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+            document.body.style.overflow = 'auto';
         }
-
-        // Add smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    // Close drawer if clicking a link inside it
-                    if(!document.getElementById('side-drawer').classList.contains('-translate-x-full')) {
-                        toggleDrawer();
-                    }
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
     </script>
 </body>
 </html>
