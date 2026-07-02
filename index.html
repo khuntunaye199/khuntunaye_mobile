@@ -125,7 +125,7 @@
                 <span class="material-symbols-outlined">calendar_month</span> ၂၀၂၆ ပအိုဝ်ႏပြက္ခဒိန်ႏ
             </button>
             <button onclick="switchSection('market')" class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-left section-nav-btn" id="nav-market">
-                <span class="material-symbols-outlined">grid_view</span> ၅ ရက်ဈေးနေ့ပတ်လမ်း
+                <span class="material-symbols-outlined">grid_view</span> ၅ ရက်ဈေးနေ့တစ်စျေးကြည့်ရန်
             </button>
             <div class="h-px bg-outline-variant/30 my-2 mx-4"></div>
             <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-emerald-600 bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/20 dark:border-emerald-900/30" href="https://text-to-qr-delta.vercel.app/" target="_blank">
@@ -166,7 +166,7 @@
                             <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
                         </button>
                         <a class="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
-                            <span class="material-symbols-outlined">smartphone</span> ဆိုင်ရှိဖုန်းများ
+                            <span class="material-symbols-outlined">smartphone</span> ဆိုင်တွင်ရရှိနိုင်သောဖုန်းများ
                         </a>
                     </div>
                 </div>
@@ -589,9 +589,9 @@
 
         function initializeRealtimeInfo() {
             const today = new Date();
-            document.getElementById("live-today-date").innerText = `ယနေ့ရက်စွဲ - ${monthsNameMy[today.getMonth()]} ${today.getDate()} ရက် (${daysHeaderMy[today.getDay()]})`;
+            document.getElementById("live-today-date").innerText = မွူးနီꩻစွယ်ꩻ- ${monthsNameMy[today.getMonth()]} ${today.getDate()} ရက် (${daysHeaderMy[today.getDay()]})`;
             const mIdx = getMarketIndex(today);
-            document.getElementById("live-today-market").innerText = `ယနေ့ဈေး - ${MARKET_CYCLE[mIdx].nameMy.split(" (")[0]}`;
+            document.getElementById("live-today-market").innerText = `ဆေꩻဟန်ꩻနီ - ${MARKET_CYCLE[mIdx].nameMy.split(" (")[0]}`;
         }
 
         // Section Router Logic
