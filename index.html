@@ -104,7 +104,7 @@
             }
         }
 
-        /* 🌟 ဆိုင်ရှိဖုန်းများ ဆွဲဆောင်မှုရှိရှိ လှုပ်ရှားစေမည့် Custom Animation များ */
+        /* ဆိုင်ရှိဖုန်းများ ဆွဲဆောင်မှုရှိရှိ လှုပ်ရှားစေမည့် Custom Animation များ */
         @keyframes phonePulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 101, 30, 0.7); }
             70% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(253, 101, 30, 0); }
@@ -120,7 +120,6 @@
             50% { background-color: rgba(253, 101, 30, 0.25); border-color: rgba(253, 101, 30, 0.8); }
         }
 
-        /* အသက်ဝင်နေစေမည့် Class များ */
         .animate-phone-btn {
             animation: phonePulse 2s infinite ease-in-out;
         }
@@ -139,11 +138,24 @@
 
 <body class="bg-surface text-on-surface dark:bg-dark-bg dark:text-dark-text transition-colors duration-300">
 
-    <!-- Floating Viber Button -->
-    <a href="viber://contact?number=%2B959899494849" 
-       class="fixed bottom-20 right-4 p-4 rounded-full shadow-2xl z-40 text-white transition animate-bounce flex items-center justify-center hover:scale-110 bg-viber-purple shadow-[0_4px_20px_rgba(115,96,242,0.4)]">
-        <span class="material-symbols-outlined mr-1">chat</span> Viber ဆက်သွယ်ရန်
-    </a>
+    <!-- 🌟 Floating Contact Group (ခလုတ် ၃ ခု တွဲ) -->
+    <div class="fixed bottom-20 right-4 flex flex-col items-end gap-3 z-40">
+        <!-- Viber Button -->
+        <a href="viber://contact?number=%2B959899494849" 
+           class="p-3 sm:p-4 rounded-full shadow-lg text-white transition flex items-center justify-center hover:scale-110 bg-viber-purple shadow-[0_4px_15px_rgba(115,96,242,0.4)]">
+            <span class="material-symbols-outlined mr-1" style="font-variation-settings: 'FILL' 1;">chat</span> <span class="text-xs sm:text-sm font-bold">Viber</span>
+        </a>
+        <!-- Telegram Button -->
+        <a href="https://t.me/Tunaye" target="_blank"
+           class="p-3 sm:p-4 rounded-full shadow-lg text-white transition flex items-center justify-center hover:scale-110 bg-sky-500 shadow-[0_4px_15px_rgba(14,165,233,0.4)]">
+            <span class="material-symbols-outlined mr-1" style="font-variation-settings: 'FILL' 1;">send</span> <span class="text-xs sm:text-sm font-bold">Telegram</span>
+        </a>
+        <!-- Facebook Button -->
+        <a href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank"
+           class="p-3 sm:p-4 rounded-full shadow-lg text-white transition flex items-center justify-center hover:scale-110 bg-blue-600 shadow-[0_4px_15px_rgba(37,99,235,0.4)] animate-bounce">
+            <span class="material-symbols-outlined mr-1" style="font-variation-settings: 'FILL' 1;">facebook</span> <span class="text-xs sm:text-sm font-bold">Messenger</span>
+        </a>
+    </div>
 
     <!-- Top Navigation Bar -->
     <nav class="fixed top-0 w-full z-40 bg-surface/80 dark:bg-dark-bg/80 backdrop-blur-md shadow-sm flex justify-between items-center px-container-margin h-16 border-b border-outline-variant/20 dark:border-slate-800">
@@ -187,7 +199,6 @@
             <a class="flex items-center gap-4 px-6 py-3 mx-2 rounded-lg font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/20 dark:border-emerald-900/30" href="https://text-to-qr-delta.vercel.app/" target="_blank">
                 <span class="material-symbols-outlined">qr_code_2</span> စာသားမှ QR ပြောင်းရန်
             </a>
-            <!-- 🌟 ဘေးမီနူးထဲတွင်လည်း လှုပ်လှုပ်ရွရွဖြစ်စေပြီး ဖုန်းကြည့်ချင်စရာကောင်းအောင် ပြောင်းလဲထားမှု -->
             <a class="flex items-center gap-4 px-6 py-3 mx-2 rounded-lg font-bold text-secondary-container bg-orange-50/50 border-orange-300 dark:bg-orange-950/20 animate-sidemenu-phone transition-all" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
                 <span class="material-symbols-outlined phone-icon text-secondary-container" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဆိုင်ရှိဖုန်းများကြည့်ရန် 📱🔥
             </a>
@@ -226,7 +237,6 @@
                         <button onclick="openCatalogModal()" class="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95 w-full sm:w-auto">
                             <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
                         </button>
-                        <!-- 🌟 ဟီးရိုးဧရိယာရှိ ဖုန်းကြည့်ရန်ခလုတ်ကို လှုပ်ရှားလင်းလက်ပြီး စိတ်ဝင်စားစရာဖြစ်အောင် ပြုလုပ်ထားမှု -->
                         <a class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-3 rounded-full font-black text-lg flex items-center justify-center gap-2 transition-all active:scale-95 animate-phone-btn shadow-xl w-full sm:w-auto" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
                             <span class="material-symbols-outlined phone-icon" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဆိုင်ရှိဖုန်းများကြည့်ရန် 📱🔥
                         </a>
@@ -661,6 +671,7 @@
             renderMarketTrack();
         });
 
+        // Other operational functions remain identical...
         function getMarketIndex(date) {
             const diffTime = date - BASE_MARKET_DATE;
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
