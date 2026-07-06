@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="my" class="light">
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -37,11 +37,20 @@
                         "success-green": "#16A34A",
                         "feature-purple": "#9333EA",
                         "secondary-fixed": "#ffdbce",
+                        "viber-purple": "#7360F2",
+                        
+                        // Dark Mode Colors Custom
+                        "dark-bg": "#0B0F19",
+                        "dark-surface": "#161D30",
+                        "dark-surface-low": "#1F2942",
+                        "dark-text": "#F1F5F9",
+                        "dark-text-muted": "#94A3B8"
                     },
                     spacing: {
                         "card-gap": "12px",
                         "container-margin": "16px",
                         xl: "32px",
+                        nav: "64px"
                     },
                     fontFamily: {
                         sans: ['Inter', 'Pyidaungsu', 'sans-serif'],
@@ -77,43 +86,90 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        /* Custom styles for interactive calendar cells */
+        
+        /* Web View-Style Mobile Customization */
         .day-cell {
-            aspect-ratio: 1 / 1;
+            min-height: 72px;
             transition: all 0.2s ease;
+        }
+        @media (min-width: 640px) {
+            .day-cell {
+                min-height: 90px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .day-cell {
+                aspect-ratio: 1 / 1;
+                min-height: auto;
+            }
+        }
+
+        /* 🌟 ဆိုင်ရှိဖုန်းများ ဆွဲဆောင်မှုရှိရှိ လှုပ်ရှားစေမည့် Custom Animation များ */
+        @keyframes phonePulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 101, 30, 0.7); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(253, 101, 30, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 101, 30, 0); }
+        }
+        @keyframes phoneShake {
+            0%, 100% { transform: rotate(0deg); }
+            20%, 60% { transform: rotate(-8deg); }
+            40%, 80% { transform: rotate(8deg); }
+        }
+        @keyframes sideMenuPulse {
+            0%, 100% { background-color: rgba(253, 101, 30, 0.1); border-color: rgba(253, 101, 30, 0.3); }
+            50% { background-color: rgba(253, 101, 30, 0.25); border-color: rgba(253, 101, 30, 0.8); }
+        }
+
+        /* အသက်ဝင်နေစေမည့် Class များ */
+        .animate-phone-btn {
+            animation: phonePulse 2s infinite ease-in-out;
+        }
+        .animate-phone-btn:hover .phone-icon {
+            animation: phoneShake 0.5s infinite ease-in-out;
+        }
+        .animate-sidemenu-phone {
+            animation: sideMenuPulse 2s infinite ease-in-out;
+            border-width: 1.5px;
+        }
+        .animate-sidemenu-phone .phone-icon {
+            animation: phoneShake 0.8s infinite ease-in-out;
         }
     </style>
 </head>
 
-<body class="bg-surface text-on-surface transition-colors duration-300">
+<body class="bg-surface text-on-surface dark:bg-dark-bg dark:text-dark-text transition-colors duration-300">
 
-    <a href="https://t.me/Tunaye" target="_blank" 
-       class="fixed bottom-20 right-4 p-4 rounded-full shadow-2xl z-40 text-white transition animate-bounce flex items-center justify-center hover:scale-110"
-       style="background: linear-gradient(135deg, #0088cc, #00d2ff);">
-        <span class="material-symbols-outlined mr-1">send</span> ဆက်သွယ်ရန်
+    <!-- Floating Viber Button -->
+    <a href="viber://contact?number=%2B959899494849" 
+       class="fixed bottom-20 right-4 p-4 rounded-full shadow-2xl z-40 text-white transition animate-bounce flex items-center justify-center hover:scale-110 bg-viber-purple shadow-[0_4px_20px_rgba(115,96,242,0.4)]">
+        <span class="material-symbols-outlined mr-1">chat</span> Viber ဆက်သွယ်ရန်
     </a>
 
-    <nav class="fixed top-0 w-full z-40 bg-surface/80 backdrop-blur-md shadow-sm flex justify-between items-center px-container-margin h-16 border-b border-outline-variant/20">
-        <div class="text-xl font-bold text-primary tracking-wide flex items-center gap-2">
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-40 bg-surface/80 dark:bg-dark-bg/80 backdrop-blur-md shadow-sm flex justify-between items-center px-container-margin h-16 border-b border-outline-variant/20 dark:border-slate-800">
+        <div class="text-xl font-bold text-primary dark:text-indigo-400 tracking-wide flex items-center gap-2">
             ခွန်ထွန်းအေး ဖုန်းဆိုင်🏪
         </div>
         <div class="flex items-center gap-2">
-            <button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors rounded-full" onclick="openCatalogModal()">receipt_long</button>
-            <button id="theme-toggle-btn" class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors rounded-full" onclick="toggleTheme()">dark_mode</button>
-            <button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors rounded-full" onclick="toggleDrawer()">menu</button>
+            <button class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="openCatalogModal()">receipt_long</button>
+            <button id="theme-toggle-btn" class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="toggleTheme()">dark_mode</button>
+            <button class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="toggleDrawer()">menu</button>
         </div>
     </nav>
 
-    <div class="fixed inset-0 bg-black/40 z-[60] hidden transition-opacity" id="drawer-overlay" onclick="toggleDrawer()"></div>
-    <div class="fixed top-0 left-0 h-full w-80 bg-surface-container-lowest z-[70] -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col gap-2 py-4" id="side-drawer">
-        <div class="px-6 py-4 border-b border-outline-variant/30">
+    <!-- Drawer Overlay -->
+    <div class="fixed inset-0 bg-black/40 dark:bg-black/60 z-[60] hidden transition-opacity" id="drawer-overlay" onclick="toggleDrawer()"></div>
+    
+    <!-- Sidebar Drawer -->
+    <div class="fixed top-0 left-0 h-full w-80 bg-surface-container-lowest dark:bg-dark-surface z-[70] -translate-x-full transition-transform duration-300 shadow-2xl flex flex-col gap-2 py-4 border-r dark:border-slate-800" id="side-drawer">
+        <div class="px-6 py-4 border-b border-outline-variant/30 dark:border-slate-700">
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-md">
                     <span class="material-symbols-outlined">storefront</span>
                 </div>
                 <div>
-                    <h3 class="text-lg text-primary font-bold">Khun Tun Aye</h3>
-                    <p class="text-sm text-on-surface-variant">Mobile & Digital Services</p>
+                    <h3 class="text-lg text-primary dark:text-indigo-400 font-bold">Khun Tun Aye</h3>
+                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">Mobile & Digital Services</p>
                 </div>
             </div>
         </div>
@@ -121,28 +177,31 @@
             <button onclick="switchSection('shop')" class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container mx-2 rounded-lg font-medium text-left section-nav-btn" id="nav-shop">
                 <span class="material-symbols-outlined">home</span> ပင်မစာမျက်နှာ
             </button>
-            <button onclick="switchSection('calendar')" class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-left section-nav-btn" id="nav-calendar">
+            <button onclick="switchSection('calendar')" class="flex items-center gap-4 px-6 py-3 text-on-surface-variant dark:text-dark-text mx-2 rounded-lg hover:bg-surface-container-high dark:hover:bg-dark-surface transition-all font-medium text-left section-nav-btn" id="nav-calendar">
                 <span class="material-symbols-outlined">calendar_month</span> ၂၀၂၆ ပအိုဝ်ႏပြက္ခဒိန်ႏ
             </button>
-            <button onclick="switchSection('market')" class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-left section-nav-btn" id="nav-market">
+            <button onclick="switchSection('market')" class="flex items-center gap-4 px-6 py-3 text-on-surface-variant dark:text-dark-text mx-2 rounded-lg hover:bg-surface-container-high dark:hover:bg-dark-surface transition-all font-medium text-left section-nav-btn" id="nav-market">
                 <span class="material-symbols-outlined">grid_view</span> ၅ ရက်ဈေးနေ့ပတ်လမ်း
             </button>
-            <div class="h-px bg-outline-variant/30 my-2 mx-4"></div>
-            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium text-emerald-600 bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/20 dark:border-emerald-900/30" href="https://text-to-qr-delta.vercel.app/" target="_blank">
+            <div class="h-px bg-outline-variant/30 dark:bg-slate-700 my-2 mx-4"></div>
+            <a class="flex items-center gap-4 px-6 py-3 mx-2 rounded-lg font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 border border-emerald-100 dark:bg-emerald-950/20 dark:border-emerald-900/30" href="https://text-to-qr-delta.vercel.app/" target="_blank">
                 <span class="material-symbols-outlined">qr_code_2</span> စာသားမှ QR ပြောင်းရန်
             </a>
-            <a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant mx-2 rounded-lg hover:bg-surface-container-high transition-all font-medium" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
-                <span class="material-symbols-outlined">smartphone</span> ဆိုင်ရှိဖုန်းများကြည့်ရန်
+            <!-- 🌟 ဘေးမီနူးထဲတွင်လည်း လှုပ်လှုပ်ရွရွဖြစ်စေပြီး ဖုန်းကြည့်ချင်စရာကောင်းအောင် ပြောင်းလဲထားမှု -->
+            <a class="flex items-center gap-4 px-6 py-3 mx-2 rounded-lg font-bold text-secondary-container bg-orange-50/50 border-orange-300 dark:bg-orange-950/20 animate-sidemenu-phone transition-all" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+                <span class="material-symbols-outlined phone-icon text-secondary-container" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဆိုင်ရှိဖုန်းများကြည့်ရန် 📱🔥
             </a>
         </nav>
     </div>
 
+    <!-- Main Content Container -->
     <main class="pt-20 pb-24 px-container-margin max-w-5xl mx-auto space-y-xl">
         
-        <div class="bg-surface-container border border-primary/10 rounded-2xl p-4 flex flex-wrap gap-3 items-center justify-between shadow-sm">
+        <!-- Live Status Bar -->
+        <div class="bg-surface-container dark:bg-dark-surface border border-primary/10 dark:border-slate-700 rounded-2xl p-4 flex flex-wrap gap-3 items-center justify-between shadow-sm">
             <div class="flex items-center gap-3">
-                <span class="p-2 bg-primary/10 text-primary rounded-xl font-bold text-sm flex items-center">📅</span>
-                <span id="live-today-date" class="text-sm font-bold text-on-surface">ယနေ့ရက်စွဲ - loading...</span>
+                <span class="p-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-indigo-400 rounded-xl font-bold text-sm flex items-center">📅</span>
+                <span id="live-today-date" class="text-sm font-bold text-on-surface dark:text-dark-text">ယနေ့ရက်စွဲ - loading...</span>
             </div>
             <div class="flex items-center gap-3">
                 <span class="p-2 bg-secondary-container/10 text-secondary-container rounded-xl font-bold text-sm flex items-center">🏪</span>
@@ -150,7 +209,9 @@
             </div>
         </div>
 
+        <!-- SECTION: SHOP -->
         <div id="section-shop" class="space-y-xl page-section">
+            <!-- Hero Section -->
             <section class="relative rounded-3xl overflow-hidden group shadow-xl">
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-95 z-10"></div>
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80')"></div>
@@ -161,17 +222,19 @@
                     </h1>
                     <p class="text-base md:text-lg mb-8 max-w-md opacity-90 drop-shadow-sm font-medium">မြန်ဆန်ပြီး စိတ်ချရသော Digital ဝန်ဆောင်မှုများကို တစ်နေရာတည်းတွင် ရယူလိုက်ပါ</p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                        <button onclick="openCatalogModal()" class="bg-secondary-container text-white px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-[0_0_20px_rgba(253,101,30,0.4)] hover:shadow-[0_0_25px_rgba(253,101,30,0.6)]">
+                    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
+                        <button onclick="openCatalogModal()" class="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95 w-full sm:w-auto">
                             <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
                         </button>
-                        <a class="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
-                            <span class="material-symbols-outlined">smartphone</span> ဆိုင်ရှိဖုန်းများ
+                        <!-- 🌟 ဟီးရိုးဧရိယာရှိ ဖုန်းကြည့်ရန်ခလုတ်ကို လှုပ်ရှားလင်းလက်ပြီး စိတ်ဝင်စားစရာဖြစ်အောင် ပြုလုပ်ထားမှု -->
+                        <a class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-3 rounded-full font-black text-lg flex items-center justify-center gap-2 transition-all active:scale-95 animate-phone-btn shadow-xl w-full sm:w-auto" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+                            <span class="material-symbols-outlined phone-icon" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဆိုင်ရှိဖုန်းများကြည့်ရန် 📱🔥
                         </a>
                     </div>
                 </div>
             </section>
 
+            <!-- VPN Area -->
             <section class="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950/20 dark:to-yellow-950/10 rounded-2xl p-6 shadow-sm border border-amber-200 dark:border-amber-900/30 relative overflow-hidden">
                 <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
                 <div class="flex items-center gap-3 mb-4 relative z-10">
@@ -180,111 +243,116 @@
                     </div>
                     <h2 class="text-xl text-amber-800 dark:text-amber-400 font-bold">VPN အစမ်းသုံးရန် (Free Outline Key)</h2>
                 </div>
-                <p class="text-sm text-on-surface-variant mb-4 font-medium relative z-10">Outline Key ကို Happ vpn / Hiddify vpn / Outline vpn များဖြင့် အသုံးပြုနိုင်ပါသည်။</p>
-                <div class="bg-surface p-4 rounded-xl flex items-center justify-between gap-4 border border-outline-variant/30 shadow-inner overflow-hidden relative z-10">
-                    <code class="text-amber-700 dark:text-amber-400 font-mono text-xs md:text-sm truncate select-all flex-1" id="vpn-key">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpGY21YQkhOaVB3RVd6RlNsM05VaXlk@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
+                <p class="text-sm text-on-surface-variant dark:text-dark-text-muted mb-4 font-medium relative z-10">Outline Key ကို Happ vpn / Hiddify vpn / Outline vpn များဖြင့် အသုံးပြုနိုင်ပါသည်။</p>
+                <div class="bg-surface dark:bg-dark-bg p-4 rounded-xl flex items-center justify-between gap-4 border border-outline-variant/30 dark:border-slate-700 shadow-inner overflow-hidden relative z-10">
+                    <code class="text-amber-700 dark:text-amber-400 font-mono text-xs md:text-sm truncate select-all flex-1" id="vpn-key">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpSS294UmJMQXZHSjBNMEpWY0ZTMjZk@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
                     <button class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shrink-0 active:scale-90 transition-all shadow-md" onclick="copyKey(this, 'vpn-key')">
                         <span class="material-symbols-outlined text-sm">content_copy</span> Copy
                     </button>
                 </div>
             </section>
 
+            <!-- Grid: Digital Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-card-gap" id="digital-products">
+                <!-- Mytel -->
                 <div class="space-y-4">
-                    <h3 class="text-xl text-orange-600 font-bold flex items-center gap-2 pl-2">
+                    <h3 class="text-xl text-orange-600 dark:text-orange-400 font-bold flex items-center gap-2 pl-2">
                         <span class="material-symbols-outlined">signal_cellular_alt</span> Mytel Data Plans
                     </h3>
                     <div class="space-y-3">
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex justify-between items-center group hover:shadow-md transition-all">
                             <div>
-                                <div class="font-bold text-lg text-on-surface">15,000 Ks</div>
-                                <div class="text-sm text-on-surface-variant font-medium mt-1">22 GB + 8,000 min + 5,000 SMS</div>
+                                <div class="font-bold text-lg text-on-surface dark:text-dark-text">15,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium mt-1">22 GB + 8,000 min + 5,000 SMS</div>
                             </div>
                             <button onclick="orderItem('15,000 Ks Mytel Package', '15,000 Ks')" class="bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex justify-between items-center group hover:shadow-md transition-all">
                             <div>
-                                <div class="font-bold text-lg text-on-surface">20,000 Ks</div>
-                                <div class="text-sm text-on-surface-variant font-medium mt-1">40 GB + 250 min + 25 min</div>
+                                <div class="font-bold text-lg text-on-surface dark:text-dark-text">20,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium mt-1">40 GB + 250 min + 25 min</div>
                             </div>
                             <button onclick="orderItem('20,000 Ks Mytel Package', '20,000 Ks')" class="bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex justify-between items-center group hover:shadow-md transition-all">
                             <div>
-                                <div class="font-bold text-lg text-on-surface">25,000 Ks</div>
-                                <div class="text-sm text-on-surface-variant font-medium mt-1">40 GB + 1,400 min + 8,000 SMS</div>
+                                <div class="font-bold text-lg text-on-surface dark:text-dark-text">25,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium mt-1">40 GB + 1,400 min + 8,000 SMS</div>
                             </div>
                             <button onclick="orderItem('25,000 Ks Mytel Package', '25,000 Ks')" class="bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex justify-between items-center group hover:shadow-md transition-all">
                             <div>
-                                <div class="font-bold text-lg text-on-surface">30,000 Ks</div>
-                                <div class="text-sm text-on-surface-variant font-medium mt-1">120 GB Mega Pack</div>
+                                <div class="font-bold text-lg text-on-surface dark:text-dark-text">30,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium mt-1">120 GB Mega Pack</div>
                             </div>
                             <button onclick="orderItem('30,000 Ks Mytel Package', '30,000 Ks')" class="bg-orange-100 text-orange-700 dark:bg-orange-950/40 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-orange-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Atom -->
                 <div class="space-y-4">
-                    <h3 class="text-xl text-blue-600 font-bold flex items-center gap-2 pl-2">
+                    <h3 class="text-xl text-blue-600 dark:text-blue-400 font-bold flex items-center gap-2 pl-2">
                         <span class="material-symbols-outlined">data_usage</span> ATOM Data Packages
                     </h3>
                     <div class="space-y-3">
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex justify-between items-center group hover:shadow-md transition-all">
                             <div>
-                                <div class="font-bold text-lg text-on-surface">15,000 Ks</div>
-                                <div class="text-sm text-on-surface-variant font-medium mt-1">24,576 MB + 8000 Mins + 5000 SMS</div>
+                                <div class="font-bold text-lg text-on-surface dark:text-dark-text">15,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium mt-1">24,576 MB + 8000 Mins + 5000 SMS</div>
                             </div>
                             <button onclick="orderItem('15,000 Ks ATOM Package', '15,000 Ks')" class="bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex justify-between items-center group hover:shadow-md transition-all">
                             <div>
-                                <div class="font-bold text-lg text-on-surface">25,000 Ks</div>
-                                <div class="text-sm text-on-surface-variant font-medium mt-1">46,080 MB + 1400 Mins + Extras</div>
+                                <div class="font-bold text-lg text-on-surface dark:text-dark-text">25,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium mt-1">46,080 MB + 1400 Mins + Extras</div>
                             </div>
                             <button onclick="orderItem('25,000 Ks ATOM Package', '25,000 Ks')" class="bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex justify-between items-center group hover:shadow-md transition-all">
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex justify-between items-center group hover:shadow-md transition-all">
                             <div>
-                                <div class="font-bold text-lg text-on-surface">30,000 Ks</div>
-                                <div class="text-sm text-on-surface-variant font-medium mt-1">138,240 MB (30 Days)</div>
+                                <div class="font-bold text-lg text-on-surface dark:text-dark-text">30,000 Ks</div>
+                                <div class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium mt-1">138,240 MB (30 Days)</div>
                             </div>
                             <button onclick="orderItem('30,000 Ks ATOM Package', '30,000 Ks')" class="bg-blue-50 text-blue-700 dark:bg-blue-950/40 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-bold transition-all group-hover:bg-blue-600 group-hover:text-white active:scale-95">ဝယ်ယူမည်</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Game Credit -->
                 <div class="space-y-4">
-                    <h3 class="text-xl text-purple-600 font-bold flex items-center gap-2 pl-2">
+                    <h3 class="text-xl text-purple-600 dark:text-purple-400 font-bold flex items-center gap-2 pl-2">
                         <span class="material-symbols-outlined">sports_esports</span> Game Credits
                     </h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
-                            <div class="font-bold text-base text-on-surface">60 UC (PUBG)</div>
-                            <div class="text-purple-600 font-bold text-sm">4,200 Ks</div>
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex flex-col gap-2 hover:shadow-md transition-all">
+                            <div class="font-bold text-base text-on-surface dark:text-dark-text">60 UC (PUBG)</div>
+                            <div class="text-purple-600 dark:text-purple-400 font-bold text-sm">4,200 Ks</div>
                             <button onclick="orderItem('60 UC (PUBG)', '4,200 Ks')" class="w-full bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-400 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
                         </div>
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
-                            <div class="font-bold text-base text-on-surface">325 UC (PUBG)</div>
-                            <div class="text-purple-600 font-bold text-sm">21,500 Ks</div>
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex flex-col gap-2 hover:shadow-md transition-all">
+                            <div class="font-bold text-base text-on-surface dark:text-dark-text">325 UC (PUBG)</div>
+                            <div class="text-purple-600 dark:text-purple-400 font-bold text-sm">21,500 Ks</div>
                             <button onclick="orderItem('325 UC (PUBG)', '21,500 Ks')" class="w-full bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-400 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
                         </div>
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
-                            <div class="font-bold text-base text-on-surface">660 UC (PUBG)</div>
-                            <div class="text-purple-600 font-bold text-sm">42,000 Ks</div>
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex flex-col gap-2 hover:shadow-md transition-all">
+                            <div class="font-bold text-base text-on-surface dark:text-dark-text">660 UC (PUBG)</div>
+                            <div class="text-purple-600 dark:text-purple-400 font-bold text-sm">42,000 Ks</div>
                             <button onclick="orderItem('660 UC (PUBG)', '42,000 Ks')" class="w-full bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-400 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
                         </div>
-                        <div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-2 hover:shadow-md transition-all">
-                            <div class="font-bold text-base text-on-surface">86 Dia (MLBB)</div>
-                            <div class="text-purple-600 font-bold text-sm">3,000 Ks</div>
+                        <div class="bg-surface-container-lowest dark:bg-dark-surface p-4 rounded-xl shadow-sm border border-outline-variant/20 dark:border-slate-800 flex flex-col gap-2 hover:shadow-md transition-all">
+                            <div class="font-bold text-base text-on-surface dark:text-dark-text">86 Dia (MLBB)</div>
+                            <div class="text-purple-600 dark:text-purple-400 font-bold text-sm">3,000 Ks</div>
                             <button onclick="orderItem('86 Diamonds (MLBB)', '3,000 Ks')" class="w-full bg-purple-50 text-purple-700 dark:bg-purple-950/40 dark:text-purple-400 py-2 rounded-lg text-sm font-bold hover:bg-purple-600 hover:text-white transition-colors">ဝယ်မည်</button>
                         </div>
                     </div>
                 </div>
 
+                <!-- VPN Premium -->
                 <div class="space-y-4">
-                    <h3 class="text-xl text-emerald-600 font-bold flex items-center gap-2 pl-2">
+                    <h3 class="text-xl text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-2 pl-2">
                         <span class="material-symbols-outlined">vpn_key</span> Premium VPN
                     </h3>
                     <div class="bg-inverse-surface text-inverse-on-surface p-6 rounded-2xl flex justify-between items-center overflow-hidden relative shadow-lg h-[166px]">
@@ -302,97 +370,93 @@
             </div>
         </div>
 
-        <div id="section-calendar" class="page-section hidden bg-surface-container-lowest p-5 rounded-3xl border border-outline-variant/30 shadow-xl space-y-6">
-            <div class="flex items-center justify-between border-b border-outline-variant/20 pb-4">
-                <button onclick="changeMonth(-1)" class="material-symbols-outlined text-primary p-2 hover:bg-surface-container transition-all rounded-full font-bold">chevron_left</button>
+        <!-- SECTION: CALENDAR -->
+        <div id="section-calendar" class="page-section hidden bg-surface-container-lowest dark:bg-dark-surface p-3 sm:p-6 rounded-3xl border border-outline-variant/30 dark:border-slate-800 shadow-xl space-y-6">
+            <div class="flex items-center justify-between border-b border-outline-variant/20 dark:border-slate-700 pb-4">
+                <button onclick="changeMonth(-1)" class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container dark:hover:bg-dark-surface-low transition-all rounded-full font-bold">chevron_left</button>
                 <div class="text-center">
-                    <h2 id="calendar-header-title" class="text-2xl font-black text-primary tracking-wide">ဇူလိုင် ၂၀၂၆</h2>
+                    <h2 id="calendar-header-title" class="text-xl sm:text-2xl font-black text-primary dark:text-indigo-400 tracking-wide">ဇူလိုင် ၂၀၂၆</h2>
                     <p id="calendar-lunar-title" class="text-xs text-secondary-container font-black uppercase tracking-wider mt-0.5">ဒဲဉ်စေတ် (၆) - နယုန်လာႏ</p>
                 </div>
-                <button onclick="changeMonth(1)" class="material-symbols-outlined text-primary p-2 hover:bg-surface-container transition-all rounded-full font-bold">chevron_right</button>
+                <button onclick="changeMonth(1)" class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container dark:hover:bg-dark-surface-low transition-all rounded-full font-bold">chevron_right</button>
             </div>
 
-            <div class="grid grid-cols-7 gap-1.5 md:gap-3 text-center text-xs font-bold text-on-surface-variant" id="weekday-headers">
-                </div>
-            <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 md:gap-3">
-                </div>
+            <div class="grid grid-cols-7 gap-1 sm:gap-3 text-center text-[10px] sm:text-xs font-bold text-on-surface-variant dark:text-dark-text" id="weekday-headers"></div>
+            <div id="calendar-days-grid" class="grid grid-cols-7 gap-1 sm:gap-3"></div>
 
-            <div class="flex flex-wrap gap-4 justify-center text-xs text-on-surface-variant border-t border-outline-variant/20 pt-4">
-                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-emerald-500"></div>ရက်ရာႏဇာႏ (Auspicious)</div>
-                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-red-500"></div>ပြဿဒါႏ (Unfavorable)</div>
+            <div class="flex flex-wrap gap-4 justify-center text-[10px] sm:text-xs text-on-surface-variant dark:text-dark-text-muted border-t border-outline-variant/20 dark:border-slate-700 pt-4">
+                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-emerald-500"></div>ရက်ရာႏဇာႏ</div>
+                <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-red-500"></div>ပြဿဒါႏ</div>
                 <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-md bg-red-500/20 border border-red-500/40"></div>ပွဲတော် / ပိတ်ရက်</div>
                 <div class="flex items-center gap-1.5"><div class="w-3 h-3 rounded-full bg-yellow-400"></div>လာဗွေႏနီꩻ (Full Moon)</div>
             </div>
         </div>
 
+        <!-- SECTION: MARKETS -->
         <div id="section-market" class="page-section hidden space-y-6">
-            <div class="p-6 bg-gradient-to-br from-primary/5 via-secondary-container/5 to-transparent border border-outline-variant/40 rounded-3xl space-y-6">
+            <div class="p-6 bg-gradient-to-br from-primary/5 via-secondary-container/5 to-transparent border border-outline-variant/40 dark:border-slate-800 rounded-3xl space-y-6">
                 <div>
-                    <h2 class="text-2xl font-black text-primary flex items-center gap-2">
+                    <h2 class="text-2xl font-black text-primary dark:text-indigo-400 flex items-center gap-2">
                         <span class="material-symbols-outlined">map</span> ၅ ရက်ဈေးနေ့ပတ်လမ်း မြင်ကွင်းကြီး
                     </h2>
-                    <p class="text-xs text-on-surface-variant mt-1">ပအိုဝ်ႏဒေသတစ်ခွင်ရှိ ရိုးရာ ၅ ရက်ဈေးပတ်လမ်း၏ ယနေ့ကျရောက်ရာအရပ်များကို အစဉ်လိုက်လေ့လာနိုင်ပါသည်။</p>
+                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted mt-1">ပအိုဝ်ႏဒေသတစ်ခွင်ရှိ ရိုးရာ ၅ ရက်ဈေးပတ်လမ်း၏ ယနေ့ကျရောက်ရာအရပ်များကို အစဉ်လိုက်လေ့လာနိုင်ပါသည်။</p>
                 </div>
-                
-                <div id="market-horizontal-track" class="grid grid-cols-1 sm:grid-cols-5 gap-3">
-                    </div>
+                <div id="market-horizontal-track" class="grid grid-cols-1 sm:grid-cols-5 gap-3"></div>
             </div>
         </div>
 
-        <section id="payment" class="bg-surface-container rounded-3xl p-6 md:p-8">
-            <h2 class="text-xl font-bold text-on-surface flex items-center gap-2 mb-6 border-l-4 border-success-green pl-3">
+        <!-- SECTION: PAYMENT -->
+        <section id="payment" class="bg-surface-container dark:bg-dark-surface rounded-3xl p-6 md:p-8">
+            <h2 class="text-xl font-bold text-on-surface dark:text-dark-text flex items-center gap-2 mb-6 border-l-4 border-success-green pl-3">
                 <span class="material-symbols-outlined text-success-green">payments</span> ငွေပေးချေရန်
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-outline-variant/10">
-                    <div class="w-16 h-16 rounded-full bg-orange-600/10 flex items-center justify-center shrink-0 border border-orange-500/20 text-orange-600 font-bold text-xs">
-                        KPay
-                    </div>
+                <div class="bg-surface-container-lowest dark:bg-dark-bg p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-outline-variant/10 dark:border-slate-800">
+                    <div class="w-16 h-16 rounded-full bg-orange-600/10 flex items-center justify-center shrink-0 border border-orange-500/20 text-orange-600 font-bold text-xs">KPay</div>
                     <div class="flex-grow">
-                        <div class="text-xs text-primary uppercase font-bold tracking-wider mb-1">Kpay / Wave</div>
-                        <div class="font-bold text-base text-on-surface">U Khun Tun Aye</div>
+                        <div class="text-xs text-primary dark:text-indigo-400 uppercase font-bold tracking-wider mb-1">Kpay / Wave</div>
+                        <div class="font-bold text-base text-on-surface dark:text-dark-text">U Khun Tun Aye</div>
                         <div class="flex items-center justify-between mt-1">
-                            <span class="font-mono text-lg font-bold text-on-surface-variant">09790189199</span>
-                            <button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09790189199')">
+                            <span class="font-mono text-lg font-bold text-on-surface-variant dark:text-dark-text-muted">09790189199</span>
+                            <button class="text-primary dark:text-indigo-400 hover:bg-primary/5 p-2 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09790189199')">
                                 <span class="material-symbols-outlined text-sm">content_copy</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-outline-variant/10">
-                    <div class="w-16 h-16 rounded-full bg-orange-600/10 flex items-center justify-center shrink-0 border border-orange-500/20 text-orange-600 font-bold text-xs">
-                        KPay
-                    </div>
+                <div class="bg-surface-container-lowest dark:bg-dark-bg p-5 rounded-2xl shadow-sm flex items-center gap-4 border border-outline-variant/10 dark:border-slate-800">
+                    <div class="w-16 h-16 rounded-full bg-orange-600/10 flex items-center justify-center shrink-0 border border-orange-500/20 text-orange-600 font-bold text-xs">KPay</div>
                     <div class="flex-grow">
-                        <div class="text-xs text-primary uppercase font-bold tracking-wider mb-1">Kpay / Wave</div>
-                        <div class="font-bold text-base text-on-surface">Nang Nu Nu Yee</div>
+                        <div class="text-xs text-primary dark:text-indigo-400 uppercase font-bold tracking-wider mb-1">Kpay / Wave</div>
+                        <div class="font-bold text-base text-on-surface dark:text-dark-text">Nang Nu Nu Yee</div>
                         <div class="flex items-center justify-between mt-1">
-                            <span class="font-mono text-lg font-bold text-on-surface-variant">09782248150</span>
-                            <button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09782248150')">
+                            <span class="font-mono text-lg font-bold text-on-surface-variant dark:text-dark-text-muted">09782248150</span>
+                            <button class="text-primary dark:text-indigo-400 hover:bg-primary/5 p-2 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09782248150')">
                                 <span class="material-symbols-outlined text-sm">content_copy</span>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-4 flex items-center gap-2 text-on-surface-variant text-sm font-medium px-2 bg-surface-container-high/40 p-3 rounded-xl">
+            <div class="mt-4 flex items-center gap-2 text-on-surface-variant dark:text-dark-text-muted text-sm font-medium px-2 bg-surface-container-high/40 dark:bg-dark-surface-low p-3 rounded-xl">
                 <span class="material-symbols-outlined text-amber-600">info</span>
                 <span>ငွေလွှဲပြီးလျှင် Screenshot လေး ပို့ပေးဖို့ မမေ့နဲ့နော်။</span>
             </div>
         </section>
 
-        <footer id="contact" class="bg-surface-container-high rounded-t-[40px] px-6 py-10 md:p-12 -mx-container-margin relative overflow-hidden">
+        <!-- FOOTER -->
+        <footer id="contact" class="bg-surface-container-high dark:bg-dark-surface rounded-t-[40px] px-6 py-10 md:p-12 -mx-container-margin relative overflow-hidden">
             <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/map.png');"></div>
             <div class="relative z-10 flex flex-col lg:flex-row gap-10">
                 <div class="lg:w-1/2 space-y-6">
-                    <h3 class="text-xl text-primary font-bold flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary">location_on</span> တည်နေရာ
+                    <h3 class="text-xl text-primary dark:text-indigo-400 font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary dark:text-indigo-400">location_on</span> တည်နေရာ
                     </h3>
-                    <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-outline-variant/30">
-                        <p class="font-bold text-lg mb-1 text-on-surface">ခွန်ထွန်းအေး ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</p>
-                        <p class="text-on-surface-variant font-medium mb-4">ဆိုက်ခေါင်စျေးမြောက်ဘက် - အဝ်းအုံပွေါးကွေးနော🏪🗺</p>
-                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-inner border border-outline-variant/20 mb-4">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233.83168511350414!2d97.2402626!3d20.3289339!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ce51ac9d24dc61%3A0x9ea2761f72d64b7a!2z4YCB4YC94YCU4YC64YCR4YC94YCU4YC64YCh4YCx4YC44YCW4YCv4YCU4YC64YC44YCG4YCt4YCv4YCE4YC6!5e0!3m2!1sen!2smm!4v1782383010867!5m2!1sen!2smm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="bg-surface-container-lowest dark:bg-dark-bg p-5 rounded-2xl shadow-sm border border-outline-variant/30 dark:border-slate-800">
+                        <p class="font-bold text-lg mb-1 text-on-surface dark:text-dark-text">ခွန်ထွန်းအေး ဖုန်းနှင့် ဝန်ဆောင်မှုဆိုင်</p>
+                        <p class="text-on-surface-variant dark:text-dark-text-muted font-medium mb-4">ဆိုက်ခေါင်စျေးမြောက်ဘက် - အဝ်းအုံပွေါးကွေးနော🏪🗺</p>
+                        <div class="w-full h-48 bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-inner border border-outline-variant/20 dark:border-slate-700 mb-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233.83168511350414!2d97.2402626!3d20.3289339!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ce51ac9d24dc61%3A0x9ea2761f72d64b7a!2z4YCB4YC94YCU4YC64YCR4YC94YCU4YC64YCh4YCx4YC44YCW4YCv4YCU4YC64YC44YCW4YC-4YC44YCG4YCt4YCv4YCE4YC6!5e0!3m2!1sen!2smm!4v1782383010867!5m2!1sen!2smm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                         <a class="inline-flex items-center justify-center w-full gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-md hover:bg-primary/90 transition-colors" href="https://www.google.com/maps/place/%E1%80%81%E1%80%BD%E1%80%94%E1%80%BA%E1%80%91%E1%80%BD%E1%80%94%E1%80%BA%E1%80%A1%E1%80%B1%E1%80%B8%E1%80%96%E1%80%AF%E1%80%94%E1%80%BA%E1%80%B8%E1%80%86%E1%80%AD%E1%80%AF%E1%80%84%E1%80%BA/@20.3289339,97.2402626,21z" target="_blank">
                             <span class="material-symbols-outlined">near_me</span> လမ်းကြောင်းရှာမယ်
@@ -401,78 +465,103 @@
                 </div>
 
                 <div class="lg:w-1/2 space-y-6">
-                    <h3 class="text-xl text-primary font-bold">ဆက်သွယ်ရန်</h3>
+                    <h3 class="text-xl text-primary dark:text-indigo-400 font-bold">ဆက်သွယ်ရန်</h3>
                     <div class="space-y-4">
-                        <p class="text-sm text-on-surface-variant font-medium">အောက်ပါလင့်များမှ တစ်ဆင့် မှာယူနိုင်ပါသည်။</p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a class="flex-1 flex items-center gap-3 bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant/20 hover:border-sky-500 hover:shadow-md transition-all group" href="https://t.me/Tunaye" target="_blank">
-                                <div class="w-12 h-12 rounded-full bg-sky-500 flex items-center justify-center text-white shrink-0">
+                        <p class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium">အောက်ပါလင့်များမှ တစ်ဆင့် မှာယူနိုင်ပါသည်။</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <a class="flex items-center gap-3 bg-surface-container-lowest dark:bg-dark-bg p-4 rounded-2xl shadow-sm border border-outline-variant/20 dark:border-slate-800 hover:border-violet-500 hover:shadow-md transition-all group" href="viber://contact?number=%2B959899494849" target="_blank">
+                                <div class="w-10 h-10 rounded-full bg-viber-purple flex items-center justify-center text-white shrink-0">
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Viber</span>
+                                    <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted">09899494849</span>
+                                </div>
+                            </a>
+                            <a class="flex items-center gap-3 bg-surface-container-lowest dark:bg-dark-bg p-4 rounded-2xl shadow-sm border border-outline-variant/20 dark:border-slate-800 hover:border-sky-500 hover:shadow-md transition-all group" href="https://t.me/Tunaye" target="_blank">
+                                <div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center text-white shrink-0">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
                                 </div>
                                 <div>
-                                    <span class="font-bold block text-on-surface">Telegram</span>
-                                    <span class="text-xs text-on-surface-variant">Message us</span>
+                                    <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Telegram</span>
+                                    <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted">Message us</span>
                                 </div>
                             </a>
-                            <a class="flex-1 flex items-center gap-3 bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant/20 hover:border-blue-600 hover:shadow-md transition-all group" href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank">
-                                <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white shrink-0">
+                            <a class="flex items-center gap-3 bg-surface-container-lowest dark:bg-dark-bg p-4 rounded-2xl shadow-sm border border-outline-variant/20 dark:border-slate-800 hover:border-blue-600 hover:shadow-md transition-all group" href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank">
+                                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shrink-0">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">facebook</span>
                                 </div>
                                 <div>
-                                    <span class="font-bold block text-on-surface">Facebook</span>
-                                    <span class="text-xs text-on-surface-variant">Visit our page</span>
+                                    <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Facebook</span>
+                                    <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted">Visit page</span>
                                 </div>
                             </a>
                         </div>
-                        <div class="pt-6 border-t border-outline-variant/30">
-                            <p class="text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-2">Phone Numbers</p>
-                            <p class="font-bold text-lg font-mono text-on-surface">09790189199 / 09782248150</p>
+                        <div class="pt-6 border-t border-outline-variant/30 dark:border-slate-700 space-y-2">
+                            <div>
+                                <p class="text-[10px] text-on-surface-variant dark:text-dark-text-muted uppercase tracking-wider font-bold mb-0.5">Viber Number</p>
+                                <div class="flex items-center gap-2">
+                                    <p class="font-bold text-base font-mono text-on-surface dark:text-dark-text">09899494849</p>
+                                    <button class="text-primary dark:text-indigo-400 hover:bg-primary/5 p-1 rounded-full transition-colors active:scale-90" onclick="copyText(this, '09899494849')">
+                                        <span class="material-symbols-outlined text-sm">content_copy</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-on-surface-variant dark:text-dark-text-muted uppercase tracking-wider font-bold mb-0.5">Order Hotlines</p>
+                                <p class="font-bold text-base font-mono text-on-surface dark:text-dark-text">09790189199 / 09782248150</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-12 text-center text-xs text-on-surface-variant opacity-60 font-medium">
+            <div class="mt-12 text-center text-xs text-on-surface-variant dark:text-dark-text-muted opacity-60 font-medium">
                 © 2026 Khun Tun Aye Mobile. Pa'O Calendar Integration.
             </div>
         </footer>
     </main>
 
-    <nav class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-outline-variant/30 flex justify-around items-center py-2 px-2 pb-safe z-30 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-primary" onclick="switchSection('shop')" id="bot-nav-shop">
+    <!-- Bottom Mobile Nav -->
+    <nav class="fixed bottom-0 left-0 w-full bg-surface/90 dark:bg-dark-bg/95 backdrop-blur-md border-t border-outline-variant/30 dark:border-slate-800 flex justify-around items-center py-2 px-2 pb-safe z-30 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-primary dark:text-indigo-400" onclick="switchSection('shop')" id="bot-nav-shop">
             <span class="material-symbols-outlined">home</span>
             <span class="text-[10px] mt-1">Home</span>
         </button>
-        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-on-surface-variant" onclick="switchSection('calendar')" id="bot-nav-calendar">
+        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-on-surface-variant dark:text-dark-text" onclick="switchSection('calendar')" id="bot-nav-calendar">
             <span class="material-symbols-outlined">calendar_month</span>
             <span class="text-[10px] mt-1">Calendar</span>
         </button>
-        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-on-surface-variant" onclick="switchSection('market')" id="bot-nav-market">
+        <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-on-surface-variant dark:text-dark-text" onclick="switchSection('market')" id="bot-nav-market">
             <span class="material-symbols-outlined">grid_view</span>
             <span class="text-[10px] mt-1">Markets</span>
         </button>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#payment">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-dark-text p-2" href="#payment">
             <span class="material-symbols-outlined">payments</span>
             <span class="text-[10px] mt-1">Pay</span>
         </a>
     </nav>
 
+    <!-- Modal: Checkout Order -->
     <div id="orderModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100] transition-opacity opacity-0">
-        <div class="bg-surface p-8 rounded-3xl w-full max-w-md shadow-2xl border border-outline-variant/20 transform scale-95 transition-transform" id="orderModalContent">
+        <div class="bg-surface dark:bg-dark-surface p-8 rounded-3xl w-full max-w-md shadow-2xl border border-outline-variant/20 dark:border-slate-800 transform scale-95 transition-transform" id="orderModalContent">
             <div class="flex justify-between items-start mb-4">
                 <div class="bg-primary-container text-primary p-3 rounded-2xl">
                     <span class="material-symbols-outlined text-white">shopping_cart_checkout</span>
                 </div>
-                <button onclick="closeModal()" class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
+                <button onclick="closeModal()" class="text-on-surface-variant dark:text-dark-text hover:bg-surface-container-high dark:hover:bg-dark-surface-low p-2 rounded-full transition-colors">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
-            <h3 id="orderTitle" class="text-xl font-bold mb-2 text-on-surface"></h3>
-            <p id="orderPrice" class="text-lg text-primary font-bold mb-6"></p>
-            <div class="bg-surface-container p-4 rounded-2xl mb-6 text-sm text-on-surface-variant font-medium leading-relaxed">
+            <h3 id="orderTitle" class="text-xl font-bold mb-2 text-on-surface dark:text-dark-text"></h3>
+            <p id="orderPrice" class="text-lg text-primary dark:text-indigo-400 font-bold mb-6"></p>
+            <div class="bg-surface-container dark:bg-dark-bg p-4 rounded-2xl mb-6 text-sm text-on-surface-variant dark:text-dark-text-muted font-medium leading-relaxed">
                 <span class="material-symbols-outlined text-sm inline-block align-middle mr-1">info</span>
-                ဆက်သွယ်ရန် ဖုန်းနံပါတ် <strong>09790189199</strong> (သို့) <strong>09782248150</strong> သို့မဟုတ် Telegram / Messenger မှတစ်ဆင့် တိုက်ရိုက်မှာယူနိုင်ပါသည်။
+                ဆက်သွယ်ရန် ဖုန်းနံပါတ် သို့မဟုတ် အောက်ပါ Social App များမှတစ်ဆင့် တိုက်ရိုက်မှာယူနိုင်ပါသည်။
             </div>
             <div class="flex flex-col gap-3">
+                <a href="viber://contact?number=%2B959899494849" target="_blank" class="w-full bg-viber-purple text-white py-3 rounded-xl text-center font-bold hover:opacity-90 transition flex justify-center items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-sm">chat</span> Viber မှ မှာယူမည်
+                </a>
                 <a href="https://t.me/Tunaye" target="_blank" class="w-full bg-sky-500 text-white py-3 rounded-xl text-center font-bold hover:bg-sky-600 transition flex justify-center items-center gap-2 shadow-sm">
                     <span class="material-symbols-outlined text-sm">send</span> Telegram သို့သွားမည်
                 </a>
@@ -483,44 +572,46 @@
         </div>
     </div>
 
+    <!-- Modal: Today Catalog -->
     <div id="catalogModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100] transition-opacity opacity-0">
-        <div class="bg-surface p-6 rounded-3xl w-full max-w-lg shadow-2xl max-h-[85vh] overflow-y-auto no-scrollbar transform scale-95 transition-transform" id="catalogModalContent">
-            <div class="sticky top-0 bg-surface pt-2 pb-4 border-b border-outline-variant/20 flex justify-between items-center mb-4 z-10">
-                <h3 class="text-xl font-bold text-on-surface flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
+        <div class="bg-surface dark:bg-dark-surface p-6 rounded-3xl w-full max-w-lg shadow-2xl max-h-[85vh] overflow-y-auto no-scrollbar transform scale-95 transition-transform" id="catalogModalContent">
+            <div class="sticky top-0 bg-surface dark:bg-dark-surface pt-2 pb-4 border-b border-outline-variant/20 dark:border-slate-700 flex justify-between items-center mb-4 z-10">
+                <h3 class="text-xl font-bold text-on-surface dark:text-dark-text flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary dark:text-indigo-400">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
                 </h3>
-                <button onclick="closeCatalogModal()" class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
+                <button onclick="closeCatalogModal()" class="text-on-surface-variant dark:text-dark-text hover:bg-surface-container-high dark:hover:bg-dark-surface-low p-2 rounded-full transition-colors">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
             <div class="space-y-4 font-medium">
-                <div class="bg-surface-container-low p-4 rounded-2xl">
-                    <h4 class="font-bold text-orange-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">signal_cellular_alt</span> Mytel Data</h4>
-                    <p class="text-sm text-on-surface-variant">15K, 20K, 25K, 30K Plans ရရှိနိုင်ပါသည်</p>
+                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
+                    <h4 class="font-bold text-orange-600 dark:text-orange-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">signal_cellular_alt</span> Mytel Data</h4>
+                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">15K, 20K, 25K, 30K Plans ရရှိနိုင်ပါသည်</p>
                 </div>
-                <div class="bg-surface-container-low p-4 rounded-2xl">
-                    <h4 class="font-bold text-blue-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">data_usage</span> ATOM Data</h4>
-                    <p class="text-sm text-on-surface-variant">15K, 25K, 30K Packages ရရှိနိုင်ပါသည်</p>
+                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
+                    <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">data_usage</span> ATOM Data</h4>
+                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">15K, 25K, 30K Packages ရရှိနိုင်ပါသည်</p>
                 </div>
-                <div class="bg-surface-container-low p-4 rounded-2xl">
-                    <h4 class="font-bold text-purple-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">sports_esports</span> Game Credits</h4>
-                    <p class="text-sm text-on-surface-variant">PUBG (60UC, 325UC, 660UC), MLBB (86 Dia)</p>
+                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
+                    <h4 class="font-bold text-purple-600 dark:text-purple-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">sports_esports</span> Game Credits</h4>
+                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">PUBG (60UC, 325UC, 660UC), MLBB (86 Dia)</p>
                 </div>
-                <div class="bg-surface-container-low p-4 rounded-2xl">
-                    <h4 class="font-bold text-emerald-600 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">vpn_key</span> VPN Services</h4>
-                    <p class="text-sm text-on-surface-variant">Outline Premium Key (1 Month) 5,000 Ks</p>
+                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
+                    <h4 class="font-bold text-emerald-600 dark:text-emerald-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">vpn_key</span> VPN Services</h4>
+                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">Outline Premium Key (1 Month) 5,000 Ks</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Toast Component -->
     <div class="copy-toast fixed bottom-24 left-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-full font-bold shadow-xl z-[110] flex items-center gap-2 text-sm" id="copy-toast">
         <span class="material-symbols-outlined text-success-green text-lg">check_circle</span>
         ကူးယူပြီးပါပြီ!
     </div>
 
+    <!-- JS Logic -->
     <script>
-        // --- ၅ ရက်ဈေးပတ်လမ်း Data ---
         const MARKET_CYCLE = [
             { id: 0, nameMy: "ဆေꩻနောင်ႏဗွန် (နောင်မွန်ဈေး)", nameEn: "Naungwoon Market" },
             { id: 1, nameMy: "ဆေꩻမောက်ꩻမုဲင်ႏ၊သီးသဲင်ႏ (ဆီဆိုင်ဈေး)", nameEn: "Hsihseng Market" },
@@ -529,7 +620,6 @@
             { id: 4, nameMy: "ဆေꩻဟိုပုံꩻ၊ဘန်းယဉ်း (ဘန်းယဥ်ဈေး)", nameEn: "Hopong Banyin Market" }
         ];
 
-        // --- ၂၀၂၆ ပအိုဝ်းလပြက္ခဒိန် ဒေတာပတ်လမ်း ---
         const LUNAR_MONTHS = [
             { nameMy: "ဒဲဉ်ကံ (၁) - ပြာသိုလာႏ", start: new Date(2025, 11, 19), length: 29 },
             { nameMy: "ဒဲဉ်သီ (၂) - တပို့တွဲလာႏ", start: new Date(2026, 0, 17), length: 30 },
@@ -558,9 +648,14 @@
         const monthsNameMy = ["ဇန်နဝါရီ", "ဖေဖော်ဝါရီ", "မတ်", "ဧပြီ", "မေ", "ဇွန်", "ဇူလိုင်", "ဩဂုတ်", "စက်တင်ဘာ", "အောက်တိုဘာ", "နိုဝင်ဘာ", "ဒီဇင်ဘာ"];
         const daysHeaderMy = ["တနင်္ဂနွေႏ", "တနင်္လာႏ", "အင်္ဂါႏ", "ဗုဒ္ဓဟူꩻ", "ကျားသပတေႏ", "သောကျာႏ", "စနေႏ"];
         const BASE_MARKET_DATE = new Date(2026, 0, 1);
-        let currentCalendarDate = new Date(2026, 6, 1); // Default to July 2026
+        let currentCalendarDate = new Date(2026, 6, 1);
 
         document.addEventListener("DOMContentLoaded", () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                document.getElementById("theme-toggle-btn").innerText = "light_mode";
+            }
             initializeRealtimeInfo();
             renderCalendarMatrix();
             renderMarketTrack();
@@ -594,32 +689,30 @@
             document.getElementById("live-today-market").innerText = `ယနေ့ဈေး - ${MARKET_CYCLE[mIdx].nameMy.split(" (")[0]}`;
         }
 
-        // Section Router Logic
         function switchSection(sectionId) {
             document.querySelectorAll('.page-section').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.section-nav-btn').forEach(el => {
                 el.classList.remove('bg-primary-container', 'text-on-primary-container');
-                el.classList.add('text-on-surface-variant');
+                el.classList.add('text-on-surface-variant', 'dark:text-dark-text');
             });
-            document.querySelectorAll('.nav-bottom-btn').forEach(el => el.classList.remove('text-primary'));
+            document.querySelectorAll('.nav-bottom-btn').forEach(el => el.classList.remove('text-primary', 'dark:text-indigo-400'));
 
-            // Show and highlight
             document.getElementById(`section-${sectionId}`).classList.remove('hidden');
-            document.getElementById(`nav-${sectionId}`).classList.add('bg-primary-container', 'text-on-primary-container');
-            document.getElementById(`bot-nav-${sectionId}`).classList.add('text-primary');
+            const navBtn = document.getElementById(`nav-${sectionId}`);
+            if(navBtn) navBtn.classList.add('bg-primary-container', 'text-on-primary-container');
+            const botNavBtn = document.getElementById(`bot-nav-${sectionId}`);
+            if(botNavBtn) botNavBtn.classList.add('text-primary', 'dark:text-indigo-400');
         }
 
-        // Calendar Render Engine
         function renderCalendarMatrix() {
             const grid = document.getElementById("calendar-days-grid");
             const weekdayContainer = document.getElementById("weekday-headers");
             grid.innerHTML = "";
             weekdayContainer.innerHTML = "";
 
-            // Inject Weekday Headers
             daysHeaderMy.forEach((day, i) => {
                 const dayEl = document.createElement("div");
-                dayEl.className = i === 0 ? "text-red-500 py-1" : i === 6 ? "text-teal-500 py-1" : "py-1";
+                dayEl.className = `text-[10px] sm:text-xs font-bold py-1.5 ${i === 0 ? "text-red-500" : i === 6 ? "text-teal-500" : "text-on-surface-variant dark:text-dark-text-muted"}`;
                 dayEl.innerText = day;
                 weekdayContainer.appendChild(dayEl);
             });
@@ -647,23 +740,25 @@
                 const isHoliday = HOLIDAYS_2026[dateKey];
 
                 const cell = document.createElement("div");
-                cell.className = `day-cell border border-outline-variant/30 rounded-xl p-1 md:p-2 flex flex-col justify-between items-stretch bg-surface-container-low text-left relative cursor-pointer hover:bg-primary-container/10`;
+                cell.className = `day-cell border border-outline-variant/30 dark:border-slate-800 rounded-xl p-1 sm:p-2 flex flex-col justify-between items-stretch bg-surface-container-low dark:bg-dark-bg relative cursor-pointer hover:bg-primary-container/10 dark:hover:bg-indigo-950/30`;
                 
                 let borderIndicator = "";
                 if (isYatyaza) borderIndicator = `<div class="w-1.5 h-1.5 rounded-full bg-emerald-500 absolute top-1 right-1"></div>`;
                 if (isPyathada) borderIndicator = `<div class="w-1.5 h-1.5 rounded-full bg-red-500 absolute top-1 right-1"></div>`;
 
                 cell.innerHTML = `
-                    <div class="flex justify-between items-start w-full">
-                        <span class="text-xs md:text-sm font-black text-on-surface">${day}</span>
+                    <div class="flex justify-between items-start w-full leading-none">
+                        <span class="text-xs sm:text-sm font-black text-on-surface dark:text-dark-text">${day}</span>
                         ${borderIndicator}
                     </div>
-                    <span class="text-[9px] md:text-xs text-secondary-container font-medium truncate text-center block w-full">${marketShortName}</span>
-                    <div class="text-[8px] opacity-60 truncate text-center block">${lunar.dayText}</div>
+                    <div class="flex flex-col justify-end flex-grow mt-1 space-y-0.5 w-full overflow-hidden">
+                        <span class="text-[8px] sm:text-xs text-secondary-container font-black tracking-tighter truncate text-center block w-full bg-secondary-container/5 rounded py-0.5">${marketShortName}</span>
+                        <div class="text-[7px] sm:text-[10px] opacity-75 dark:text-dark-text-muted truncate text-center block w-full tracking-tighter leading-tight">${lunar.dayText}</div>
+                    </div>
                 `;
 
-                if (isHoliday) cell.classList.add("bg-red-500/10", "border-red-500/30");
-                if (lunar.isFullMoon) cell.classList.add("bg-yellow-400/10");
+                if (isHoliday) cell.classList.add("bg-red-500/10", "border-red-500/30", "dark:bg-red-950/20");
+                if (lunar.isFullMoon) cell.classList.add("bg-yellow-400/10", "dark:bg-yellow-500/10");
 
                 grid.appendChild(cell);
             }
@@ -674,7 +769,6 @@
             renderCalendarMatrix();
         }
 
-        // Market Tracker Loop Loader
         function renderMarketTrack() {
             const track = document.getElementById("market-horizontal-track");
             track.innerHTML = "";
@@ -683,20 +777,19 @@
             MARKET_CYCLE.forEach((market, idx) => {
                 const isActive = currentIdx === idx;
                 const card = document.createElement("div");
-                card.className = `p-4 rounded-2xl border transition-all ${isActive ? 'bg-primary-container text-white shadow-lg scale-[1.02]' : 'bg-surface-container-lowest border-outline-variant/20 text-on-surface'}`;
+                card.className = `p-4 rounded-2xl border transition-all ${isActive ? 'bg-primary-container text-white shadow-lg scale-[1.02]' : 'bg-surface-container-lowest dark:bg-dark-surface border-outline-variant/20 dark:border-slate-800 text-on-surface dark:text-dark-text'}`;
                 card.innerHTML = `
                     <div class="flex justify-between items-center">
-                        <span class="text-[9px] px-2 py-0.5 rounded-full font-bold ${isActive ? 'bg-white text-primary' : 'bg-surface-container-high text-on-surface-variant'}">အဆင့် ${idx + 1}</span>
+                        <span class="text-[9px] px-2 py-0.5 rounded-full font-bold ${isActive ? 'bg-white text-primary' : 'bg-surface-container-high dark:bg-dark-bg text-on-surface-variant dark:text-dark-text-muted'}">အဆင့် ${idx + 1}</span>
                         ${isActive ? '<span class="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-bold">ယနေ့</span>' : ''}
                     </div>
                     <h4 class="font-bold text-sm mt-3">${market.nameMy.split(" (")[0]}</h4>
-                    <p class="text-xs opacity-75 mt-0.5">${market.nameEn}</p>
+                    <p class="text-xs opacity-75 mt-0.5 dark:text-dark-text-muted">${market.nameEn}</p>
                 `;
                 track.appendChild(card);
             });
         }
 
-        // Drawer & Modal Core Functions
         function toggleDrawer() {
             const drawer = document.getElementById('side-drawer');
             const overlay = document.getElementById('drawer-overlay');
@@ -715,7 +808,15 @@
 
         function toggleTheme() {
             const isDark = document.documentElement.classList.toggle('dark');
-            document.getElementById("theme-toggle-btn").innerText = isDark ? "light_mode" : "dark_mode";
+            if (isDark) {
+                document.documentElement.classList.remove('light');
+                document.getElementById("theme-toggle-btn").innerText = "light_mode";
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.classList.add('light');
+                document.getElementById("theme-toggle-btn").innerText = "dark_mode";
+                localStorage.setItem('theme', 'light');
+            }
         }
 
         function copyKey(btnElement, targetId) {
