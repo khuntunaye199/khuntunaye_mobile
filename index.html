@@ -121,6 +121,10 @@
             0%, 100% { background-color: rgba(253, 101, 30, 0.1); border-color: rgba(253, 101, 30, 0.3); }
             50% { background-color: rgba(253, 101, 30, 0.25); border-color: rgba(253, 101, 30, 0.8); }
         }
+        @keyframes ecommercePulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(22, 163, 74, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 22px rgba(22, 163, 74, 0.7); }
+        }
 
         .animate-phone-btn {
             animation: phonePulse 2s infinite ease-in-out;
@@ -135,6 +139,9 @@
         .animate-sidemenu-phone .phone-icon {
             animation: phoneShake 0.8s infinite ease-in-out;
         }
+        .animate-ecommerce {
+            animation: ecommercePulse 2.5s infinite ease-in-out;
+        }
     </style>
 </head>
 
@@ -144,6 +151,12 @@
     <div class="fixed bottom-20 right-4 flex flex-col items-end z-40">
         <!-- Contact Options (Hidden by default with animation classes) -->
         <div id="contact-options-menu" class="hidden flex flex-col items-end gap-3 mb-3 transition-all duration-300 transform scale-90 opacity-0 origin-bottom-right">
+            <!-- Telegram Ecommerce Direct Shop Button -->
+            <a href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank" onclick="toggleContactMenu()"
+               class="p-3 sm:p-4 rounded-full shadow-lg text-white transition flex items-center justify-center hover:scale-110 bg-emerald-600 shadow-[0_4px_15px_rgba(22,163,74,0.5)] border border-emerald-400">
+                <span class="material-symbols-outlined mr-1" style="font-variation-settings: 'FILL' 1;">shopping_bag</span> 
+                <span class="text-xs sm:text-sm font-bold">တိုက်ရိုက်ဝယ်ယူရန် 🛍️</span>
+            </a>
             <!-- Viber Button -->
             <a href="viber://contact?number=%2B959899494849" onclick="toggleContactMenu()"
                class="p-3 sm:p-4 rounded-full shadow-lg text-white transition flex items-center justify-center hover:scale-110 bg-viber-purple shadow-[0_4px_15px_rgba(115,96,242,0.4)]">
@@ -198,6 +211,11 @@
             </div>
         </div>
         <nav class="flex flex-col gap-1 mt-4 overflow-y-auto">
+            <!-- Telegram Ecommerce Online Shop Link in Sidebar Drawer -->
+            <a class="flex items-center gap-4 px-6 py-3.5 mx-2 mb-2 rounded-lg font-black text-white bg-gradient-to-r from-emerald-500 to-success-green border border-emerald-400 shadow-md hover:scale-[1.02] active:scale-95 transition-all text-left" href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span> တိုက်ရိုက်ဝယ်ယူရန် 🛍️
+            </a>
+            
             <button onclick="switchSection('shop')" class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container mx-2 rounded-lg font-medium text-left section-nav-btn" id="nav-shop">
                 <span class="material-symbols-outlined">home</span> ပင်မစာမျက်နှာ
             </button>
@@ -245,19 +263,27 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-95 z-10"></div>
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80')"></div>
                 
-                <div class="relative z-20 px-6 py-12 md:py-20 text-white flex flex-col items-center text-center">
+                <div class="relative z-20 px-6 py-10 md:py-16 text-white flex flex-col items-center text-center">
                     <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md leading-relaxed">
                         {ဖြေႏဖေးအာႏပါခွေသွဥ်ႏ} <br/> {Digital Product နော} 🙏🙏🙏
                     </h1>
-                    <p class="text-base md:text-lg mb-8 max-w-md opacity-90 drop-shadow-sm font-medium">မြန်ဆန်ပြီး စိတ်ချရသော Digital ဝန်ဆောင်မှုများကို တစ်နေရာတည်းတွင် ရယူလိုက်ပါ</p>
+                    <p class="text-base md:text-lg mb-6 max-w-md opacity-90 drop-shadow-sm font-medium">မြန်ဆန်ပြီး စိတ်ချရသော Digital ဝန်ဆောင်မှုများကို တစ်နေရာတည်းတွင် ရယူလိုက်ပါ</p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
-                        <button onclick="openCatalogModal()" class="bg-white/20 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95 w-full sm:w-auto">
-                            <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
-                        </button>
-                        <a class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-3 rounded-full font-black text-lg flex items-center justify-center gap-2 transition-all active:scale-95 animate-phone-btn shadow-xl w-full sm:w-auto" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
-                            <span class="material-symbols-outlined phone-icon" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဆိုင်တွင်ရရှိသောဖုန်းများကြည့်ရန် 📱🔥
+                    <div class="flex flex-col gap-4 w-full justify-center items-center max-w-2xl">
+                        <!-- New Direct Purchase/Ecommerce Button in Hero Section -->
+                        <a href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank" class="w-full bg-gradient-to-r from-emerald-500 to-success-green hover:from-emerald-600 hover:to-green-700 text-white px-8 py-4 rounded-full font-black text-xl flex items-center justify-center gap-3 transition-all active:scale-95 animate-ecommerce shadow-2xl border border-emerald-400">
+                            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_bag</span> 
+                            တိုက်ရိုက်ဝယ်ယူရန် (Online Store) 🛍️
                         </a>
+
+                        <div class="flex flex-col sm:flex-row gap-3 w-full justify-center">
+                            <button onclick="openCatalogModal()" class="bg-white/20 backdrop-blur-md border border-white/30 px-6 py-3 rounded-full font-bold text-base flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95 w-full sm:w-1/2">
+                                <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
+                            </button>
+                            <a class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-full font-black text-base flex items-center justify-center gap-2 transition-all active:scale-95 animate-phone-btn shadow-xl w-full sm:w-1/2" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+                                <span class="material-symbols-outlined phone-icon" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဖုန်းများကြည့်ရန် 📱🔥
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -505,7 +531,18 @@
                     <h3 class="text-xl text-primary dark:text-indigo-400 font-bold">ဆက်သွယ်ရန်</h3>
                     <div class="space-y-4">
                         <p class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium">အောက်ပါလင့်များမှ တစ်ဆင့် မှာယူနိုင်ပါသည်။</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <!-- Direct Online Shop Link inside Footer Contact section -->
+                            <a class="flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-success-green text-white p-4 rounded-2xl shadow-md border border-emerald-400 hover:scale-[1.02] transition-all col-span-1 sm:col-span-2 group" href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank">
+                                <div class="w-10 h-10 rounded-full bg-white text-emerald-600 flex items-center justify-center shrink-0 shadow">
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                                </div>
+                                <div class="flex-grow">
+                                    <span class="font-black block text-sm">တိုက်ရိုက်ဝယ်ယူရန် (Online Store) 🛍️</span>
+                                    <span class="text-xs text-emerald-100 font-medium">ငွေလွှဲစနစ်ဖြင့် တိုက်ရိုက်မှာယူရန်</span>
+                                </div>
+                            </a>
+
                             <a class="flex items-center gap-3 bg-surface-container-lowest dark:bg-dark-bg p-4 rounded-2xl shadow-sm border border-outline-variant/20 dark:border-slate-800 hover:border-violet-500 hover:shadow-md transition-all group" href="viber://contact?number=%2B959899494849" target="_blank">
                                 <div class="w-10 h-10 rounded-full bg-viber-purple flex items-center justify-center text-white shrink-0">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
@@ -522,15 +559,6 @@
                                 <div>
                                     <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Telegram</span>
                                     <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted">Message us</span>
-                                </div>
-                            </a>
-                            <a class="flex items-center gap-3 bg-surface-container-lowest dark:bg-dark-bg p-4 rounded-2xl shadow-sm border border-outline-variant/20 dark:border-slate-800 hover:border-blue-600 hover:shadow-md transition-all group" href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank">
-                                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shrink-0">
-                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">facebook</span>
-                                </div>
-                                <div>
-                                    <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Facebook</span>
-                                    <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted">Visit page</span>
                                 </div>
                             </a>
                         </div>
@@ -593,9 +621,14 @@
             <p id="orderPrice" class="text-lg text-primary dark:text-indigo-400 font-bold mb-6"></p>
             <div class="bg-surface-container dark:bg-dark-bg p-4 rounded-2xl mb-6 text-sm text-on-surface-variant dark:text-dark-text-muted font-medium leading-relaxed">
                 <span class="material-symbols-outlined text-sm inline-block align-middle mr-1">info</span>
-                ဆက်သွယ်ရန် ဖုန်းနံပါတ် သို့မဟုတ် အောက်ပါ Social App များမှတစ်ဆင့် တိုက်ရိုက်မှာယူနိုင်ပါသည်။
+                ဆက်သွယ်ရန် ဖုန်းနံပါတ် သို့မဟုတ် အောက်ပါ Social App များအပြင် "တိုက်ရိုက်ဝယ်ယူရန်" လင့်မှတစ်ဆင့်လည်း မှာယူနိုင်ပါသည်။
             </div>
             <div class="flex flex-col gap-3">
+                <!-- Direct Ecommerce Link inside Checkout Order Modal -->
+                <a href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank" class="w-full bg-gradient-to-r from-emerald-500 to-success-green hover:opacity-95 text-white py-3.5 rounded-xl text-center font-black hover:opacity-90 transition flex justify-center items-center gap-2 shadow-md border border-emerald-400">
+                    <span class="material-symbols-outlined">shopping_bag</span> တိုက်ရိုက်ဝယ်ယူရန် (Online Store) 🛍️
+                </a>
+                
                 <a href="viber://contact?number=%2B959899494849" target="_blank" class="w-full bg-viber-purple text-white py-3 rounded-xl text-center font-bold hover:opacity-90 transition flex justify-center items-center gap-2 shadow-sm">
                     <span class="material-symbols-outlined text-sm">chat</span> Viber မှ မှာယူမည်
                 </a>
@@ -645,6 +678,7 @@
     <div class="copy-toast fixed bottom-24 left-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-full font-bold shadow-xl z-[110] flex items-center gap-2 text-sm" id="copy-toast">
         <span class="material-symbols-outlined text-success-green text-lg">check_circle</span>
         ကူးယူပြီးပါပြီ!
+    </div>
 
     <!-- JS Logic -->
     <script>
