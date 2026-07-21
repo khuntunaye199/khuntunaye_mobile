@@ -326,8 +326,8 @@
         <!-- Live Status Bar -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             
-            <!-- 1. ရက်စွဲ Card (English + မြန်မာ/ပအိုဝ်ႏ) -->
-            <div class="bg-gradient-to-br from-indigo-50/90 via-purple-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-indigo-200/80 dark:border-indigo-900/40 rounded-2xl p-4 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md">
+            <!-- 1. ရက်စွဲ Button (Click to open Calendar Section) -->
+            <button onclick="switchSection('calendar')" class="text-left w-full bg-gradient-to-br from-indigo-50/90 via-purple-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-indigo-200/80 dark:border-indigo-900/40 rounded-2xl p-4 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md cursor-pointer">
                 <div class="absolute -top-6 -right-6 w-20 h-20 bg-indigo-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-primary text-white flex items-center justify-center shrink-0 shadow-md shadow-indigo-500/30 group-hover:scale-110 transition-transform">
                     <span class="material-symbols-outlined text-2xl">calendar_today</span>
@@ -335,10 +335,10 @@
                 <div id="live-today-date" class="flex-1 min-w-0">
                     <div class="animate-pulse text-xs text-on-surface-variant font-medium">ရက်စွဲ စစ်ဆေးနေပါသည်...</div>
                 </div>
-            </div>
+            </button>
 
-            <!-- 2. ယနေ့ဈေး Card -->
-            <div class="bg-gradient-to-br from-orange-50/90 via-amber-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-orange-200/80 dark:border-orange-900/40 rounded-2xl p-4 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md">
+            <!-- 2. ဈေးရက် Button (Click to open Market Section) -->
+            <button onclick="switchSection('market')" class="text-left w-full bg-gradient-to-br from-orange-50/90 via-amber-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-orange-200/80 dark:border-orange-900/40 rounded-2xl p-4 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md cursor-pointer">
                 <div class="absolute -top-6 -right-6 w-20 h-20 bg-orange-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-orange-500/30 group-hover:scale-110 transition-transform">
                     <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">storefront</span>
@@ -346,7 +346,7 @@
                 <div id="live-today-market" class="flex-1 min-w-0">
                     <div class="animate-pulse text-xs text-on-surface-variant font-medium">ဈေးရက် စစ်ဆေးနေပါသည်...</div>
                 </div>
-            </div>
+            </button>
 
             <!-- 3. မိုးလေဝသ Card -->
             <div class="bg-gradient-to-br from-sky-50/90 via-blue-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-sky-200/80 dark:border-sky-900/40 rounded-2xl p-4 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md" id="live-weather">
@@ -674,17 +674,19 @@
         ];
 
         const LUNAR_MONTHS = [
-            { nameMy: " ဒဲဥ်ကံ/ဒဲဥ်သံ(တပေါင်းလ)", start: new Date(2026, 1, 17), length: 30 },
-            { nameMy: " ဒဲဥ်သံ/ဒဲဉ်သီႏ(တန်ခူးလ)", start: new Date(2026, 2, 19), length: 29 },
-            { nameMy: "ဒဲဉ်သီႏ/ဒဲဉ်ဟား (ကဆုန်လ)", start: new Date(2026, 3, 17), length: 30 },
-            { nameMy: "ဒဲဉ်ဟား/ဒဲဉ်ရုတ်ꩻ  (နယုန်လ)", start: new Date(2026, 4, 17), length: 29 },
-            { nameMy: "ဒဲဉ်ရုတ်ꩻ/ဒဲဥ်စောတ်ꩻ(ဝါဆိုလ)", start: new Date(2026, 5, 15), length: 30 },
-            { nameMy: "ဒဲဥ်စောတ်ꩻ/ဝါႏဆိုႏ(ဒုတိယဝါဆိုလ)", start: new Date(2026, 6, 15), length: 30 },
-            { nameMy: "ဝါႏဆိုႏဝါႏခေါင်ႏ (ဝါခေါင်လ)", start: new Date(2026, 7, 14), length: 29 },
-            { nameMy: "ဝါႏခေါင်ႏ/တော်ႏလင်ꩻ(တော်သလင်းလ)", start: new Date(2026, 8, 12), length: 30 },
-            { nameMy: "တော်ႏလင်ꩻ/တင်ꩻကျွတ်ꩻ (သီတင်းကျွတ်လ)", start: new Date(2026, 9, 12), length: 29 },
-            { nameMy: "တင်ꩻကျွတ်ꩻ/ကထိန် (တန်ဆောင်မုန်းလ)", start: new Date(2026, 10, 10), length: 30 },
-            { nameMy: "ကထိန် -ဒဲဥ်စေင် (နတ်တော်လ)", start: new Date(2026, 11, 10), length: 29 }
+            { nameMy: "(၁၂လ) ကထိန်း/ဒဲဥ်စေင်", start: new Date(2025, 11, 21), length: 29 },
+            { nameMy: "(၁လ) ဒဲဥ်ကံ/ဒဲဥ်သံ", start: new Date(2026, 0, 19), length: 29 },
+            { nameMy: "(၂လ) ဒဲဥ်သံ/ဒဲဉ်သီႏ", start: new Date(2026, 1, 17), length: 30 },
+            { nameMy: "(၃လ) ဒဲဉ်သီႏ/ဒဲဉ်ဟား", start: new Date(2026, 2, 19), length: 29 },
+            { nameMy: "(၄လ) ဒဲဉ်ဟား/ဒဲဉ်ရုတ်ꩻ", start: new Date(2026, 3, 17), length: 30 },
+            { nameMy: "(၅လ) ဒဲဉ်ရုတ်ꩻ/ဒဲဥ်စောတ်ꩻ", start: new Date(2026, 4, 17), length: 29 },
+            { nameMy: "(၆လ) ဒဲဥ်စောတ်ꩻ/ပထမဝါႏဆိုႏ", start: new Date(2026, 5, 15), length: 30 },
+            { nameMy: "(၇လ) ပထမဝါႏဆိုႏ/ဒုတိယဝါဆို", start: new Date(2026, 6, 15), length: 30 },
+            { nameMy: "(၈လ) ဒုတိယဝါဆိုႏ/ဝါခေါင်ႏ", start: new Date(2026, 7, 14), length: 29 },
+            { nameMy: "(၉လ) ဝါခေါင်/တော်ႏလင်ꩻ", start: new Date(2026, 8, 12), length: 30 },
+            { nameMy: "(၁၀လ) တော်လင်/တင်ꩻကျွတ်ꩻ", start: new Date(2026, 9, 12), length: 29 },
+            { nameMy: "(၁၁လ) တင်ꩻကျွတ်ꩻ/ကထိန်", start: new Date(2026, 10, 10), length: 30 },
+            { nameMy: "(၁၂လ) ကထိန်း/ဒဲဥ်စေင်", start: new Date(2026, 11, 10), length: 29 }
         ];
 
         const YATYAZA_DAYS_2026 = ["1-5", "1-12", "2-8", "2-15", "3-4", "3-18", "4-2", "4-20", "5-1", "5-28", "6-6", "6-14", "7-2", "7-12", "8-3", "8-21", "9-8", "9-15"];
@@ -849,12 +851,10 @@
                 marketEl.innerHTML = `
                     <div class="space-y-1">
                         <div class="flex items-center justify-between gap-1">
-                            <span class="bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1 animate-pulse">
-                                <span>🏪</span> ယနေ့ ၅ ရက်ဈေး
-                            </span>
+                            <span class="text-xs font-bold text-secondary-container dark:text-orange-400">ဈေးနေ့</span>
                             <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted font-medium">${market.nameEn}</span>
                         </div>
-                        <div class="text-sm font-black text-secondary-container dark:text-orange-400 leading-snug drop-shadow-sm pt-0.5">
+                        <div class="text-sm font-black text-on-surface dark:text-dark-text leading-snug drop-shadow-sm pt-0.5">
                             ${market.nameMy}
                         </div>
                     </div>
@@ -919,7 +919,7 @@
             });
 
             document.getElementById("calendar-header-title").innerText = `${monthsNameMy[currentCalendarDate.getMonth()]} ၂၀၂၆`;
-            const sampleLunar = getPaoLunarDetails(new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), 1));
+            const sampleLunar = getPaoLunarDetails(new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), 15));
             document.getElementById("calendar-lunar-title").innerText = sampleLunar.monthName;
 
             const firstDayIndex = new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), 1).getDay();
