@@ -39,6 +39,8 @@
                         "feature-purple": "#9333EA",
                         "secondary-fixed": "#ffdbce",
                         "viber-purple": "#7360F2",
+                        "mytel-orange": "#FF5722",
+                        "atom-cyan": "#00A3E0",
                         
                         // Dark Mode Custom Colors
                         "dark-bg": "#0B0F19",
@@ -183,9 +185,9 @@
 
 <body class="bg-surface/90 text-on-surface dark:bg-dark-bg/90 dark:text-dark-text transition-colors duration-300 relative min-h-screen">
 
+    <!-- Background Overlay Layer -->
     <div class="bg-custom-image"></div>
 
-    <!-- Floating Contact Menu -->
     <div class="fixed bottom-20 right-4 flex flex-col items-end z-40 select-none">
         <!-- Floating Tooltip Badge -->
         <div id="contact-badge-tooltip" class="mb-2 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white text-[11px] font-black px-3.5 py-1 rounded-full shadow-lg border border-amber-300/50 flex items-center gap-1.5 animate-bounce">
@@ -244,15 +246,14 @@
         </div>
     </div>
 
-    <!-- Top Navigation Bar -->
     <nav class="fixed top-0 w-full z-40 bg-surface/80 dark:bg-dark-bg/85 backdrop-blur-md shadow-sm flex justify-between items-center px-container-margin h-16 border-b border-outline-variant/20 dark:border-slate-800">
         <div class="text-xl font-bold text-primary dark:text-indigo-400 tracking-wide flex items-center gap-2">
             ခွန်ထွန်းအေး ဖုန်းဆိုင်🏪
         </div>
         <div class="flex items-center gap-2">
-            <button class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="openCatalogModal()">receipt_long</button>
-            <button id="theme-toggle-btn" class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="toggleTheme()">light_mode</button>
-            <button class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="toggleDrawer()">menu</button>
+            <button class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="openCatalogModal()" title="ယနေ့ရရှိနိုင်သော စာရင်းများ">receipt_long</button>
+            <button id="theme-toggle-btn" class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="toggleTheme()" title="Dark/Light Mode">light_mode</button>
+            <button class="material-symbols-outlined text-primary dark:text-indigo-400 p-2 hover:bg-surface-container-high dark:hover:bg-dark-surface transition-colors rounded-full" onclick="toggleDrawer()" title="Menu">menu</button>
         </div>
     </nav>
 
@@ -292,7 +293,6 @@
         </nav>
     </div>
 
-    <!-- Main Content Container -->
     <main class="pt-20 pb-24 px-container-margin max-w-5xl mx-auto space-y-xl relative z-10">
         
         <!-- Live Status Bar -->
@@ -335,7 +335,7 @@
 
         <!-- SECTION: SHOP -->
         <div id="section-shop" class="space-y-xl page-section">
-            <!-- Hero Section -->
+            <!-- Hero Banner Section -->
             <section class="relative rounded-3xl overflow-hidden group shadow-xl">
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-indigo-600/90 to-purple-600/90 z-10"></div>
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1200&q=80')"></div>
@@ -357,7 +357,7 @@
                 </div>
             </section>
 
-            <!-- Free VPN Area -->
+            <!-- Free VPN Trial Key -->
             <section class="bg-gradient-to-br from-amber-50/90 to-yellow-50/90 dark:from-amber-950/40 dark:to-yellow-950/30 rounded-2xl p-6 shadow-sm border border-amber-200/80 dark:border-amber-900/40 relative overflow-hidden backdrop-blur-md">
                 <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
                 <div class="flex items-center gap-3 mb-4 relative z-10">
@@ -375,14 +375,153 @@
                 </div>
             </section>
 
-            <!-- 🎮 DIGITAL PRODUCTS & PRICING SECTION -->
             <section class="space-y-8">
                 <div class="flex items-center justify-between">
                     <div>
                         <h2 class="text-2xl font-black text-primary dark:text-indigo-400 flex items-center gap-2">
                             <span class="material-symbols-outlined text-3xl">sports_esports</span> Digital ဝန်ဆောင်မှုနှင့် စျေးနှုန်းများ
                         </h2>
-                        <p class="text-xs text-on-surface-variant dark:text-dark-text-muted mt-1 font-medium">PUBG UC, Mobile Legends Diamond, Mytel & Atom Data VPN Key များ</p>
+                        <p class="text-xs text-on-surface-variant dark:text-dark-text-muted mt-1 font-medium">Mytel & ATOM Data Packs, PUBG UC, MLBB Diamond & VIP VPN Keys</p>
+                    </div>
+                </div>
+
+                <!-- 📱 NEW: Mytel Data & Voice Pack Pricing Card -->
+                <div class="bg-gradient-to-br from-orange-500/10 via-red-500/5 to-surface-container-lowest/90 dark:from-orange-950/30 dark:via-dark-surface/90 dark:to-dark-bg/90 border border-orange-400/40 dark:border-orange-800/40 rounded-3xl p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b border-orange-200/50 dark:border-orange-900/40 pb-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-orange-600 to-red-600 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-orange-500/30">
+                                📶
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="text-xl font-black text-orange-600 dark:text-orange-400">Mytel Data & Voice Packages</h3>
+                                    <span class="bg-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md">၃၀ ရက်</span>
+                                </div>
+                                <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">Mytel Data, On-net/Off-net Mins & SMS အထူးပက်ကေ့ဂျ်များ</p>
+                            </div>
+                        </div>
+                        <span class="bg-orange-500/20 text-orange-700 dark:text-orange-300 text-xs font-black px-3 py-1 rounded-full border border-orange-500/30">
+                            Mytel Special 📲
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- Pack 1: 15,000 Ks -->
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-200/60 dark:border-slate-800 flex flex-col justify-between hover:border-orange-500 hover:shadow-lg transition-all group relative overflow-hidden">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-orange-200/50">30 Days</span>
+                                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Mytel Pack</span>
+                                </div>
+                                <div class="text-2xl font-black text-orange-600 dark:text-orange-400 mb-1">24,576 MB</div>
+                                <div class="text-xs font-bold text-on-surface dark:text-dark-text mb-3">( 22 GB+ Data )</div>
+                                <div class="space-y-1.5 text-xs text-on-surface-variant dark:text-dark-text-muted font-medium bg-surface-container-low dark:bg-dark-bg p-3 rounded-xl mb-4 border border-outline-variant/10">
+                                    <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
+                                        <span class="material-symbols-outlined text-sm">call</span> 8,000 Mins (Mytel)
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">sms</span> 5,000 SMS
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-lg font-black text-on-surface dark:text-dark-text">15,000 Ks</span>
+                                <button onclick="orderItem('Mytel Pack (15,000 Ks - 24,576 MB / 22GB + 8000 Mins + 5000 SMS)', '15,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                            </div>
+                        </div>
+
+                        <!-- Pack 2: 20,000 Ks -->
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-200/60 dark:border-slate-800 flex flex-col justify-between hover:border-orange-500 hover:shadow-lg transition-all group relative overflow-hidden">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-orange-200/50">30 Days</span>
+                                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Mytel Pack</span>
+                                </div>
+                                <div class="text-2xl font-black text-orange-600 dark:text-orange-400 mb-1">40 GB</div>
+                                <div class="text-xs font-bold text-on-surface dark:text-dark-text mb-3">( High Speed Data )</div>
+                                <div class="space-y-1.5 text-xs text-on-surface-variant dark:text-dark-text-muted font-medium bg-surface-container-low dark:bg-dark-bg p-3 rounded-xl mb-4 border border-outline-variant/10">
+                                    <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
+                                        <span class="material-symbols-outlined text-sm">call</span> 250 Mins (Mytel)
+                                    </div>
+                                    <div class="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-bold">
+                                        <span class="material-symbols-outlined text-sm">phone_callback</span> 25 Mins (Other Networks)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-lg font-black text-on-surface dark:text-dark-text">20,000 Ks</span>
+                                <button onclick="orderItem('Mytel Pack (20,000 Ks - 40 GB + 250 On-net Mins + 25 Off-net Mins)', '20,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                            </div>
+                        </div>
+
+                        <!-- Pack 3: 25,000 Ks -->
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-400/80 dark:border-orange-600/60 flex flex-col justify-between hover:border-orange-500 hover:shadow-xl transition-all group relative overflow-hidden shadow-sm">
+                            <span class="absolute top-0 right-0 bg-red-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-bl-lg">BEST VALUE</span>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-orange-200/50">30 Days</span>
+                                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Mytel Pack</span>
+                                </div>
+                                <div class="text-2xl font-black text-orange-600 dark:text-orange-400 mb-1">46,080 MB</div>
+                                <div class="text-xs font-bold text-on-surface dark:text-dark-text mb-3">( 40 GB+ Data )</div>
+                                <div class="space-y-1.5 text-xs text-on-surface-variant dark:text-dark-text-muted font-medium bg-surface-container-low dark:bg-dark-bg p-3 rounded-xl mb-4 border border-outline-variant/10">
+                                    <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
+                                        <span class="material-symbols-outlined text-sm">call</span> 1,400 Mins (Mytel)
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">sms</span> 8,000 SMS / Extras
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-lg font-black text-on-surface dark:text-dark-text">25,000 Ks</span>
+                                <button onclick="orderItem('Mytel Pack (25,000 Ks - 46,080 MB / 40GB + 1400 Mins + 8000 SMS)', '25,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                                <button onclick="orderItem('Mytel Pack (30,000 Ks - 120 GB  / 120 GB )', '30,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🌐 NEW: ATOM Data Package Pricing Card -->
+                <div class="bg-gradient-to-br from-cyan-500/10 via-sky-500/5 to-surface-container-lowest/90 dark:from-cyan-950/30 dark:via-dark-surface/90 dark:to-dark-bg/90 border border-cyan-400/40 dark:border-cyan-800/40 rounded-3xl p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b border-cyan-200/50 dark:border-cyan-900/40 pb-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-cyan-500/30">
+                                🌐
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="text-xl font-black text-cyan-600 dark:text-cyan-400">ATOM Data Package</h3>
+                                    <span class="bg-cyan-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md">၃၀ ရက်</span>
+                                </div>
+                                <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">ATOM High Speed Super Big Data Package</p>
+                            </div>
+                        </div>
+                        <span class="bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-xs font-black px-3 py-1 rounded-full border border-cyan-500/30">
+                            ATOM High Speed ⚡
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-cyan-300/60 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-500 hover:shadow-lg transition-all group">
+                            <div class="flex items-center gap-4 w-full md:w-auto">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 text-white flex items-center justify-center font-black text-2xl shrink-0 shadow-md">
+                                    120GB
+                                </div>
+                                <div>
+                                    <div class="text-xl font-black text-cyan-600 dark:text-cyan-400">120 GB ( 138,240 MB )</div>
+                                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium mt-0.5">ATOM 30 Days Full Internet Data Package</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto pt-3 md:pt-0 border-t md:border-t-0 border-outline-variant/20 dark:border-slate-800">
+                                <div class="text-right">
+                                    <span class="text-2xl font-black text-on-surface dark:text-dark-text">30,000 Ks</span>
+                                    <span class="text-[10px] text-on-surface-variant block font-medium">သက်တမ်း (၃၀) ရက်</span>
+                                </div>
+                                <button onclick="orderItem('ATOM Data Package (15,000 Ks - 24,576 MB + 8000 Mins + 5000 SMS)', '15,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold px-6 py-3 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                                <button onclick="orderItem('ATOM Data Package (25,000 Ks - 46,080 MB + 1400 Mins + Extras)', '25,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold px-6 py-3 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                                <button onclick="orderItem('ATOM Data Package (30,000 Ks - 120 GB / 138,240 MB)', '30,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold px-6 py-3 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
                     </div>
                 </div>
 
@@ -406,24 +545,24 @@
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-amber-500 hover:shadow-lg transition-all group">
                             <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">60 UC</span>
-                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">5000 Ks</span>
-                            <button onclick="orderItem('PUBG Mobile 60 UC', '5000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">5,000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 60 UC', '5,000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
                         </div>
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-amber-500 hover:shadow-lg transition-all group">
                             <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">325 UC</span>
-                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">25000 Ks</span>
-                            <button onclick="orderItem('PUBG Mobile 325 UC', '25000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">25,000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 325 UC', '25,000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
                         </div>
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-500/50 dark:border-amber-600/50 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-lg transition-all group relative overflow-hidden">
                             <span class="absolute top-0 right-0 bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-bl-lg">POPULAR</span>
                             <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">660 UC</span>
-                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">45000 Ks</span>
-                            <button onclick="orderItem('PUBG Mobile 660 UC', '45000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">45,000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 660 UC', '45,000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
                         </div>
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-amber-500 hover:shadow-lg transition-all group">
                             <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">1800 UC</span>
-                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">129000 Ks</span>
-                            <button onclick="orderItem('PUBG Mobile 1800 UC', '129000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">129,000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 1800 UC', '129,000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
                         </div>
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-amber-500 hover:shadow-lg transition-all group col-span-2 sm:col-span-1">
                             <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">3850 UC</span>
@@ -458,8 +597,8 @@
                         </div>
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-indigo-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-indigo-500 hover:shadow-lg transition-all group">
                             <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">172 Diamonds</span>
-                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">1,3000 Ks</span>
-                            <button onclick="orderItem('MLBB 172 Diamonds', '1,3000 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">13,000 Ks</span>
+                            <button onclick="orderItem('MLBB 172 Diamonds', '13,000 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
                         </div>
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-indigo-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-indigo-500 hover:shadow-lg transition-all group">
                             <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">257 Diamonds</span>
@@ -475,7 +614,7 @@
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-indigo-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-indigo-500 hover:shadow-lg transition-all group col-span-2 sm:col-span-1">
                             <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">706 Diamonds</span>
                             <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">40,000 Ks</span>
-                            <button onclick="orderItem('MLBB 514 Diamonds', '40,000 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                            <button onclick="orderItem('MLBB 706 Diamonds', '40,000 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
                         </div>
                     </div>
                 </div>
@@ -485,10 +624,10 @@
                     <div class="flex items-center justify-between border-b border-emerald-200/50 dark:border-emerald-900/40 pb-4 mb-6">
                         <div class="flex items-center gap-3">
                             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-emerald-500/30">
-                                📶
+                                🔑
                             </div>
                             <div>
-                                <h3 class="text-xl font-black text-emerald-600 dark:text-emerald-400"> VPN Key</h3>
+                                <h3 class="text-xl font-black text-emerald-600 dark:text-emerald-400">VPN VIP Keys</h3>
                                 <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">လိုင်းဆွဲအားကောင်းမွန်ပြီး Unlimited သုံးနိုင်သော VIP Server Key များ</p>
                             </div>
                         </div>
@@ -497,17 +636,31 @@
                         </span>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-emerald-200/50 dark:border-slate-800 flex flex-col justify-between hover:border-emerald-500 hover:shadow-lg transition-all group">
                             <div class="flex justify-between items-start mb-2">
-                                <span class="bg-orange-500/20 text-orange-600 dark:text-orange-400 text-[10px] font-black px-2.5 py-0.5 rounded-md">MYTEL SIM</span>
+                                <span class="bg-orange-500/20 text-orange-600 dark:text-orange-400 text-[10px] font-black px-2.5 py-0.5 rounded-md">ALL SIM SUPPORT</span>
                                 <span class="material-symbols-outlined text-emerald-500">wifi</span>
                             </div>
-                            <h4 class="text-sm font-bold text-on-surface dark:text-dark-text"> VPN (1 Month)</h4>
-                            <p class="text-[11px] text-on-surface-variant dark:text-dark-text-muted my-2">High Speed Premium Server Key</p>
+                            <h4 class="text-sm font-bold text-on-surface dark:text-dark-text">VIP VPN Key (1 Month)</h4>
+                            <p class="text-[11px] text-on-surface-variant dark:text-dark-text-muted my-2">High Speed Premium Server Key (Unlimited Data)</p>
                             <div class="flex justify-between items-center mt-3 pt-2 border-t border-outline-variant/20 dark:border-slate-800">
                                 <span class="text-base font-black text-emerald-600 dark:text-emerald-400">5,000 Ks</span>
-                                <button onclick="orderItem(' VPN Key (1 Month)', '5,000 Ks')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-sm">မှာယူမည်</button>
+                                <button onclick="orderItem('VIP VPN Key (1 Month)', '5,000 Ks')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-sm">မှာယူမည်</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-emerald-200/50 dark:border-slate-800 flex flex-col justify-between hover:border-emerald-500 hover:shadow-lg transition-all group">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black px-2.5 py-0.5 rounded-md">LONG TERM</span>
+                                <span class="material-symbols-outlined text-emerald-500">verified_user</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-on-surface dark:text-dark-text">VIP VPN Key (3 Months)</h4>
+                            <p class="text-[11px] text-on-surface-variant dark:text-dark-text-muted my-2">High Speed Premium VIP Server Key</p>
+                            <div class="flex justify-between items-center mt-3 pt-2 border-t border-outline-variant/20 dark:border-slate-800">
+                                <span class="text-base font-black text-emerald-600 dark:text-emerald-400">12,000 Ks</span>
+                                <button onclick="orderItem('VIP VPN Key (3 Months)', '12,000 Ks')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-sm">မှာယူမည်</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -718,17 +871,25 @@
                 </button>
             </div>
             <div class="space-y-4 font-medium">
-                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
-                    <h4 class="font-bold text-amber-600 dark:text-amber-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">sports_esports</span> PUBG UC & MLBB Diamonds</h4>
-                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">Game Top-Up စျေးနှုန်းများကို ဝဘ်ဆိုက်တွင် တိုက်ရိုက် ကြည့်ရှု မှာယူနိုင်ပါသည်</p>
+                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl border border-orange-200/40 dark:border-orange-950">
+                    <h4 class="font-bold text-orange-600 dark:text-orange-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">cell_tower</span> Mytel Data & Voice Packs (30 Days)</h4>
+                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">15,000 Ks (22GB+ Data, 8000 Mins) / 20,000 Ks (40GB Data, On/Off Mins) / 25,000 Ks (40GB+ Data, 1400 Mins)</p>
+                </div>
+                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl border border-cyan-200/40 dark:border-cyan-950">
+                    <h4 class="font-bold text-cyan-600 dark:text-cyan-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">wifi</span> ATOM Data Package (30 Days)</h4>
+                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">30,000 Ks (120 GB / 138,240 MB Full Data Pack)</p>
                 </div>
                 <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
-                    <h4 class="font-bold text-emerald-600 dark:text-emerald-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">wifi</span> Mytel & Atom Data VPN Keys</h4>
-                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">High Speed VIP Key များ ချက်ချင်း ဝယ်ယူနိုင်ပါသည်</p>
+                    <h4 class="font-bold text-amber-600 dark:text-amber-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">sports_esports</span> PUBG UC & MLBB Diamonds</h4>
+                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">Game Top-Up စျေးနှုန်းများကို ဝဘ်ဆိုက်တွင် တိုက်ရိုက် ကြည့်ရှု မှာယူနိုင်ပါသည်</p>
+                </div>
+                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
+                    <h4 class="font-bold text-emerald-600 dark:text-emerald-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">vpn_key</span> VIP VPN Keys</h4>
+                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">High Speed VIP Key များ ချက်ချင်း ဝယ်ယူနိုင်ပါသည်</p>
                 </div>
                 <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
                     <h4 class="font-bold text-orange-600 dark:text-orange-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">smartphone</span> ဆိုင်ရှိဖုန်းများ စာရင်း</h4>
-                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">Google Sheet စာရင်းတွင် ဆိုင်ရှိဖုန်းအမျိုးအစားများနှင့် ဈေးနှုန်းများကို ကြည့်ရှုနိုင်ပါသည်</p>
+                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">Google Sheet စာရင်းတွင် ဆိုင်ရှိဖုန်းအမျိုးအစားများနှင့် ဈေးနှုန်းများကို ကြည့်ရှုနိုင်ပါသည်</p>
                 </div>
             </div>
         </div>
@@ -740,7 +901,6 @@
         ကူးယူပြီးပါပြီ!
     </div>
 
-    <!-- JS Logic -->
     <script>
         /* Set Dark Mode as Default Theme */
         const savedTheme = localStorage.getItem('theme');
