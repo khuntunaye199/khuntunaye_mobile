@@ -62,7 +62,7 @@
     </script>
 
     <style>
-        /* 🌟 Custom Background Image Layer with 50% Opacity (Transparence) */
+        /* Custom Background Image Layer with Opacity */
         .bg-custom-image {
             position: fixed;
             top: 0;
@@ -73,7 +73,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.5; /* 50% Transparence */
+            opacity: 0.5;
             z-index: -50;
             pointer-events: none;
         }
@@ -107,7 +107,6 @@
             scrollbar-width: none;
         }
         
-        /* Web View-Style Mobile Customization */
         .day-cell {
             min-height: 72px;
             transition: all 0.2s ease;
@@ -124,7 +123,6 @@
             }
         }
 
-        /* ဆိုင်ရှိဖုန်းများ ဆွဲဆောင်မှုရှိရှိ လှုပ်ရှားစေမည့် Custom Animation များ */
         @keyframes phonePulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 101, 30, 0.7); }
             70% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(253, 101, 30, 0); }
@@ -139,12 +137,7 @@
             0%, 100% { background-color: rgba(253, 101, 30, 0.1); border-color: rgba(253, 101, 30, 0.3); }
             50% { background-color: rgba(253, 101, 30, 0.25); border-color: rgba(253, 101, 30, 0.8); }
         }
-        @keyframes ecommercePulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(22, 163, 74, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 6px 22px rgba(22, 163, 74, 0.7); }
-        }
 
-        /* Enhanced Contact Floating Button Animations */
         @keyframes customGlow {
             0%, 100% { box-shadow: 0 0 15px rgba(70, 72, 212, 0.6), 0 0 30px rgba(253, 101, 30, 0.4); }
             50% { box-shadow: 0 0 25px rgba(253, 101, 30, 0.8), 0 0 45px rgba(70, 72, 212, 0.7); }
@@ -185,39 +178,23 @@
         .animate-sidemenu-phone .phone-icon {
             animation: phoneShake 0.8s infinite ease-in-out;
         }
-        .animate-ecommerce {
-            animation: ecommercePulse 2.5s infinite ease-in-out;
-        }
     </style>
 </head>
 
 <body class="bg-surface/90 text-on-surface dark:bg-dark-bg/90 dark:text-dark-text transition-colors duration-300 relative min-h-screen">
 
-    <!-- 🖼️ 50% Transparence Background Image -->
     <div class="bg-custom-image"></div>
 
-    <!-- 🌟 Floating Contact Menu -->
+    <!-- Floating Contact Menu -->
     <div class="fixed bottom-20 right-4 flex flex-col items-end z-40 select-none">
-        <!-- Floating Tooltip / Callout Badge -->
+        <!-- Floating Tooltip Badge -->
         <div id="contact-badge-tooltip" class="mb-2 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white text-[11px] font-black px-3.5 py-1 rounded-full shadow-lg border border-amber-300/50 flex items-center gap-1.5 animate-bounce">
             <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
             <span>မေးမြန်းမှာယူရန် နှိပ်ပါ ✨</span>
         </div>
 
-        <!-- Contact Options -->
+        <!-- Contact Options (Viber, Telegram, Messenger) -->
         <div id="contact-options-menu" class="hidden flex flex-col items-end gap-2.5 mb-3 transition-all duration-300 transform scale-90 opacity-0 origin-bottom-right">
-            <!-- Telegram Ecommerce Direct Shop Button -->
-            <a href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank" onclick="toggleContactMenu()"
-               class="group relative overflow-hidden px-4 py-3 rounded-2xl shadow-xl text-white transition-all duration-300 hover:scale-105 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 border border-emerald-300/50 flex items-center gap-3 backdrop-blur-md">
-                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0 group-hover:rotate-12 transition-transform shadow-inner">
-                    <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">shopping_bag</span> 
-                </div>
-                <div class="text-left">
-                    <span class="text-xs font-black block leading-snug">တိုက်ရိုက်ဝယ်ယူရန် 🛍️</span>
-                    <span class="text-[10px] opacity-90 font-medium">Telegram Online Store</span>
-                </div>
-            </a>
-
             <!-- Viber Button -->
             <a href="viber://contact?number=%2B959899494849" onclick="toggleContactMenu()"
                class="group relative overflow-hidden px-4 py-3 rounded-2xl shadow-xl text-white transition-all duration-300 hover:scale-105 bg-gradient-to-r from-purple-600 via-viber-purple to-indigo-600 border border-purple-300/40 flex items-center gap-3 backdrop-blur-md">
@@ -296,11 +273,6 @@
             </div>
         </div>
         <nav class="flex flex-col gap-1 mt-4 overflow-y-auto">
-            <!-- Telegram Ecommerce Online Shop Link in Sidebar Drawer -->
-            <a class="flex items-center gap-4 px-6 py-3.5 mx-2 mb-2 rounded-lg font-black text-white bg-gradient-to-r from-emerald-500 to-success-green border border-emerald-400 shadow-md hover:scale-[1.02] active:scale-95 transition-all text-left" href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span> တိုက်ရိုက်ဝယ်ယူရန် 🛍️
-            </a>
-            
             <button onclick="switchSection('shop')" class="flex items-center gap-4 px-6 py-3 bg-primary-container text-on-primary-container mx-2 rounded-lg font-medium text-left section-nav-btn" id="nav-shop">
                 <span class="material-symbols-outlined">home</span> ပင်မစာမျက်နှာ
             </button>
@@ -326,7 +298,7 @@
         <!-- Live Status Bar -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
             
-            <!-- 1. ရက်စွဲ Button (Click to open Calendar Section) -->
+            <!-- 1. ရက်စွဲ Button -->
             <button onclick="switchSection('calendar')" class="text-left w-full bg-gradient-to-br from-indigo-50/90 via-purple-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-indigo-200/80 dark:border-indigo-900/40 rounded-2xl p-4 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md cursor-pointer">
                 <div class="absolute -top-6 -right-6 w-20 h-20 bg-indigo-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-primary text-white flex items-center justify-center shrink-0 shadow-md shadow-indigo-500/30 group-hover:scale-110 transition-transform">
@@ -337,7 +309,7 @@
                 </div>
             </button>
 
-            <!-- 2. ဈေးရက် Button (Click to open Market Section) -->
+            <!-- 2. ဈေးရက် Button -->
             <button onclick="switchSection('market')" class="text-left w-full bg-gradient-to-br from-orange-50/90 via-amber-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-orange-200/80 dark:border-orange-900/40 rounded-2xl p-4 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md cursor-pointer">
                 <div class="absolute -top-6 -right-6 w-20 h-20 bg-orange-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-orange-500/30 group-hover:scale-110 transition-transform">
@@ -374,26 +346,18 @@
                     </h1>
                     <p class="text-base md:text-lg mb-6 max-w-md opacity-90 drop-shadow-sm font-medium">မြန်ဆန်ပြီး စိတ်ချရသော Digital ဝန်ဆောင်မှုများကို တစ်နေရာတည်းတွင် ရယူလိုက်ပါ</p>
                     
-                    <div class="flex flex-col gap-4 w-full justify-center items-center max-w-2xl">
-                        <!-- Direct Purchase/Ecommerce Button in Hero Section -->
-                        <a href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank" class="w-full bg-gradient-to-r from-emerald-500 to-success-green hover:from-emerald-600 hover:to-green-700 text-white px-8 py-4 rounded-full font-black text-xl flex items-center justify-center gap-3 transition-all active:scale-95 animate-ecommerce shadow-2xl border border-emerald-400">
-                            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">shopping_bag</span> 
-                            တိုက်ရိုက်ဝယ်ယူရန် (Online Store) 🛍️
+                    <div class="flex flex-col sm:flex-row gap-3 w-full justify-center max-w-2xl">
+                        <button onclick="openCatalogModal()" class="bg-white/20 backdrop-blur-md border border-white/30 px-6 py-3.5 rounded-full font-bold text-base flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95 w-full sm:w-1/2">
+                            <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
+                        </button>
+                        <a class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3.5 rounded-full font-bold text-base flex items-center justify-center gap-2 transition-all active:scale-95 animate-phone-btn shadow-xl w-full sm:w-1/2" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+                            <span class="material-symbols-outlined phone-icon" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဖုန်းများကြည့်ရန် 📱🔥
                         </a>
-
-                        <div class="flex flex-col sm:flex-row gap-3 w-full justify-center">
-                            <button onclick="openCatalogModal()" class="bg-white/20 backdrop-blur-md border border-white/30 px-6 py-3 rounded-full font-bold text-base flex items-center justify-center gap-2 hover:bg-white/30 transition-all active:scale-95 w-full sm:w-1/2">
-                                <span class="material-symbols-outlined">receipt_long</span> ယနေ့ရရှိနိုင်သော စာရင်းများ
-                            </button>
-                            <a class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-full font-bold text-base flex items-center justify-center gap-2 transition-all active:scale-95 animate-phone-btn shadow-xl w-full sm:w-1/2" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
-                                <span class="material-symbols-outlined phone-icon" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဖုန်းများကြည့်ရန် 📱🔥
-                            </a>
-                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- VPN Area -->
+            <!-- Free VPN Area -->
             <section class="bg-gradient-to-br from-amber-50/90 to-yellow-50/90 dark:from-amber-950/40 dark:to-yellow-950/30 rounded-2xl p-6 shadow-sm border border-amber-200/80 dark:border-amber-900/40 relative overflow-hidden backdrop-blur-md">
                 <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
                 <div class="flex items-center gap-3 mb-4 relative z-10">
@@ -404,10 +368,148 @@
                 </div>
                 <p class="text-sm text-on-surface-variant dark:text-dark-text-muted mb-4 font-medium relative z-10">Outline Key ကို Happ vpn / Hiddify vpn / Outline vpn များဖြင့် အသုံးပြုနိုင်ပါသည်။</p>
                 <div class="bg-surface/90 dark:bg-dark-bg/90 p-4 rounded-xl flex items-center justify-between gap-4 border border-outline-variant/30 dark:border-slate-700 shadow-inner overflow-hidden relative z-10">
-                    <code class="text-amber-700 dark:text-amber-400 font-mono text-xs md:text-sm truncate select-all flex-1" id="vpn-key">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpmaG9YZWw5RE5pQmRnR3N6UzBSVzBw@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
+                    <code class="text-amber-700 dark:text-amber-400 font-mono text-xs md:text-sm truncate select-all flex-1" id="vpn-key">ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpVNkVWZ2l5OUlPbkE2T3JpT2hqTVBX@68.183.179.244:1509/?outline=1#ခွန်ထွန်းအေးဖုန်းဆိုင်ဆိုက်ခေါင်</code>
                     <button class="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 shrink-0 active:scale-90 transition-all shadow-md" onclick="copyKey(this, 'vpn-key')">
                         <span class="material-symbols-outlined text-sm">content_copy</span> Copy
                     </button>
+                </div>
+            </section>
+
+            <!-- 🎮 DIGITAL PRODUCTS & PRICING SECTION -->
+            <section class="space-y-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-black text-primary dark:text-indigo-400 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-3xl">sports_esports</span> Digital ဝန်ဆောင်မှုနှင့် စျေးနှုန်းများ
+                        </h2>
+                        <p class="text-xs text-on-surface-variant dark:text-dark-text-muted mt-1 font-medium">PUBG UC, Mobile Legends Diamond, Mytel & Atom Data VPN Key များ</p>
+                    </div>
+                </div>
+
+                <!-- 1. PUBG Mobile UC Pricing Card -->
+                <div class="bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-surface-container-lowest/90 dark:from-amber-950/30 dark:via-dark-surface/90 dark:to-dark-bg/90 border border-amber-300/40 dark:border-amber-800/40 rounded-3xl p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b border-amber-200/50 dark:border-amber-900/40 pb-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-amber-500/30">
+                                🔫
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-black text-amber-600 dark:text-amber-400">PUBG Mobile UC Top-Up</h3>
+                                <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">In-Game ID ဖြင့် တိုက်ရိုက် ဝယ်ယူနိုင်ပါသည်။</p>
+                            </div>
+                        </div>
+                        <span class="bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-black px-3 py-1 rounded-full border border-amber-500/30">
+                            Fast Delivery ⚡
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-amber-500 hover:shadow-lg transition-all group">
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">60 UC</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">5000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 60 UC', '5000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-amber-500 hover:shadow-lg transition-all group">
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">325 UC</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">25000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 325 UC', '25000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-500/50 dark:border-amber-600/50 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-lg transition-all group relative overflow-hidden">
+                            <span class="absolute top-0 right-0 bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-bl-lg">POPULAR</span>
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">660 UC</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">45000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 660 UC', '45000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-amber-500 hover:shadow-lg transition-all group">
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">1800 UC</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">129000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 1800 UC', '129000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-amber-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-amber-500 hover:shadow-lg transition-all group col-span-2 sm:col-span-1">
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">3850 UC</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">225,000 Ks</span>
+                            <button onclick="orderItem('PUBG Mobile 3850 UC', '225,000 Ks')" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Mobile Legends Diamond Pricing Card -->
+                <div class="bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-surface-container-lowest/90 dark:from-indigo-950/30 dark:via-dark-surface/90 dark:to-dark-bg/90 border border-indigo-300/40 dark:border-indigo-800/40 rounded-3xl p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b border-indigo-200/50 dark:border-indigo-900/40 pb-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-indigo-500/30">
+                                💎
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-black text-indigo-600 dark:text-indigo-400">Mobile Legends Diamonds</h3>
+                                <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">User ID (Zone ID) ဖြင့် အလွယ်တကူ ဖြည့်သွင်းနိုင်ပါသည်။</p>
+                            </div>
+                        </div>
+                        <span class="bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-xs font-black px-3 py-1 rounded-full border border-indigo-500/30">
+                            Instant Topup 🚀
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-indigo-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-indigo-500 hover:shadow-lg transition-all group">
+                            <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">86 Diamonds</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">6,500 Ks</span>
+                            <button onclick="orderItem('MLBB 86 Diamonds', '6,500 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-indigo-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-indigo-500 hover:shadow-lg transition-all group">
+                            <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">172 Diamonds</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">1,3000 Ks</span>
+                            <button onclick="orderItem('MLBB 172 Diamonds', '1,3000 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-indigo-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-indigo-500 hover:shadow-lg transition-all group">
+                            <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">257 Diamonds</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">19,000 Ks</span>
+                            <button onclick="orderItem('MLBB 257 Diamonds', '19,000 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-indigo-500/50 dark:border-indigo-600/50 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-lg transition-all group relative overflow-hidden">
+                            <span class="absolute top-0 right-0 bg-emerald-500 text-white text-[9px] font-black px-2 py-0.5 rounded-bl-lg">PASS</span>
+                            <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">Weekly Pass</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">8,000 Ks</span>
+                            <button onclick="orderItem('MLBB Weekly Diamond Pass', '8,000 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-4 rounded-2xl border border-indigo-200/50 dark:border-slate-800 flex flex-col justify-between items-center text-center hover:border-indigo-500 hover:shadow-lg transition-all group col-span-2 sm:col-span-1">
+                            <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">706 Diamonds</span>
+                            <span class="text-base font-black text-on-surface dark:text-dark-text mb-3">40,000 Ks</span>
+                            <button onclick="orderItem('MLBB 514 Diamonds', '40,000 Ks')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold py-2 rounded-xl active:scale-95 transition group-hover:shadow-md">မှာယူမည်</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3.  VPN Key Pricing Card -->
+                <div class="bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-surface-container-lowest/90 dark:from-emerald-950/30 dark:via-dark-surface/90 dark:to-dark-bg/90 border border-emerald-300/40 dark:border-emerald-800/40 rounded-3xl p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b border-emerald-200/50 dark:border-emerald-900/40 pb-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white flex items-center justify-center font-black text-xl shadow-lg shadow-emerald-500/30">
+                                📶
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-black text-emerald-600 dark:text-emerald-400"> VPN Key</h3>
+                                <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">လိုင်းဆွဲအားကောင်းမွန်ပြီး Unlimited သုံးနိုင်သော VIP Server Key များ</p>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-black px-3 py-1 rounded-full border border-emerald-500/30">
+                            High Speed 🌐
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-emerald-200/50 dark:border-slate-800 flex flex-col justify-between hover:border-emerald-500 hover:shadow-lg transition-all group">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-orange-500/20 text-orange-600 dark:text-orange-400 text-[10px] font-black px-2.5 py-0.5 rounded-md">MYTEL SIM</span>
+                                <span class="material-symbols-outlined text-emerald-500">wifi</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-on-surface dark:text-dark-text"> VPN (1 Month)</h4>
+                            <p class="text-[11px] text-on-surface-variant dark:text-dark-text-muted my-2">High Speed Premium Server Key</p>
+                            <div class="flex justify-between items-center mt-3 pt-2 border-t border-outline-variant/20 dark:border-slate-800">
+                                <span class="text-base font-black text-emerald-600 dark:text-emerald-400">5,000 Ks</span>
+                                <button onclick="orderItem(' VPN Key (1 Month)', '5,000 Ks')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-sm">မှာယူမည်</button>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -499,7 +601,7 @@
                         <div class="w-full h-48 bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-inner border border-outline-variant/20 dark:border-slate-700 mb-4">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d233.83168511350414!2d97.2402626!3d20.3289339!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ce51ac9d24dc61%3A0x9ea2761f72d64b7a!2z4YCB4YC94YCU4YC64YCR4YC94YCU4YC64YCh4YCx4YC44YCW4YCv4YCU4YC64YC44YCW4YC-4YC44YCG4YCt4YCv4YCE4YC6!5e0!3m2!1sen!2smm!4v1782383010867!5m2!1sen!2smm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                        <a class="inline-flex items-center justify-center w-full gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-md hover:bg-primary/90 transition-colors" href="https://www.google.com/maps/place/%E1%80%81%E1%80%BD%E1%80%94%E1%80%BA%E1%80%91%E1%80%BD%E1%80%94%E1%80%BA%E1%80%A1%E1%80%B1%E1%80%B8%E1%80%96%E1%80%AF%E1%80%94%E1%80%BA%E1%80%B8%E1%80%86%E1%80%AD%E1%80%AF%E1%80%84%E1%80%BA/@20.3289339,97.2402626,21z" target="_blank">
+                        <a class="inline-flex items-center justify-center w-full gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold shadow-md hover:bg-primary/90 transition-colors" href="https://www.google.com/maps/place/%E1%80%81%E1%80%BD%E1%80%94%E1%80%BA%E1%80%91%E1%80%BD%E1%80%94%E1%80%BA%E1%80%A1%E1%80%B1%E1%80%B8%E1%80%96%E1%80%AF%E1%80%94%E1%80%B8%E1%80%86%E1%80%AD%E1%80%AF%E1%80%84%E1%80%BA/@20.3289339,97.2402626,21z" target="_blank">
                             <span class="material-symbols-outlined">near_me</span> လမ်းကြောင်းရှာမယ်
                         </a>
                     </div>
@@ -510,22 +612,12 @@
                     <div class="space-y-4">
                         <p class="text-sm text-on-surface-variant dark:text-dark-text-muted font-medium">အောက်ပါလင့်များမှ တစ်ဆင့် မှာယူနိုင်ပါသည်။</p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <a class="flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-success-green text-white p-4 rounded-2xl shadow-md border border-emerald-400 hover:scale-[1.02] transition-all col-span-1 sm:col-span-2 group" href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank">
-                                <div class="w-10 h-10 rounded-full bg-white text-emerald-600 flex items-center justify-center shrink-0 shadow">
-                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
-                                </div>
-                                <div class="flex-grow">
-                                    <span class="font-black block text-sm">တိုက်ရိုက်ဝယ်ယူရန် (Online Store) 🛍️</span>
-                                    <span class="text-xs text-emerald-100 font-medium">ငွေလွှဲစနစ်ဖြင့် တိုက်ရိုက်မှာယူရန်</span>
-                                </div>
-                            </a>
-
                             <a class="flex items-center gap-3 bg-surface-container-lowest/90 dark:bg-dark-bg/90 p-4 rounded-2xl shadow-sm border border-outline-variant/20 dark:border-slate-800 hover:border-violet-500 hover:shadow-md transition-all group" href="viber://contact?number=%2B959899494849" target="_blank">
                                 <div class="w-10 h-10 rounded-full bg-viber-purple flex items-center justify-center text-white shrink-0">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
                                 </div>
                                 <div>
-                                    <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Viber</span>
+                                    <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Viber Chat</span>
                                     <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted">09899494849</span>
                                 </div>
                             </a>
@@ -534,7 +626,7 @@
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
                                 </div>
                                 <div>
-                                    <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Telegram</span>
+                                    <span class="font-bold block text-xs text-on-surface dark:text-dark-text">Telegram Chat</span>
                                     <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted">Message us</span>
                                 </div>
                             </a>
@@ -598,20 +690,16 @@
             <p id="orderPrice" class="text-lg text-primary dark:text-indigo-400 font-bold mb-6"></p>
             <div class="bg-surface-container dark:bg-dark-bg p-4 rounded-2xl mb-6 text-sm text-on-surface-variant dark:text-dark-text-muted font-medium leading-relaxed">
                 <span class="material-symbols-outlined text-sm inline-block align-middle mr-1">info</span>
-                ဆက်သွယ်ရန် ဖုန်းနံပါတ် သို့မဟုတ် အောက်ပါ Social App များအပြင် "တိုက်ရိုက်ဝယ်ယူရန်" လင့်မှတစ်ဆင့်လည်း မှာယူနိုင်ပါသည်။
+                ဆက်သွယ်ရန် ဖုန်းနံပါတ် သို့မဟုတ် အောက်ပါ Social App များမှတစ်ဆင့် မှာယူနိုင်ပါသည်။
             </div>
             <div class="flex flex-col gap-3">
-                <a href="https://telegramecommerce.shop/ခနထနအဖနဆင-mlrjq" target="_blank" class="w-full bg-gradient-to-r from-emerald-500 to-success-green hover:opacity-95 text-white py-3.5 rounded-xl text-center font-black hover:opacity-90 transition flex justify-center items-center gap-2 shadow-md border border-emerald-400">
-                    <span class="material-symbols-outlined">shopping_bag</span> တိုက်ရိုက်ဝယ်ယူရန် (Online Store) 🛍️
-                </a>
-                
                 <a href="viber://contact?number=%2B959899494849" target="_blank" class="w-full bg-viber-purple text-white py-3 rounded-xl text-center font-bold hover:opacity-90 transition flex justify-center items-center gap-2 shadow-sm">
                     <span class="material-symbols-outlined text-sm">chat</span> Viber မှ မှာယူမည်
                 </a>
                 <a href="https://t.me/Tunaye" target="_blank" class="w-full bg-sky-500 text-white py-3 rounded-xl text-center font-bold hover:bg-sky-600 transition flex justify-center items-center gap-2 shadow-sm">
                     <span class="material-symbols-outlined text-sm">send</span> Telegram သို့သွားမည်
                 </a>
-                <a href="https://www.facebook.com/share/1DXCNQGPVe/" target="_blank" class="w-full bg-blue-600 text-white py-3 rounded-xl text-center font-bold hover:bg-blue-700 transition flex justify-center items-center gap-2 shadow-sm">
+                <a href="https://www.facebook.com/share/1E9TUJ3fzi/?mibextid=wwXIfr" target="_blank" class="w-full bg-blue-600 text-white py-3 rounded-xl text-center font-bold hover:bg-blue-700 transition flex justify-center items-center gap-2 shadow-sm">
                     <span class="material-symbols-outlined text-sm">facebook</span> Messenger သို့သွားမည်
                 </a>
             </div>
@@ -631,16 +719,16 @@
             </div>
             <div class="space-y-4 font-medium">
                 <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
-                    <h4 class="font-bold text-emerald-600 dark:text-emerald-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">shopping_bag</span> တိုက်ရိုက်ဝယ်ယူရန် (Online Store)</h4>
-                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">Telegram Online Shop မှတစ်ဆင့် ပစ္စည်းများ တိုက်ရိုက်မှာယူနိုင်ပါသည်</p>
+                    <h4 class="font-bold text-amber-600 dark:text-amber-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">sports_esports</span> PUBG UC & MLBB Diamonds</h4>
+                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">Game Top-Up စျေးနှုန်းများကို ဝဘ်ဆိုက်တွင် တိုက်ရိုက် ကြည့်ရှု မှာယူနိုင်ပါသည်</p>
+                </div>
+                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
+                    <h4 class="font-bold text-emerald-600 dark:text-emerald-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">wifi</span> Mytel & Atom Data VPN Keys</h4>
+                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">High Speed VIP Key များ ချက်ချင်း ဝယ်ယူနိုင်ပါသည်</p>
                 </div>
                 <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
                     <h4 class="font-bold text-orange-600 dark:text-orange-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">smartphone</span> ဆိုင်ရှိဖုန်းများ စာရင်း</h4>
                     <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">Google Sheet စာရင်းတွင် ဆိုင်ရှိဖုန်းအမျိုးအစားများနှင့် ဈေးနှုန်းများကို ကြည့်ရှုနိုင်ပါသည်</p>
-                </div>
-                <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
-                    <h4 class="font-bold text-amber-600 dark:text-amber-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">shield</span> Free Outline VPN Key</h4>
-                    <p class="text-sm text-on-surface-variant dark:text-dark-text-muted">ဝဘ်ဆိုက်တွင် အခမဲ့ VPN Key ရယူနိုင်ပါသည်</p>
                 </div>
             </div>
         </div>
@@ -654,13 +742,12 @@
 
     <!-- JS Logic -->
     <script>
-        /* 🌟 Set Dark Mode as Default Theme */
+        /* Set Dark Mode as Default Theme */
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
         } else {
-            // Default to dark mode on initial open
             document.documentElement.classList.add('dark');
             document.documentElement.classList.remove('light');
         }
@@ -710,7 +797,7 @@
         const monthsNameMy = ["ဇန်နဝါရီ", "ဖေဖော်ဝါရီ", "မတ်", "ဧပြီ", "မေ", "ဇွန်", "ဇူလိုင်", "သြဂုတ်", "စက်တင်ဘာ", "အောက်တိုဘာ", "နိုဝင်ဘာ", "ဒီဇင်ဘာ"];
         const daysHeaderMy = ["တနင်္ဂနွေ", "တနင်္လာ", "အင်္ဂါ", "ဗုဒ္ဓဟူး", "ကြာသပတေး", "သောကြာ", "စနေ"];
 
-        let currentCalendarDate = new Date(2026, 6, 1); // July 2026 Default
+        let currentCalendarDate = new Date(2026, 6, 1);
 
         document.addEventListener("DOMContentLoaded", () => {
             const toggleBtn = document.getElementById("theme-toggle-btn");
@@ -756,7 +843,7 @@
                     icon = "rainy_light";
                     colorClass = "text-sky-500 dark:text-sky-400 font-bold";
                 } else if ((code >= 61 && code <= 65) || (code >= 80 && code <= 82)) {
-                    statusText = "မိုးမရွှာပါ (တိမ်ထူနေသည် 🌩️🌩️🌩️)";
+                    statusText = "မိုးဖွဲဖွဲရွာနေသည် (တိမ်ထူနေသည် 🌩️🌩️🌩️)";
                     icon = "rainy";
                     colorClass = "text-blue-500 dark:text-blue-400 font-black animate-pulse";
                 } else if (code >= 95) {
