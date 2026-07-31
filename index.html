@@ -64,18 +64,17 @@
     </script>
 
     <style>
-        /* Custom Background Image Layer with Opacity */
         .bg-custom-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-image: url('maxresdefault.jpg');
+            background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.5;
+            opacity: 0.25;
             z-index: -50;
             pointer-events: none;
         }
@@ -118,12 +117,6 @@
                 min-height: 90px;
             }
         }
-        @media (min-width: 1024px) {
-            .day-cell {
-                aspect-ratio: 1 / 1;
-                min-height: auto;
-            }
-        }
 
         @keyframes phonePulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(253, 101, 30, 0.7); }
@@ -135,50 +128,18 @@
             20%, 60% { transform: rotate(-8deg); }
             40%, 80% { transform: rotate(8deg); }
         }
-        @keyframes sideMenuPulse {
-            0%, 100% { background-color: rgba(253, 101, 30, 0.1); border-color: rgba(253, 101, 30, 0.3); }
-            50% { background-color: rgba(253, 101, 30, 0.25); border-color: rgba(253, 101, 30, 0.8); }
-        }
-
         @keyframes customGlow {
             0%, 100% { box-shadow: 0 0 15px rgba(70, 72, 212, 0.6), 0 0 30px rgba(253, 101, 30, 0.4); }
             50% { box-shadow: 0 0 25px rgba(253, 101, 30, 0.8), 0 0 45px rgba(70, 72, 212, 0.7); }
         }
-        @keyframes shineSweep {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(200%) rotate(45deg); }
-        }
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-        }
         .contact-fab-glow {
-            animation: customGlow 3s infinite ease-in-out, gentleFloat 3s infinite ease-in-out;
+            animation: customGlow 3s infinite ease-in-out;
         }
-        .shine-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(60deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
-            animation: shineSweep 4s infinite ease-in-out;
-            pointer-events: none;
-        }
-
         .animate-phone-btn {
             animation: phonePulse 2s infinite ease-in-out;
         }
         .animate-phone-btn:hover .phone-icon {
             animation: phoneShake 0.5s infinite ease-in-out;
-        }
-        .animate-sidemenu-phone {
-            animation: sideMenuPulse 2s infinite ease-in-out;
-            border-width: 1.5px;
-        }
-        .animate-sidemenu-phone .phone-icon {
-            animation: phoneShake 0.8s infinite ease-in-out;
         }
     </style>
 </head>
@@ -196,7 +157,7 @@
         </div>
 
         <!-- Contact Options (Viber, Telegram, Messenger) -->
-        <div id="contact-options-menu" class="hidden flex flex-col items-end gap-2.5 mb-3 transition-all duration-300 transform scale-90 opacity-0 origin-bottom-right">
+        <div id="contact-options-menu" class="hidden flex flex-col items-end gap-2.5 mb-3 transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right">
             <!-- Viber Button -->
             <a href="viber://contact?number=%2B959899494849" onclick="toggleContactMenu()"
                class="group relative overflow-hidden px-4 py-3 rounded-2xl shadow-xl text-white transition-all duration-300 hover:scale-105 bg-gradient-to-r from-purple-600 via-viber-purple to-indigo-600 border border-purple-300/40 flex items-center gap-3 backdrop-blur-md">
@@ -239,7 +200,7 @@
             <span class="absolute -inset-1 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-primary opacity-75 blur-md group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></span>
             
             <button id="contact-toggle-btn" onclick="toggleContactMenu()" 
-                    class="relative overflow-hidden px-5 py-3.5 rounded-full bg-gradient-to-r from-primary via-indigo-600 to-orange-500 text-white shadow-2xl flex items-center gap-2.5 hover:scale-105 active:scale-95 transition-all duration-300 font-black text-sm border border-white/30 shine-effect contact-fab-glow">
+                    class="relative overflow-hidden px-5 py-3.5 rounded-full bg-gradient-to-r from-primary via-indigo-600 to-orange-500 text-white shadow-2xl flex items-center gap-2.5 hover:scale-105 active:scale-95 transition-all duration-300 font-black text-sm border border-white/30 contact-fab-glow">
                 <span id="contact-icon" class="material-symbols-outlined text-xl transition-transform duration-300" style="font-variation-settings: 'FILL' 1;">support_agent</span>
                 <span id="contact-text" class="tracking-wide">ဆက်သွယ်ရန်</span>
             </button>
@@ -287,7 +248,7 @@
             <a class="flex items-center gap-4 px-6 py-3 mx-2 rounded-lg font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50/80 border border-emerald-100 dark:bg-emerald-950/40 dark:border-emerald-900/40 backdrop-blur-sm" href="https://text-to-qr-delta.vercel.app/" target="_blank">
                 <span class="material-symbols-outlined">qr_code_2</span> စာသားမှ QR ပြောင်းရန်
             </a>
-            <a class="flex items-center gap-4 px-6 py-3 mx-2 rounded-lg font-bold text-secondary-container bg-orange-50/80 border-orange-300 dark:bg-orange-950/40 animate-sidemenu-phone transition-all backdrop-blur-sm" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
+            <a class="flex items-center gap-4 px-6 py-3 mx-2 rounded-lg font-bold text-secondary-container bg-orange-50/80 border-orange-300 dark:bg-orange-950/40 transition-all backdrop-blur-sm" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTcu01I_RkaTCwgPTs246XZcX4hZ606KyDIZ6_ky3PxJcG99V1dnE2Rw3NVJmZ0hw9AIuh7k3E4hmV_/pubhtml" target="_blank">
                 <span class="material-symbols-outlined phone-icon text-secondary-container" style="font-variation-settings: 'FILL' 1;">smartphone</span> ဆိုင်ရှိဖုန်းများကြည့်ရန် 📱🔥
             </a>
         </nav>
@@ -300,7 +261,6 @@
             
             <!-- 1. ရက်စွဲ Button -->
             <button onclick="switchSection('calendar')" class="text-left w-full bg-gradient-to-br from-indigo-50/90 via-purple-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-indigo-200/80 dark:border-indigo-900/40 rounded-2xl p-4 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md cursor-pointer">
-                <div class="absolute -top-6 -right-6 w-20 h-20 bg-indigo-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-primary text-white flex items-center justify-center shrink-0 shadow-md shadow-indigo-500/30 group-hover:scale-110 transition-transform">
                     <span class="material-symbols-outlined text-2xl">calendar_today</span>
                 </div>
@@ -311,7 +271,6 @@
 
             <!-- 2. ဈေးရက် Button -->
             <button onclick="switchSection('market')" class="text-left w-full bg-gradient-to-br from-orange-50/90 via-amber-50/80 to-white/90 dark:from-dark-surface/90 dark:via-dark-surface-low/90 dark:to-dark-bg/90 border border-orange-200/80 dark:border-orange-900/40 rounded-2xl p-4 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 relative overflow-hidden flex items-start gap-3.5 group backdrop-blur-md cursor-pointer">
-                <div class="absolute -top-6 -right-6 w-20 h-20 bg-orange-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-orange-500/30 group-hover:scale-110 transition-transform">
                     <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">storefront</span>
                 </div>
@@ -342,7 +301,7 @@
                 
                 <div class="relative z-20 px-6 py-10 md:py-16 text-white flex flex-col items-center text-center">
                     <h1 class="text-2xl md:text-4xl font-bold mb-4 drop-shadow-md leading-relaxed">
-                        {ဖြေႏဖေးအာႏပါခွေသွဥ်ႏ} <br/> {Digital Product နော} 🙏🙏🙏
+                        ဖြေႏဖေးအာႏပါခွေသွဥ်ႏ Digital Product နော 🙏🙏🙏
                     </h1>
                     <p class="text-base md:text-lg mb-6 max-w-md opacity-90 drop-shadow-sm font-medium">မြန်ဆန်ပြီး စိတ်ချရသော Digital ဝန်ဆောင်မှုများကို တစ်နေရာတည်းတွင် ရယူလိုက်ပါ</p>
                     
@@ -359,7 +318,6 @@
 
             <!-- Free VPN Trial Key -->
             <section class="bg-gradient-to-br from-amber-50/90 to-yellow-50/90 dark:from-amber-950/40 dark:to-yellow-950/30 rounded-2xl p-6 shadow-sm border border-amber-200/80 dark:border-amber-900/40 relative overflow-hidden backdrop-blur-md">
-                <div class="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
                 <div class="flex items-center gap-3 mb-4 relative z-10">
                     <div class="bg-amber-100 dark:bg-amber-900/40 p-2 rounded-lg">
                         <span class="material-symbols-outlined text-amber-600 dark:text-amber-400">shield</span>
@@ -385,7 +343,7 @@
                     </div>
                 </div>
 
-                <!-- 📱 NEW: Mytel Data & Voice Pack Pricing Card -->
+                <!-- 📱 FIXED & IMPROVED: Mytel Data & Voice Pack Pricing Card -->
                 <div class="bg-gradient-to-br from-orange-500/10 via-red-500/5 to-surface-container-lowest/90 dark:from-orange-950/30 dark:via-dark-surface/90 dark:to-dark-bg/90 border border-orange-400/40 dark:border-orange-800/40 rounded-3xl p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
                     <div class="flex items-center justify-between border-b border-orange-200/50 dark:border-orange-900/40 pb-4 mb-6">
                         <div class="flex items-center gap-3">
@@ -400,14 +358,14 @@
                                 <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">Mytel Data, On-net/Off-net Mins & SMS အထူးပက်ကေ့ဂျ်များ</p>
                             </div>
                         </div>
-                        <span class="bg-orange-500/20 text-orange-700 dark:text-orange-300 text-xs font-black px-3 py-1 rounded-full border border-orange-500/30">
+                        <span class="bg-orange-500/20 text-orange-700 dark:text-orange-300 text-xs font-black px-3 py-1 rounded-full border border-orange-500/30 hidden sm:inline-block">
                             Mytel Special 📲
                         </span>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <!-- Pack 1: 15,000 Ks -->
-                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-200/60 dark:border-slate-800 flex flex-col justify-between hover:border-orange-500 hover:shadow-lg transition-all group relative overflow-hidden">
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-200/60 dark:border-slate-800 flex flex-col justify-between hover:border-orange-500 hover:shadow-lg transition-all group">
                             <div>
                                 <div class="flex justify-between items-center mb-2">
                                     <span class="bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-orange-200/50">30 Days</span>
@@ -425,13 +383,13 @@
                                 </div>
                             </div>
                             <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
-                                <span class="text-lg font-black text-on-surface dark:text-dark-text">15,000 Ks</span>
+                                <span class="text-base font-black text-on-surface dark:text-dark-text">15,000 Ks</span>
                                 <button onclick="orderItem('Mytel Pack (15,000 Ks - 24,576 MB / 22GB + 8000 Mins + 5000 SMS)', '15,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
                             </div>
                         </div>
 
                         <!-- Pack 2: 20,000 Ks -->
-                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-200/60 dark:border-slate-800 flex flex-col justify-between hover:border-orange-500 hover:shadow-lg transition-all group relative overflow-hidden">
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-200/60 dark:border-slate-800 flex flex-col justify-between hover:border-orange-500 hover:shadow-lg transition-all group">
                             <div>
                                 <div class="flex justify-between items-center mb-2">
                                     <span class="bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-orange-200/50">30 Days</span>
@@ -444,19 +402,19 @@
                                         <span class="material-symbols-outlined text-sm">call</span> 250 Mins (Mytel)
                                     </div>
                                     <div class="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-bold">
-                                        <span class="material-symbols-outlined text-sm">phone_callback</span> 25 Mins (Other Networks)
+                                        <span class="material-symbols-outlined text-sm">phone_callback</span> 25 Mins (Other)
                                     </div>
                                 </div>
                             </div>
                             <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
-                                <span class="text-lg font-black text-on-surface dark:text-dark-text">20,000 Ks</span>
+                                <span class="text-base font-black text-on-surface dark:text-dark-text">20,000 Ks</span>
                                 <button onclick="orderItem('Mytel Pack (20,000 Ks - 40 GB + 250 On-net Mins + 25 Off-net Mins)', '20,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
                             </div>
                         </div>
 
                         <!-- Pack 3: 25,000 Ks -->
                         <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-400/80 dark:border-orange-600/60 flex flex-col justify-between hover:border-orange-500 hover:shadow-xl transition-all group relative overflow-hidden shadow-sm">
-                            <span class="absolute top-0 right-0 bg-red-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-bl-lg">BEST VALUE</span>
+                            <span class="absolute top-0 right-0 bg-red-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-bl-lg">POPULAR</span>
                             <div>
                                 <div class="flex justify-between items-center mb-2">
                                     <span class="bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-orange-200/50">30 Days</span>
@@ -474,16 +432,39 @@
                                 </div>
                             </div>
                             <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
-                                <span class="text-lg font-black text-on-surface dark:text-dark-text">25,000 Ks</span>
+                                <span class="text-base font-black text-on-surface dark:text-dark-text">25,000 Ks</span>
                                 <button onclick="orderItem('Mytel Pack (25,000 Ks - 46,080 MB / 40GB + 1400 Mins + 8000 SMS)', '25,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
-                                <button onclick="orderItem('Mytel Pack (30,000 Ks - 120 GB  / 120 GB )', '30,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
                             </div>
+                        </div>
+
+                        <!-- Pack 4: 30,000 Ks -->
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-orange-400/80 dark:border-orange-600/60 flex flex-col justify-between hover:border-orange-500 hover:shadow-xl transition-all group relative overflow-hidden shadow-sm">
+                            <span class="absolute top-0 right-0 bg-orange-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-bl-lg">MAX DATA</span>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-orange-200/50">30 Days</span>
+                                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Mytel Pack</span>
+                                </div>
+                                <div class="text-2xl font-black text-orange-600 dark:text-orange-400 mb-1">120 GB</div>
+                                <div class="text-xs font-bold text-on-surface dark:text-dark-text mb-3">( Super Big Pack )</div>
+                                <div class="space-y-1.5 text-xs text-on-surface-variant dark:text-dark-text-muted font-medium bg-surface-container-low dark:bg-dark-bg p-3 rounded-xl mb-4 border border-outline-variant/10">
+                                    <div class="flex items-center gap-1.5 text-orange-600 dark:text-orange-400 font-bold">
+                                        <span class="material-symbols-outlined text-sm">wifi</span> Full Speed Data Pack
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm">schedule</span> သက်တမ်း (၃၀) ရက်
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-base font-black text-on-surface dark:text-dark-text">30,000 Ks</span>
+                                <button onclick="orderItem('Mytel Pack (30,000 Ks - 120 GB Full Data Pack)', '30,000 Ks')" class="bg-gradient-to-r from-orange-500 to-red-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 🌐 NEW: ATOM Data Package Pricing Card -->
+                <!-- 🌐 FIXED & IMPROVED: ATOM Data Package Pricing Card -->
                 <div class="bg-gradient-to-br from-cyan-500/10 via-sky-500/5 to-surface-container-lowest/90 dark:from-cyan-950/30 dark:via-dark-surface/90 dark:to-dark-bg/90 border border-cyan-400/40 dark:border-cyan-800/40 rounded-3xl p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
                     <div class="flex items-center justify-between border-b border-cyan-200/50 dark:border-cyan-900/40 pb-4 mb-6">
                         <div class="flex items-center gap-3">
@@ -498,30 +479,63 @@
                                 <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">ATOM High Speed Super Big Data Package</p>
                             </div>
                         </div>
-                        <span class="bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-xs font-black px-3 py-1 rounded-full border border-cyan-500/30">
+                        <span class="bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 text-xs font-black px-3 py-1 rounded-full border border-cyan-500/30 hidden sm:inline-block">
                             ATOM High Speed ⚡
                         </span>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
-                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-cyan-300/60 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-500 hover:shadow-lg transition-all group">
-                            <div class="flex items-center gap-4 w-full md:w-auto">
-                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 text-white flex items-center justify-center font-black text-2xl shrink-0 shadow-md">
-                                    120GB
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- ATOM Pack 1 -->
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-cyan-200/60 dark:border-slate-800 flex flex-col justify-between hover:border-cyan-500 hover:shadow-lg transition-all group">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-cyan-200/50">30 Days</span>
+                                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">ATOM Pack</span>
                                 </div>
-                                <div>
-                                    <div class="text-xl font-black text-cyan-600 dark:text-cyan-400">120 GB ( 138,240 MB )</div>
-                                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium mt-0.5">ATOM 30 Days Full Internet Data Package</p>
-                                </div>
+                                <div class="text-2xl font-black text-cyan-600 dark:text-cyan-400 mb-1">24,576 MB</div>
+                                <div class="text-xs font-bold text-on-surface dark:text-dark-text mb-3">( 22 GB+ Data )</div>
+                                <p class="text-xs text-on-surface-variant dark:text-dark-text-muted mb-4 font-medium">Data Pack + 8,000 Mins & 5,000 SMS</p>
                             </div>
-                            <div class="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto pt-3 md:pt-0 border-t md:border-t-0 border-outline-variant/20 dark:border-slate-800">
-                                <div class="text-right">
-                                    <span class="text-2xl font-black text-on-surface dark:text-dark-text">30,000 Ks</span>
-                                    <span class="text-[10px] text-on-surface-variant block font-medium">သက်တမ်း (၃၀) ရက်</span>
+                            <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-base font-black text-on-surface dark:text-dark-text">15,000 Ks</span>
+                                <button onclick="orderItem('ATOM Data Package (15,000 Ks - 24,576 MB + 8000 Mins + 5000 SMS)', '15,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                            </div>
+                        </div>
+
+                        <!-- ATOM Pack 2 -->
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-cyan-200/60 dark:border-slate-800 flex flex-col justify-between hover:border-cyan-500 hover:shadow-lg transition-all group">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-cyan-200/50">30 Days</span>
+                                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">ATOM Pack</span>
                                 </div>
-                                <button onclick="orderItem('ATOM Data Package (15,000 Ks - 24,576 MB + 8000 Mins + 5000 SMS)', '15,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold px-6 py-3 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
-                                <button onclick="orderItem('ATOM Data Package (25,000 Ks - 46,080 MB + 1400 Mins + Extras)', '25,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold px-6 py-3 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
-                                <button onclick="orderItem('ATOM Data Package (30,000 Ks - 120 GB / 138,240 MB)', '30,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-bold px-6 py-3 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                                <div class="text-2xl font-black text-cyan-600 dark:text-cyan-400 mb-1">46,080 MB</div>
+                                <div class="text-xs font-bold text-on-surface dark:text-dark-text mb-3">( 40 GB+ Data )</div>
+                                <p class="text-xs text-on-surface-variant dark:text-dark-text-muted mb-4 font-medium">Data Pack + 1,400 Mins & Extras</p>
+                            </div>
+                            <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-base font-black text-on-surface dark:text-dark-text">25,000 Ks</span>
+                                <button onclick="orderItem('ATOM Data Package (25,000 Ks - 46,080 MB + 1400 Mins)', '25,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                            </div>
+                        </div>
+
+                        <!-- ATOM Pack 3 -->
+                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-cyan-400/80 dark:border-cyan-600/60 flex flex-col justify-between hover:border-cyan-500 hover:shadow-xl transition-all group relative overflow-hidden shadow-sm">
+                            <span class="absolute top-0 right-0 bg-cyan-600 text-white text-[9px] font-black px-2.5 py-0.5 rounded-bl-lg">BEST VALUE</span>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[11px] font-black px-2.5 py-0.5 rounded-md border border-cyan-200/50">30 Days</span>
+                                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400">ATOM Pack</span>
+                                </div>
+                                <div class="text-2xl font-black text-cyan-600 dark:text-cyan-400 mb-1">120 GB</div>
+                                <div class="text-xs font-bold text-on-surface dark:text-dark-text mb-3">( 138,240 MB )</div>
+                                <p class="text-xs text-on-surface-variant dark:text-dark-text-muted mb-4 font-medium">ATOM High Speed Full Internet Data Package</p>
+                            </div>
+                            <div class="pt-3 border-t border-outline-variant/20 dark:border-slate-800 flex items-center justify-between">
+                                <span class="text-base font-black text-on-surface dark:text-dark-text">30,000 Ks</span>
+                                <button onclick="orderItem('ATOM Data Package (30,000 Ks - 120 GB / 138,240 MB)', '30,000 Ks')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-md group-hover:shadow-lg">မှာယူမည်</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -619,7 +633,7 @@
                     </div>
                 </div>
 
-                <!-- 3.  VPN Key Pricing Card -->
+                <!-- 3. VPN Key Pricing Card -->
                 <div class="bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-surface-container-lowest/90 dark:from-emerald-950/30 dark:via-dark-surface/90 dark:to-dark-bg/90 border border-emerald-300/40 dark:border-emerald-800/40 rounded-3xl p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
                     <div class="flex items-center justify-between border-b border-emerald-200/50 dark:border-emerald-900/40 pb-4 mb-6">
                         <div class="flex items-center gap-3">
@@ -648,22 +662,6 @@
                                 <span class="text-base font-black text-emerald-600 dark:text-emerald-400">5,000 Ks</span>
                                 <button onclick="orderItem('VIP VPN Key (1 Month)', '5,000 Ks')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-sm">မှာယူမည်</button>
                             </div>
-                        </div>
-
-                        <div class="bg-surface/90 dark:bg-dark-surface-low/90 p-5 rounded-2xl border border-emerald-200/50 dark:border-slate-800 flex flex-col justify-between hover:border-emerald-500 hover:shadow-lg transition-all group">
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black px-2.5 py-0.5 rounded-md">LONG TERM</span>
-                                <span class="material-symbols-outlined text-emerald-500">verified_user</span>
-                            </div>
-                            <h4 class="text-sm font-bold text-on-surface dark:text-dark-text">VIP VPN Key (3 Months)</h4>
-                            <p class="text-[11px] text-on-surface-variant dark:text-dark-text-muted my-2">High Speed Premium VIP Server Key</p>
-                            <div class="flex justify-between items-center mt-3 pt-2 border-t border-outline-variant/20 dark:border-slate-800">
-                                <span class="text-base font-black text-emerald-600 dark:text-emerald-400">12,000 Ks</span>
-                                <button onclick="orderItem('VIP VPN Key (3 Months)', '12,000 Ks')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl active:scale-95 transition shadow-sm">မှာယူမည်</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </section>
         </div>
 
@@ -809,7 +807,7 @@
     </main>
 
     <!-- Bottom Mobile Nav -->
-    <nav class="fixed bottom-0 left-0 w-full bg-surface/90 dark:bg-dark-bg/95 backdrop-blur-md border-t border-outline-variant/30 dark:border-slate-800 flex justify-around items-center py-2 px-2 pb-safe z-30 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+    <nav class="fixed bottom-0 left-0 w-full bg-surface/90 dark:bg-dark-bg/95 backdrop-blur-md border-t border-outline-variant/30 dark:border-slate-800 flex justify-around items-center py-2 px-2 z-30 rounded-t-2xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
         <button class="flex flex-col items-center justify-center p-2 nav-bottom-btn text-primary dark:text-indigo-400" onclick="switchSection('shop')" id="bot-nav-shop">
             <span class="material-symbols-outlined">home</span>
             <span class="text-[10px] mt-1">Home</span>
@@ -846,14 +844,14 @@
                 ဆက်သွယ်ရန် ဖုန်းနံပါတ် သို့မဟုတ် အောက်ပါ Social App များမှတစ်ဆင့် မှာယူနိုင်ပါသည်။
             </div>
             <div class="flex flex-col gap-3">
-                <a href="viber://contact?number=%2B959899494849" target="_blank" class="w-full bg-viber-purple text-white py-3 rounded-xl text-center font-bold hover:opacity-90 transition flex justify-center items-center gap-2 shadow-sm">
+                <a id="orderViberBtn" href="viber://contact?number=%2B959899494849" target="_blank" class="w-full bg-viber-purple text-white py-3 rounded-xl text-center font-bold hover:opacity-90 transition flex justify-center items-center gap-2 shadow-sm">
                     <span class="material-symbols-outlined text-sm">chat</span> Viber မှ မှာယူမည်
                 </a>
-                <a href="https://t.me/Tunaye" target="_blank" class="w-full bg-sky-500 text-white py-3 rounded-xl text-center font-bold hover:bg-sky-600 transition flex justify-center items-center gap-2 shadow-sm">
-                    <span class="material-symbols-outlined text-sm">send</span> Telegram သို့သွားမည်
+                <a id="orderTelegramBtn" href="https://t.me/Tunaye" target="_blank" class="w-full bg-sky-500 text-white py-3 rounded-xl text-center font-bold hover:bg-sky-600 transition flex justify-center items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-sm">send</span> Telegram မှ မှာယူမည်
                 </a>
-                <a href="https://www.facebook.com/share/1E9TUJ3fzi/?mibextid=wwXIfr" target="_blank" class="w-full bg-blue-600 text-white py-3 rounded-xl text-center font-bold hover:bg-blue-700 transition flex justify-center items-center gap-2 shadow-sm">
-                    <span class="material-symbols-outlined text-sm">facebook</span> Messenger သို့သွားမည်
+                <a id="orderMessengerBtn" href="https://www.facebook.com/share/1E9TUJ3fzi/?mibextid=wwXIfr" target="_blank" class="w-full bg-blue-600 text-white py-3 rounded-xl text-center font-bold hover:bg-blue-700 transition flex justify-center items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-sm">facebook</span> Messenger မှ မှာယူမည်
                 </a>
             </div>
         </div>
@@ -873,11 +871,11 @@
             <div class="space-y-4 font-medium">
                 <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl border border-orange-200/40 dark:border-orange-950">
                     <h4 class="font-bold text-orange-600 dark:text-orange-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">cell_tower</span> Mytel Data & Voice Packs (30 Days)</h4>
-                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">15,000 Ks (22GB+ Data, 8000 Mins) / 20,000 Ks (40GB Data, On/Off Mins) / 25,000 Ks (40GB+ Data, 1400 Mins)</p>
+                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">15,000 Ks (22GB+ Data, 8000 Mins) / 20,000 Ks (40GB Data) / 25,000 Ks (40GB+ Data, 1400 Mins) / 30,000 Ks (120GB Data)</p>
                 </div>
                 <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl border border-cyan-200/40 dark:border-cyan-950">
                     <h4 class="font-bold text-cyan-600 dark:text-cyan-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">wifi</span> ATOM Data Package (30 Days)</h4>
-                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">30,000 Ks (120 GB / 138,240 MB Full Data Pack)</p>
+                    <p class="text-xs text-on-surface-variant dark:text-dark-text-muted">15,000 Ks (22GB+ Data) / 25,000 Ks (40GB+ Data) / 30,000 Ks (120 GB / 138,240 MB Full Data Pack)</p>
                 </div>
                 <div class="bg-surface-container-low dark:bg-dark-bg p-4 rounded-2xl">
                     <h4 class="font-bold text-amber-600 dark:text-amber-400 mb-1 flex items-center gap-2"><span class="material-symbols-outlined text-sm">sports_esports</span> PUBG UC & MLBB Diamonds</h4>
@@ -936,23 +934,6 @@
             { nameMy: "(၁၂လ) ကထိန်း/ဒဲဥ်စေင်", start: new Date(2026, 11, 10), length: 29 }
         ];
 
-        const YATYAZA_DAYS_2026 = ["1-5", "1-12", "2-8", "2-15", "3-4", "3-18", "4-2", "4-20", "5-1", "5-28", "6-6", "6-14", "7-2", "7-12", "8-3", "8-21", "9-8", "9-15"];
-        const PYATHADA_DAYS_2026 = ["1-7", "1-19", "2-4", "2-22", "3-9", "3-11", "4-6", "4-15", "5-3", "5-19", "6-8", "6-22", "7-5", "7-19", "8-4", "8-18", "9-1", "9-30"];
-
-        const HOLIDAYS_2026 = {
-            "1-4": "လွတ်လပ်ရေးနေ့",
-            "2-12": "ပြည်ထောင်စုနေ့",
-            "3-2": "တောင်သူလယ်သမားနေ့",
-            "3-27": "တပ်မတော်နေ့",
-            "4-13": "သင်္ကြန်အကြိုနေ့",
-            "4-14": "သင်္ကြန်အကျနေ့",
-            "4-15": "သင်္ကြန်အကြတ်နေ့",
-            "4-16": "သင်္ကြန်အတက်နေ့",
-            "4-17": "မြန်မာနှစ်ဆန်းတစ်ရက်နေ့",
-            "5-1": "အလုပ်သမားနေ့",
-            "7-19": "အာဇာနည်နေ့"
-        };
-
         const BASE_MARKET_DATE = new Date(2026, 0, 1);
         const monthsNameMy = ["ဇန်နဝါရီ", "ဖေဖော်ဝါရီ", "မတ်", "ဧပြီ", "မေ", "ဇွန်", "ဇူလိုင်", "သြဂုတ်", "စက်တင်ဘာ", "အောက်တိုဘာ", "နိုဝင်ဘာ", "ဒီဇင်ဘာ"];
         const daysHeaderMy = ["တနင်္ဂနွေ", "တနင်္လာ", "အင်္ဂါ", "ဗုဒ္ဓဟူး", "ကြာသပတေး", "သောကြာ", "စနေ"];
@@ -973,6 +954,79 @@
             fetchWeather();
         });
 
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const toggleBtn = document.getElementById("theme-toggle-btn");
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                if (toggleBtn) toggleBtn.innerText = "dark_mode";
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                if (toggleBtn) toggleBtn.innerText = "light_mode";
+            }
+        }
+
+        function toggleDrawer() {
+            const drawer = document.getElementById("side-drawer");
+            const overlay = document.getElementById("drawer-overlay");
+            if (drawer && overlay) {
+                const isHidden = drawer.classList.contains("-translate-x-full");
+                if (isHidden) {
+                    drawer.classList.remove("-translate-x-full");
+                    overlay.classList.remove("hidden");
+                } else {
+                    drawer.classList.add("-translate-x-full");
+                    overlay.classList.add("hidden");
+                }
+            }
+        }
+
+        function toggleContactMenu() {
+            const menu = document.getElementById("contact-options-menu");
+            const tooltip = document.getElementById("contact-badge-tooltip");
+            if (!menu) return;
+            const isHidden = menu.classList.contains("hidden");
+            if (isHidden) {
+                menu.classList.remove("hidden");
+                setTimeout(() => {
+                    menu.classList.remove("opacity-0", "scale-95");
+                }, 10);
+                if (tooltip) tooltip.classList.add("hidden");
+            } else {
+                menu.classList.add("opacity-0", "scale-95");
+                setTimeout(() => {
+                    menu.classList.add("hidden");
+                }, 300);
+            }
+        }
+
+        function switchSection(sectionId) {
+            document.querySelectorAll(".page-section").forEach(sec => sec.classList.add("hidden"));
+            const target = document.getElementById("section-" + sectionId);
+            if (target) target.classList.remove("hidden");
+
+            // Update drawer nav active states
+            document.querySelectorAll(".section-nav-btn").forEach(btn => {
+                btn.classList.remove("bg-primary-container", "text-on-primary-container");
+                btn.classList.add("text-on-surface-variant", "dark:text-dark-text");
+            });
+            const activeNav = document.getElementById("nav-" + sectionId);
+            if (activeNav) {
+                activeNav.classList.add("bg-primary-container", "text-on-primary-container");
+                activeNav.classList.remove("text-on-surface-variant", "dark:text-dark-text");
+            }
+
+            // Close side drawer if open
+            const drawer = document.getElementById("side-drawer");
+            if (drawer && !drawer.classList.contains("-translate-x-full")) {
+                toggleDrawer();
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         async function fetchWeather() {
             const weatherEl = document.getElementById("live-weather");
             if (!weatherEl) return;
@@ -982,55 +1036,26 @@
                 if (!response.ok) throw new Error("API error");
                 const data = await response.json();
                 const current = data.current;
-                const code = current.weather_code;
                 const temp = Math.round(current.temperature_2m);
-                const precipitation = current.precipitation;
-                
-                let statusText = "မိုးမရွာပါ🌤️🌤️🌤️";
-                let icon = "cloud";
-                let colorClass = "text-slate-500 dark:text-slate-300";
-                
-                if (code === 0) {
-                    statusText = "မိုးမရွာပါ (သာယာနေပါသည်🌞🌞🌞)";
-                    icon = "wb_sunny";
-                    colorClass = "text-amber-500";
-                } else if (code >= 1 && code <= 3) {
-                    statusText = "မိုးမရွာပါ (တိမ်အသင့်အတင့်🌨️🌨️🌨️)";
-                    icon = "cloud";
-                    colorClass = "text-slate-500 dark:text-slate-300";
-                } else if (code >= 51 && code <= 55) {
-                    statusText = "မိုးမရွှာပါ (တိမ်ထူနေသည် 🌩️🌩️🌩️)";
-                    icon = "rainy_light";
-                    colorClass = "text-sky-500 dark:text-sky-400 font-bold";
-                } else if ((code >= 61 && code <= 65) || (code >= 80 && code <= 82)) {
-                    statusText = "မိုးဖွဲဖွဲရွာနေသည် (တိမ်ထူနေသည် 🌩️🌩️🌩️)";
-                    icon = "rainy";
-                    colorClass = "text-blue-500 dark:text-blue-400 font-black animate-pulse";
-                } else if (code >= 95) {
-                    statusText = "‌လေတိုက်နှုန်းမြန်ပြီးအရမ်းအေးနေသည် ⛈️⛈️⛈️";
-                    icon = "thunderstorm";
-                    colorClass = "text-purple-600 dark:text-purple-400 font-black animate-bounce";
-                } else {
-                    if (precipitation > 0) {
-                        statusText = "မိုးရွာနေပါသည် 🌧️🌧️🌧️";
-                        icon = "rainy";
-                        colorClass = "text-blue-500 dark:text-blue-400 font-bold";
-                    }
-                }
                 
                 weatherEl.innerHTML = `
-                    <span class="p-2 bg-blue-100 dark:bg-blue-950/60 ${colorClass} rounded-xl font-bold text-sm flex items-center shrink-0">
-                        <span class="material-symbols-outlined text-base mr-1">${icon}</span> ${temp}°C
-                    </span>
-                    <span class="text-sm font-bold ${colorClass}">ဆိုက်ခေါင် - ${statusText}</span>
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-sky-500/30">
+                        <span class="material-symbols-outlined text-2xl">wb_sunny</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <span class="text-xs font-bold text-sky-600 dark:text-sky-400 block mb-0.5">ဆိုက်ခေါင် ရာသီဥတု</span>
+                        <span class="text-sm font-bold text-on-surface dark:text-dark-text">${temp}°C - သာယာနေပါသည်</span>
+                    </div>
                 `;
             } catch (error) {
-                console.error("Weather Fetch Failed:", error);
                 weatherEl.innerHTML = `
-                    <span class="p-2 bg-blue-100 dark:bg-blue-950/60 text-blue-500 rounded-xl font-bold text-sm flex items-center shrink-0">
-                        <span class="material-symbols-outlined text-base mr-1">rainy</span> မိုးရာသီ
-                    </span>
-                    <span class="text-sm font-bold text-on-surface dark:text-dark-text">ဆိုက်ခေါင် - မိုးရွာရန် အလားအလာရှိပါသည်</span>
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-sky-500/30">
+                        <span class="material-symbols-outlined text-2xl">filter_drama</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <span class="text-xs font-bold text-sky-600 dark:text-sky-400 block mb-0.5">ဆိုက်ခေါင် ရာသီဥတု</span>
+                        <span class="text-sm font-bold text-on-surface dark:text-dark-text">၂၅°C - သာယာနေပါသည်</span>
+                    </div>
                 `;
             }
         }
@@ -1064,7 +1089,6 @@
             
             const toMyNum = (num) => num.toString().split('').map(d => myanmarDigits[parseInt(d)] || d).join('');
 
-            const engDateStr = `${today.getDate()} ${monthsEng[today.getMonth()]} ${today.getFullYear()} (${daysEng[today.getDay()]})`;
             const myDateStr = `၂၀၂၆ ခုနှစ်၊ ${monthsNameMy[today.getMonth()]} (${toMyNum(today.getDate())}) ရက် - ${daysHeaderMy[today.getDay()]}နေ့`;
             const lunar = getPaoLunarDetails(today);
             const mIdx = getMarketIndex(today);
@@ -1075,20 +1099,10 @@
                 dateEl.innerHTML = `
                     <div class="space-y-1">
                         <div class="flex items-center gap-1.5 flex-wrap">
-                            <span class="bg-primary/10 dark:bg-indigo-950/60 text-primary dark:text-indigo-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-primary/20 shrink-0">
-                                ENG
-                            </span>
-                            <span class="text-xs font-bold text-on-surface dark:text-dark-text tracking-tight">${engDateStr}</span>
+                            <span class="bg-primary/10 dark:bg-indigo-950/60 text-primary dark:text-indigo-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-primary/20">ယနေ့ရက်စွဲ</span>
                         </div>
-                        <div class="flex items-center gap-1.5 flex-wrap">
-                            <span class="bg-emerald-500/10 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-emerald-500/20 shrink-0">
-                                မြန်မာ
-                            </span>
-                            <span class="text-xs font-bold text-on-surface dark:text-dark-text tracking-tight">${myDateStr}</span>
-                        </div>
-                        <div class="text-[10px] text-amber-600 dark:text-amber-400 font-bold flex items-center gap-1 pt-0.5 border-t border-indigo-100 dark:border-indigo-950">
-                            <span class="material-symbols-outlined text-[12px]">auto_awesome</span> ${lunar.monthName} (${lunar.dayText})
-                        </div>
+                        <p class="text-sm font-bold text-on-surface dark:text-dark-text leading-tight">${myDateStr}</p>
+                        <p class="text-xs text-secondary-container font-black">${lunar.monthName} - ${lunar.dayText}</p>
                     </div>
                 `;
             }
@@ -1097,253 +1111,186 @@
             if (marketEl) {
                 marketEl.innerHTML = `
                     <div class="space-y-1">
-                        <div class="flex items-center justify-between gap-1">
-                            <span class="text-xs font-bold text-secondary-container dark:text-orange-400">ဈေးနေ့</span>
-                            <span class="text-[10px] text-on-surface-variant dark:text-dark-text-muted font-medium">${market.nameEn}</span>
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[10px] font-black px-2 py-0.5 rounded-full border border-orange-500/20">ယနေ့ဈေးနေ့</span>
                         </div>
-                        <div class="text-sm font-black text-on-surface dark:text-dark-text leading-snug drop-shadow-sm pt-0.5">
-                            ${market.nameMy}
-                        </div>
+                        <p class="text-sm font-bold text-orange-600 dark:text-orange-400 leading-tight">${market.nameMy}</p>
+                        <p class="text-xs text-on-surface-variant dark:text-dark-text-muted font-medium">${market.nameEn}</p>
                     </div>
                 `;
             }
-        }
-
-        function toggleContactMenu() {
-            const menu = document.getElementById('contact-options-menu');
-            const icon = document.getElementById('contact-icon');
-            const text = document.getElementById('contact-text');
-            const badge = document.getElementById('contact-badge-tooltip');
-            
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                menu.offsetHeight;
-                menu.classList.remove('scale-90', 'opacity-0');
-                menu.classList.add('scale-100', 'opacity-100');
-                if (icon) icon.innerText = 'close';
-                if (text) text.innerText = 'ပိတ်မည်';
-                if (badge) badge.classList.add('hidden');
-            } else {
-                menu.classList.remove('scale-100', 'opacity-100');
-                menu.classList.add('scale-90', 'opacity-0');
-                if (icon) icon.innerText = 'support_agent';
-                if (text) text.innerText = 'ဆက်သွယ်ရန်';
-                if (badge) badge.classList.remove('hidden');
-                setTimeout(() => {
-                    if (menu.classList.contains('opacity-0')) {
-                        menu.classList.add('hidden');
-                    }
-                }, 300);
-            }
-        }
-
-        function switchSection(sectionId) {
-            document.querySelectorAll('.page-section').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.section-nav-btn').forEach(el => {
-                el.classList.remove('bg-primary-container', 'text-on-primary-container');
-                el.classList.add('text-on-surface-variant', 'dark:text-dark-text');
-            });
-            document.querySelectorAll('.nav-bottom-btn').forEach(el => el.classList.remove('text-primary', 'dark:text-indigo-400'));
-
-            document.getElementById(`section-${sectionId}`).classList.remove('hidden');
-            const navBtn = document.getElementById(`nav-${sectionId}`);
-            if(navBtn) navBtn.classList.add('bg-primary-container', 'text-on-primary-container');
-            const botNavBtn = document.getElementById(`bot-nav-${sectionId}`);
-            if(botNavBtn) botNavBtn.classList.add('text-primary', 'dark:text-indigo-400');
         }
 
         function renderCalendarMatrix() {
-            const grid = document.getElementById("calendar-days-grid");
-            const weekdayContainer = document.getElementById("weekday-headers");
-            grid.innerHTML = "";
-            weekdayContainer.innerHTML = "";
+            const year = currentCalendarDate.getFullYear();
+            const month = currentCalendarDate.getMonth();
 
-            daysHeaderMy.forEach((day, i) => {
-                const dayEl = document.createElement("div");
-                dayEl.className = `text-[10px] sm:text-xs font-bold py-1.5 ${i === 0 ? "text-red-500" : i === 6 ? "text-teal-500" : "text-on-surface-variant dark:text-dark-text-muted"}`;
-                dayEl.innerText = day;
-                weekdayContainer.appendChild(dayEl);
-            });
+            const headerTitle = document.getElementById("calendar-header-title");
+            if (headerTitle) headerTitle.innerText = `${monthsNameMy[month]} ${year}`;
 
-            document.getElementById("calendar-header-title").innerText = `${monthsNameMy[currentCalendarDate.getMonth()]} ၂၀၂၆`;
-            const sampleLunar = getPaoLunarDetails(new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), 15));
-            document.getElementById("calendar-lunar-title").innerText = sampleLunar.monthName;
+            const lunarTitle = document.getElementById("calendar-lunar-title");
+            const firstOfM = new Date(year, month, 1);
+            const lunarInfo = getPaoLunarDetails(firstOfM);
+            if (lunarTitle) lunarTitle.innerText = `${lunarInfo.monthName}`;
 
-            const firstDayIndex = new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), 1).getDay();
-            const totalDays = new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth() + 1, 0).getDate();
-
-            for (let i = 0; i < firstDayIndex; i++) {
-                grid.appendChild(document.createElement("div"));
+            const weekdayHeaders = document.getElementById("weekday-headers");
+            if (weekdayHeaders) {
+                weekdayHeaders.innerHTML = daysHeaderMy.map(d => `<div class="py-2 bg-surface-container dark:bg-dark-surface-low rounded-xl">${d}</div>`).join('');
             }
 
+            const daysGrid = document.getElementById("calendar-days-grid");
+            if (!daysGrid) return;
+            daysGrid.innerHTML = "";
+
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const totalDays = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDayIndex; i++) {
+                daysGrid.innerHTML += `<div class="day-cell opacity-0"></div>`;
+            }
+
+            const today = new Date();
+
             for (let day = 1; day <= totalDays; day++) {
-                const targetDate = new Date(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth(), day);
-                const marketIdx = getMarketIndex(targetDate);
-                const marketShortName = MARKET_CYCLE[marketIdx].nameMy.split(" (")[0].replace("ဆေꩻ", "");
-                const lunar = getPaoLunarDetails(targetDate);
-                const dateKey = `${targetDate.getMonth() + 1}-${day}`;
+                const dateObj = new Date(year, month, day);
+                const isToday = today.getFullYear() === year && today.getMonth() === month && today.getDate() === day;
+                const mIdx = getMarketIndex(dateObj);
+                const marketName = MARKET_CYCLE[mIdx].nameMy.split(' ')[0];
+                const lunar = getPaoLunarDetails(dateObj);
 
-                const isYatyaza = YATYAZA_DAYS_2026.includes(dateKey);
-                const isPyathada = PYATHADA_DAYS_2026.includes(dateKey);
-                const isHoliday = HOLIDAYS_2026[dateKey];
-
-                const cell = document.createElement("div");
-                cell.className = `day-cell border border-outline-variant/30 dark:border-slate-800 rounded-xl p-1 sm:p-2 flex flex-col justify-between items-stretch bg-surface-container-low/80 dark:bg-dark-bg/80 relative cursor-pointer hover:bg-primary-container/20 dark:hover:bg-indigo-950/40 backdrop-blur-sm`;
-                
-                let borderIndicator = "";
-                if (isYatyaza) borderIndicator = `<div class="w-1.5 h-1.5 rounded-full bg-emerald-500 absolute top-1 right-1"></div>`;
-                if (isPyathada) borderIndicator = `<div class="w-1.5 h-1.5 rounded-full bg-red-500 absolute top-1 right-1"></div>`;
-
-                cell.innerHTML = `
-                    <div class="flex justify-between items-start w-full leading-snug">
-                        <span class="text-xs sm:text-sm font-black text-on-surface dark:text-dark-text">${day}</span>
-                        ${borderIndicator}
-                    </div>
-                    <div class="flex flex-col justify-end flex-grow mt-1 space-y-0.5 w-full overflow-hidden">
-                        <span class="text-[8px] sm:text-xs text-secondary-container font-black tracking-tighter truncate text-center block w-full bg-secondary-container/10 rounded py-0.5">${marketShortName}</span>
-                        <div class="text-[7px] sm:text-[10px] opacity-75 dark:text-dark-text-muted truncate text-center block w-full tracking-tighter leading-snug py-0.5">${lunar.dayText}</div>
+                daysGrid.innerHTML += `
+                    <div class="day-cell p-1.5 sm:p-2 rounded-2xl border ${isToday ? 'bg-primary/10 border-primary dark:bg-indigo-950/40' : 'bg-surface/80 dark:bg-dark-surface-low/80 border-outline-variant/20 dark:border-slate-800'} flex flex-col justify-between hover:border-primary transition-all select-none">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs sm:text-sm font-black ${isToday ? 'text-primary dark:text-indigo-400' : 'text-on-surface dark:text-dark-text'}">${day}</span>
+                            ${lunar.isFullMoon ? '<span class="w-2.5 h-2.5 rounded-full bg-yellow-400 shadow-sm" title="လာဗွေႏနီꩻ"></span>' : ''}
+                        </div>
+                        <div class="text-[9px] sm:text-[10px] text-orange-600 dark:text-orange-400 font-bold truncate mt-1">
+                            ${marketName}
+                        </div>
+                        <div class="text-[8px] sm:text-[9px] text-on-surface-variant dark:text-dark-text-muted truncate">
+                            ${lunar.dayText}
+                        </div>
                     </div>
                 `;
-
-                if (isHoliday) cell.classList.add("bg-red-500/10", "border-red-500/30", "dark:bg-red-950/20");
-                if (lunar.isFullMoon) cell.classList.add("bg-yellow-400/10", "dark:bg-yellow-500/10");
-
-                grid.appendChild(cell);
             }
         }
 
-        function changeMonth(dir) {
-            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + dir);
+        function changeMonth(delta) {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + delta);
             renderCalendarMatrix();
         }
 
         function renderMarketTrack() {
-            const track = document.getElementById("market-horizontal-track");
-            if (!track) return;
-            track.innerHTML = "";
-            const currentIdx = getMarketIndex(new Date());
+            const trackEl = document.getElementById("market-horizontal-track");
+            if (!trackEl) return;
+            const today = new Date();
+            const currentMIdx = getMarketIndex(today);
 
-            MARKET_CYCLE.forEach((market, idx) => {
-                const isActive = currentIdx === idx;
-                const card = document.createElement("div");
-                card.className = `p-4 rounded-2xl border transition-all backdrop-blur-md ${isActive ? 'bg-primary-container text-white shadow-lg scale-[1.02]' : 'bg-surface-container-lowest/80 dark:bg-dark-surface/80 border-outline-variant/20 dark:border-slate-800 text-on-surface dark:text-dark-text'}`;
-                card.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <span class="text-[9px] px-2 py-0.5 rounded-full font-bold ${isActive ? 'bg-white text-primary' : 'bg-surface-container-high dark:bg-dark-bg text-on-surface-variant dark:text-dark-text-muted'}">အဆင့် ${idx + 1}</span>
-                        ${isActive ? '<span class="text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full font-bold">ယနေ့</span>' : ''}
+            trackEl.innerHTML = MARKET_CYCLE.map((m, idx) => {
+                const isTodayMarket = idx === currentMIdx;
+                return `
+                    <div class="p-4 rounded-2xl border ${isTodayMarket ? 'bg-gradient-to-br from-orange-500 to-amber-600 text-white border-orange-400 shadow-lg scale-105' : 'bg-surface/90 dark:bg-dark-surface-low/90 border-outline-variant/20 dark:border-slate-800'} transition-all flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase font-black tracking-wider ${isTodayMarket ? 'text-white/80' : 'text-orange-600 dark:text-orange-400'} block mb-1">
+                                ${isTodayMarket ? '🔥 ယနေ့ ဈေးနေ့' : `ဈေးရက် ${idx + 1}`}
+                            </span>
+                            <h4 class="font-bold text-sm leading-snug ${isTodayMarket ? 'text-white' : 'text-on-surface dark:text-dark-text'}">${m.nameMy}</h4>
+                        </div>
+                        <p class="text-[11px] mt-2 ${isTodayMarket ? 'text-white/90 font-medium' : 'text-on-surface-variant dark:text-dark-text-muted'}">${m.nameEn}</p>
                     </div>
-                    <h4 class="font-bold text-sm mt-3">${market.nameMy.split(" (")[0]}</h4>
-                    <p class="text-xs opacity-75 mt-0.5 dark:text-dark-text-muted">${market.nameEn}</p>
                 `;
-                track.appendChild(card);
-            });
+            }).join('');
         }
 
-        function toggleDrawer() {
-            const drawer = document.getElementById('side-drawer');
-            const overlay = document.getElementById('drawer-overlay');
-            const isHidden = drawer.classList.contains('-translate-x-full');
+        function orderItem(itemName, price) {
+            const modal = document.getElementById("orderModal");
+            const modalContent = document.getElementById("orderModalContent");
+            const titleEl = document.getElementById("orderTitle");
+            const priceEl = document.getElementById("orderPrice");
+
+            if (titleEl) titleEl.innerText = itemName;
+            if (priceEl) priceEl.innerText = `စျေးနှုန်း - ${price}`;
+
+            // Pre-fill chat links with order text
+            const encodedMsg = encodeURIComponent(`မင်္ဂလာပါ ခွန်ထွန်းအေး ဖုန်းဆိုင်၊ ${itemName} (${price}) ကို မှာယူချင်လို့ပါခင်ဗျာ။`);
             
-            if (isHidden) {
-                drawer.classList.remove('-translate-x-full');
-                overlay.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            } else {
-                drawer.classList.add('-translate-x-full');
-                overlay.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+            const viberBtn = document.getElementById("orderViberBtn");
+            if (viberBtn) viberBtn.href = `viber://contact?number=%2B959899494849`;
+            
+            const tgBtn = document.getElementById("orderTelegramBtn");
+            if (tgBtn) tgBtn.href = `https://t.me/Tunaye?text=${encodedMsg}`;
+
+            if (modal && modalContent) {
+                modal.classList.remove("hidden");
+                setTimeout(() => {
+                    modal.classList.remove("opacity-0");
+                    modalContent.classList.remove("scale-95");
+                }, 10);
             }
         }
 
-        function toggleTheme() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            const toggleBtn = document.getElementById("theme-toggle-btn");
-            if (isDark) {
-                document.documentElement.classList.remove('light');
-                if (toggleBtn) toggleBtn.innerText = "light_mode";
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.documentElement.classList.add('light');
-                if (toggleBtn) toggleBtn.innerText = "dark_mode";
-                localStorage.setItem('theme', 'light');
+        function closeModal() {
+            const modal = document.getElementById("orderModal");
+            const modalContent = document.getElementById("orderModalContent");
+            if (modal && modalContent) {
+                modal.classList.add("opacity-0");
+                modalContent.classList.add("scale-95");
+                setTimeout(() => {
+                    modal.classList.add("hidden");
+                }, 300);
             }
         }
 
-        function copyKey(btnElement, targetId) {
-            const text = document.getElementById(targetId).innerText;
-            copyText(btnElement, text);
-        }
-
-        function copyText(btnElement, text) {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast();
-                }).catch(() => {
-                    fallbackCopyText(text);
-                });
-            } else {
-                fallbackCopyText(text);
+        function openCatalogModal() {
+            const modal = document.getElementById("catalogModal");
+            const modalContent = document.getElementById("catalogModalContent");
+            if (modal && modalContent) {
+                modal.classList.remove("hidden");
+                setTimeout(() => {
+                    modal.classList.remove("opacity-0");
+                    modalContent.classList.remove("scale-95");
+                }, 10);
             }
         }
 
-        function fallbackCopyText(text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed"; 
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                showToast();
-            } catch (err) {
-                console.error('Fallback copy failed', err);
+        function closeCatalogModal() {
+            const modal = document.getElementById("catalogModal");
+            const modalContent = document.getElementById("catalogModalContent");
+            if (modal && modalContent) {
+                modal.classList.add("opacity-0");
+                modalContent.classList.add("scale-95");
+                setTimeout(() => {
+                    modal.classList.add("hidden");
+                }, 300);
             }
-            document.body.removeChild(textArea);
+        }
+
+        function copyText(btn, text) {
+            const input = document.createElement("input");
+            input.value = text;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("copy");
+            document.body.removeChild(input);
+
+            showToast();
+        }
+
+        function copyKey(btn, elementId) {
+            const el = document.getElementById(elementId);
+            if (el) {
+                copyText(btn, el.innerText);
+            }
         }
 
         function showToast() {
             const toast = document.getElementById("copy-toast");
-            toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 2500);
-        }
-
-        function orderItem(name, price) {
-            document.getElementById('orderTitle').innerText = name;
-            document.getElementById('orderPrice').innerText = 'စျေးနှုန်း - ' + price;
-            const modal = document.getElementById('orderModal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                document.getElementById('orderModalContent').classList.remove('scale-95');
-            }, 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('orderModal');
-            modal.classList.add('opacity-0');
-            document.getElementById('orderModalContent').classList.add('scale-95');
-            setTimeout(() => modal.classList.add('hidden'), 300);
-            document.body.style.overflow = 'auto';
-        }
-
-        function openCatalogModal() {
-            const modal = document.getElementById('catalogModal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                document.getElementById('catalogModalContent').classList.remove('scale-95');
-            }, 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCatalogModal() {
-            const modal = document.getElementById('catalogModal');
-            modal.classList.add('opacity-0');
-            document.getElementById('catalogModalContent').classList.add('scale-95');
-            setTimeout(() => modal.classList.add('hidden'), 300);
-            document.body.style.overflow = 'auto';
+            if (toast) {
+                toast.classList.add("show");
+                setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 2000);
+            }
         }
     </script>
 </body>
