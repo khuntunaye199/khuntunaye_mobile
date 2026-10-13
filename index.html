@@ -11,31 +11,6 @@
     <!-- Loading Web Fonts (Padauk, Noto Sans Myanmar & Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Padauk:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-<!-- Tgitopu API ဒေတာပေါ်ချင်တဲ့ နေရာမှာ ဒီ Div ကို ထည့်ပါ -->
-    <h1>Tgitopu API မှ ဒေတာများ</h1>
-    <div id="api-data">ဒေတာများကို ရယူနေပါသည်...</div>
-
-    <!-- JavaScript Code ကို </body> မတိုင်ခင် (သို့မဟုတ် <head> ထဲ) မှာ ထည့်ပါ -->
-    <script>
-        const apiUrl = 'https://api.tgitopup.com/api';
-        async function fetchData() {
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                if (!response.ok) throw new Error('အမှားရှိသည်');
-                const data = await response.json();
-                document.getElementById('api-data').innerHTML = `
-                    <p>အောင်မြင်စွာ ရယူနိုင်ပါပြီ - ${JSON.stringify(data)}</p>
-                `;
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('api-data').innerText = 'ဒေတာချိတ်ဆက်၍ မရပါ။';
-            }
-        }
-        fetchData();
-    </script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
